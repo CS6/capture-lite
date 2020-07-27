@@ -381,7 +381,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function publish() {
           var _this3 = this;
 
-          this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function (proof) {
+          this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function (proof) {
             return _this3.publishersAlert.present$(proof);
           }), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
         }
