@@ -177,7 +177,6 @@ let ProofPage = class ProofPage {
     ionViewWillEnter() {
         this.proofRepository.refresh$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.captionRepository.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.informationRepository.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.signatureRepository.refresh$()), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
     }
-    // FIXME: remove does not refresh storage page on Android.
     remove() {
         const onConfirm = () => this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(proof => this.proofRepository.remove$(proof)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.router.navigate(['..'])), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
         return this.confirmAlert.present$(onConfirm).pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
@@ -192,7 +191,8 @@ let ProofPage = class ProofPage {
             inputs: [{
                     name: captionInputName,
                     type: 'text',
-                    value: caption
+                    value: caption,
+                    placeholder: this.translateService.instant('nothingHere')
                 }],
             buttons: [{
                     text: this.translateService.instant('cancel'),

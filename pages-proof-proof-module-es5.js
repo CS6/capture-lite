@@ -362,8 +362,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "ionViewWillEnter",
         value: function ionViewWillEnter() {
           this.proofRepository.refresh$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.captionRepository.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.informationRepository.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.signatureRepository.refresh$()), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
-        } // FIXME: remove does not refresh storage page on Android.
-
+        }
       }, {
         key: "remove",
         value: function remove() {
@@ -398,7 +397,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               inputs: [{
                 name: captionInputName,
                 type: 'text',
-                value: caption
+                value: caption,
+                placeholder: _this4.translateService.instant('nothingHere')
               }],
               buttons: [{
                 text: _this4.translateService.instant('cancel'),

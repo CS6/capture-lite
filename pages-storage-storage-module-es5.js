@@ -401,10 +401,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       _createClass(CameraService, [{
         key: "capture$",
-        // FIXME: Because the Camera API launches a separate Activity to handle taking the photo, you
-        //        should listen for appRestoredResult in the App plugin to handle any camera data that was
-        //        sent in the case your app was terminated by the operating system while the Activity was
-        //        running. See: https://capacitorjs.com/docs/apis/app#android-use-apprestoredresult
         value: function capture$() {
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["defer"])(function () {
             return Camera.getPhoto({

@@ -760,8 +760,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function storeAndCollect(rawBase64, mimeType) {
           var _this = this;
 
-          // XXX: Deliberately store proof and its media file in the foreground, so the app page can
-          //      correctly and continuously subscribe the Storage.getAll$().
+          // Deliberately store proof and its media file in the foreground, so the app page can
+          // correctly and continuously subscribe the Storage.getAll$().
           this.store$(rawBase64, mimeType).subscribe(function (proof) {
             Object(src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_5__["subscribeInBackground"])(_this.collectAndSign$(proof));
           });

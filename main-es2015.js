@@ -748,8 +748,8 @@ let CollectorService = class CollectorService {
         this.signatureProviders = new Set();
     }
     storeAndCollect(rawBase64, mimeType) {
-        // XXX: Deliberately store proof and its media file in the foreground, so the app page can
-        //      correctly and continuously subscribe the Storage.getAll$().
+        // Deliberately store proof and its media file in the foreground, so the app page can
+        // correctly and continuously subscribe the Storage.getAll$().
         this.store$(rawBase64, mimeType).subscribe(proof => {
             Object(src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_5__["subscribeInBackground"])(this.collectAndSign$(proof));
         });

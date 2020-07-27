@@ -193,10 +193,6 @@ __webpack_require__.r(__webpack_exports__);
 
 const { Camera } = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"];
 let CameraService = class CameraService {
-    // FIXME: Because the Camera API launches a separate Activity to handle taking the photo, you
-    //        should listen for appRestoredResult in the App plugin to handle any camera data that was
-    //        sent in the case your app was terminated by the operating system while the Activity was
-    //        running. See: https://capacitorjs.com/docs/apis/app#android-use-apprestoredresult
     capture$() {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["defer"])(() => Camera.getPhoto({
             resultType: _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["CameraResultType"].Base64,
