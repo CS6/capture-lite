@@ -293,9 +293,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var src_app_services_publisher_publishers_alert_publishers_alert_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
     /*! src/app/services/publisher/publishers-alert/publishers-alert.service */
     "./src/app/services/publisher/publishers-alert/publishers-alert.service.ts");
+    /* harmony import */
+
+
+    var src_app_services_serialization_serialization_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+    /*! src/app/services/serialization/serialization.service */
+    "./src/app/services/serialization/serialization.service.ts");
 
     var ProofPage = /*#__PURE__*/function () {
-      function ProofPage(router, route, translateService, alertController, confirmAlert, publishersAlert, proofRepository, captionRepository, informationRepository, signatureRepository) {
+      function ProofPage(router, route, translateService, alertController, confirmAlert, publishersAlert, proofRepository, captionRepository, informationRepository, signatureRepository, serializationService) {
         var _this = this;
 
         _classCallCheck(this, ProofPage);
@@ -310,6 +316,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.captionRepository = captionRepository;
         this.informationRepository = informationRepository;
         this.signatureRepository = signatureRepository;
+        this.serializationService = serializationService;
         this.proof$ = this.route.paramMap.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (params) {
           return params.get('hash');
         }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["filter"])(function (hash) {
@@ -364,26 +371,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.proofRepository.refresh$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.captionRepository.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.informationRepository.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.signatureRepository.refresh$()), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
         }
       }, {
-        key: "remove",
-        value: function remove() {
+        key: "publish",
+        value: function publish() {
           var _this2 = this;
 
+          this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function (proof) {
+            return _this2.publishersAlert.present$(proof);
+          }), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
+        }
+      }, {
+        key: "remove",
+        value: function remove() {
+          var _this3 = this;
+
           var onConfirm = function onConfirm() {
-            return _this2.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function (proof) {
-              return _this2.proofRepository.remove$(proof);
-            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(_this2.router.navigate(['..'])), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(_this2)).subscribe();
+            return _this3.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function (proof) {
+              return _this3.proofRepository.remove$(proof);
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(_this3.router.navigate(['..'])), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(_this3)).subscribe();
           };
 
           return this.confirmAlert.present$(onConfirm).pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
-        }
-      }, {
-        key: "publish",
-        value: function publish() {
-          var _this3 = this;
-
-          this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function (proof) {
-            return _this3.publishersAlert.present$(proof);
-          }), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
         }
       }, {
         key: "editCaption",
@@ -452,6 +459,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         type: src_app_services_data_information_information_repository_service__WEBPACK_IMPORTED_MODULE_9__["InformationRepository"]
       }, {
         type: src_app_services_data_signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_11__["SignatureRepository"]
+      }, {
+        type: src_app_services_serialization_serialization_service__WEBPACK_IMPORTED_MODULE_13__["SerializationService"]
       }];
     };
 

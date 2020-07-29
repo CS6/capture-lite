@@ -129,6 +129,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_services_data_proof_proof_repository_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/services/data/proof/proof-repository.service */ "./src/app/services/data/proof/proof-repository.service.ts");
 /* harmony import */ var src_app_services_data_signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/services/data/signature/signature-repository.service */ "./src/app/services/data/signature/signature-repository.service.ts");
 /* harmony import */ var src_app_services_publisher_publishers_alert_publishers_alert_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/services/publisher/publishers-alert/publishers-alert.service */ "./src/app/services/publisher/publishers-alert/publishers-alert.service.ts");
+/* harmony import */ var src_app_services_serialization_serialization_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/services/serialization/serialization.service */ "./src/app/services/serialization/serialization.service.ts");
+
 
 
 
@@ -143,7 +145,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ProofPage = class ProofPage {
-    constructor(router, route, translateService, alertController, confirmAlert, publishersAlert, proofRepository, captionRepository, informationRepository, signatureRepository) {
+    constructor(router, route, translateService, alertController, confirmAlert, publishersAlert, proofRepository, captionRepository, informationRepository, signatureRepository, serializationService) {
         this.router = router;
         this.route = route;
         this.translateService = translateService;
@@ -154,6 +156,7 @@ let ProofPage = class ProofPage {
         this.captionRepository = captionRepository;
         this.informationRepository = informationRepository;
         this.signatureRepository = signatureRepository;
+        this.serializationService = serializationService;
         this.proof$ = this.route.paramMap.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(params => params.get('hash')), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["filter"])(hash => !!hash), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(hash => this.proofRepository.getByHash$(hash)));
         this.rawBase64$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(proof => this.proofRepository.getRawFile$(proof)));
         this.hash$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(proof => proof.hash));
@@ -177,12 +180,12 @@ let ProofPage = class ProofPage {
     ionViewWillEnter() {
         this.proofRepository.refresh$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.captionRepository.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.informationRepository.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.signatureRepository.refresh$()), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
     }
+    publish() {
+        this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(proof => this.publishersAlert.present$(proof)), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
+    }
     remove() {
         const onConfirm = () => this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(proof => this.proofRepository.remove$(proof)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.router.navigate(['..'])), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
         return this.confirmAlert.present$(onConfirm).pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
-    }
-    publish() {
-        this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(proof => this.publishersAlert.present$(proof)), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
     }
     editCaption() {
         const captionInputName = 'captionInputName';
@@ -220,7 +223,8 @@ ProofPage.ctorParameters = () => [
     { type: src_app_services_data_proof_proof_repository_service__WEBPACK_IMPORTED_MODULE_10__["ProofRepository"] },
     { type: src_app_services_data_caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_8__["CaptionRepository"] },
     { type: src_app_services_data_information_information_repository_service__WEBPACK_IMPORTED_MODULE_9__["InformationRepository"] },
-    { type: src_app_services_data_signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_11__["SignatureRepository"] }
+    { type: src_app_services_data_signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_11__["SignatureRepository"] },
+    { type: src_app_services_serialization_serialization_service__WEBPACK_IMPORTED_MODULE_13__["SerializationService"] }
 ];
 ProofPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["UntilDestroy"])({ checkProperties: true }),

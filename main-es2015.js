@@ -574,6 +574,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_notification_notification_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./services/notification/notification.service */ "./src/app/services/notification/notification.service.ts");
 /* harmony import */ var _services_publisher_publishers_alert_publishers_alert_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./services/publisher/publishers-alert/publishers-alert.service */ "./src/app/services/publisher/publishers-alert/publishers-alert.service.ts");
 /* harmony import */ var _services_publisher_sample_publisher_sample_publisher__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./services/publisher/sample-publisher/sample-publisher */ "./src/app/services/publisher/sample-publisher/sample-publisher.ts");
+/* harmony import */ var _services_serialization_serialization_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./services/serialization/serialization.service */ "./src/app/services/serialization/serialization.service.ts");
+
 
 
 
@@ -591,10 +593,11 @@ __webpack_require__.r(__webpack_exports__);
 
 const { SplashScreen } = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"];
 let AppComponent = class AppComponent {
-    constructor(platform, collectorService, publishersAlert, informationRepository, signatureRepository, translateService, notificationService, langaugeService) {
+    constructor(platform, collectorService, publishersAlert, serializationService, informationRepository, signatureRepository, translateService, notificationService, langaugeService) {
         this.platform = platform;
         this.collectorService = collectorService;
         this.publishersAlert = publishersAlert;
+        this.serializationService = serializationService;
         this.informationRepository = informationRepository;
         this.signatureRepository = signatureRepository;
         this.translateService = translateService;
@@ -612,7 +615,7 @@ let AppComponent = class AppComponent {
     initializeCollector() {
         _services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_8__["DefaultSignatureProvider"].initialize$().pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
         this.collectorService.addInformationProvider(new _services_collector_information_capacitor_provider_capacitor_provider__WEBPACK_IMPORTED_MODULE_7__["CapacitorProvider"](this.informationRepository, this.translateService));
-        this.collectorService.addSignatureProvider(new _services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_8__["DefaultSignatureProvider"](this.signatureRepository, this.informationRepository));
+        this.collectorService.addSignatureProvider(new _services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_8__["DefaultSignatureProvider"](this.signatureRepository, this.serializationService));
     }
     initializePublisher() {
         this.publishersAlert.addPublisher(new _services_publisher_sample_publisher_sample_publisher__WEBPACK_IMPORTED_MODULE_14__["SamplePublisher"](this.translateService, this.notificationService));
@@ -622,6 +625,7 @@ AppComponent.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"] },
     { type: _services_collector_collector_service__WEBPACK_IMPORTED_MODULE_6__["CollectorService"] },
     { type: _services_publisher_publishers_alert_publishers_alert_service__WEBPACK_IMPORTED_MODULE_13__["PublishersAlert"] },
+    { type: _services_serialization_serialization_service__WEBPACK_IMPORTED_MODULE_15__["SerializationService"] },
     { type: _services_data_information_information_repository_service__WEBPACK_IMPORTED_MODULE_9__["InformationRepository"] },
     { type: _services_data_signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_10__["SignatureRepository"] },
     { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateService"] },
@@ -1001,16 +1005,14 @@ class DefaultSignatureProvider extends _signature_provider__WEBPACK_IMPORTED_MOD
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignatureProvider", function() { return SignatureProvider; });
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
-/* harmony import */ var src_app_utils_serialization_serialization__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/utils/serialization/serialization */ "./src/app/utils/serialization/serialization.ts");
-
 
 class SignatureProvider {
-    constructor(signatureRepository, informationRepository) {
+    constructor(signatureRepository, serializationService) {
         this.signatureRepository = signatureRepository;
-        this.informationRepository = informationRepository;
+        this.serializationService = serializationService;
     }
     collectAndStore$(proof) {
-        return this.informationRepository.getByProof$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(informationList => Object(src_app_utils_serialization_serialization__WEBPACK_IMPORTED_MODULE_1__["createSortedProofInformation"])(proof, informationList)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["switchMap"])(sortedProofInformation => this.provide$(proof, JSON.stringify(sortedProofInformation))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["switchMap"])(signature => this.signatureRepository.add$(signature)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(signatures => signatures[0]));
+        return this.serializationService.stringify$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["switchMap"])(serialized => this.provide$(proof, serialized)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["switchMap"])(signature => this.signatureRepository.add$(signature)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(signatures => signatures[0]));
     }
 }
 
@@ -1483,6 +1485,66 @@ class SamplePublisher extends _publisher__WEBPACK_IMPORTED_MODULE_2__["Publisher
 
 /***/ }),
 
+/***/ "./src/app/services/serialization/serialization.service.ts":
+/*!*****************************************************************!*\
+  !*** ./src/app/services/serialization/serialization.service.ts ***!
+  \*****************************************************************/
+/*! exports provided: SerializationService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SerializationService", function() { return SerializationService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var _data_information_information_repository_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data/information/information-repository.service */ "./src/app/services/data/information/information-repository.service.ts");
+
+
+
+
+let SerializationService = class SerializationService {
+    constructor(informationRepository) {
+        this.informationRepository = informationRepository;
+    }
+    stringify$(proof) {
+        return this.createSortedProofInformation$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(sortedProofInformation => JSON.stringify(sortedProofInformation)));
+    }
+    createSortedProofInformation$(proof) {
+        return this.informationRepository.getByProof$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(informationList => {
+            const sortedInformation = informationList.sort((a, b) => {
+                const proofHashCompared = a.proofHash.localeCompare(b.proofHash);
+                const providerCompared = a.provider.localeCompare(b.provider);
+                const nameCompared = a.name.localeCompare(b.name);
+                const valueCompared = a.value.localeCompare(b.value);
+                if (proofHashCompared !== 0) {
+                    return proofHashCompared;
+                }
+                if (providerCompared !== 0) {
+                    return providerCompared;
+                }
+                if (nameCompared !== 0) {
+                    return nameCompared;
+                }
+                return valueCompared;
+            });
+            return { proof, sortedInformation };
+        }));
+    }
+};
+SerializationService.ctorParameters = () => [
+    { type: _data_information_information_repository_service__WEBPACK_IMPORTED_MODULE_3__["InformationRepository"] }
+];
+SerializationService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], SerializationService);
+
+
+
+/***/ }),
+
 /***/ "./src/app/utils/background-task/background-task.ts":
 /*!**********************************************************!*\
   !*** ./src/app/utils/background-task/background-task.ts ***!
@@ -1535,7 +1597,6 @@ const subtle = crypto.subtle;
 const SHA_256 = 'SHA-256';
 const ECDSA = 'ECDSA';
 const SECP256R1 = 'P-256';
-const KEY_FORMAT = 'jwk';
 function sha256$(object) {
     return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["of"])(JSON.stringify(object)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(json => sha256WithString$(json)));
 }
@@ -1549,19 +1610,33 @@ function createEcKeyPair$() {
     return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["defer"])(() => subtle.generateKey({
         name: ECDSA,
         namedCurve: SECP256R1
-    }, true, ["sign" /* Sign */, "verify" /* Verify */])).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(({ publicKey, privateKey }) => Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["zip"])(exportKeyInJwk$(publicKey), exportKeyInJwk$(privateKey))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(([publicKey, privateKey]) => ({ publicKey, privateKey })));
+    }, true, ["sign" /* Sign */, "verify" /* Verify */])).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(({ publicKey, privateKey }) => Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["zip"])(exportEcdsaPublicKey$(publicKey), exportEcdsaPrivateKey$(privateKey))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(([publicKey, privateKey]) => ({ publicKey, privateKey })));
 }
 function signWithSha256AndEcdsa$(message, privateKeyHex) {
-    return importKeyInJwk$(privateKeyHex, { name: ECDSA, namedCurve: SECP256R1 }, ["sign" /* Sign */]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(key => subtle.sign({ name: ECDSA, hash: SHA_256 }, key, Object(_encoding_encoding__WEBPACK_IMPORTED_MODULE_2__["stringToArrayBuffer"])(message))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(signature => Object(_encoding_encoding__WEBPACK_IMPORTED_MODULE_2__["arrayBufferToHex"])(signature)));
+    return importEcdsaPrivateKey$(privateKeyHex).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(key => subtle.sign({ name: ECDSA, hash: SHA_256 }, key, Object(_encoding_encoding__WEBPACK_IMPORTED_MODULE_2__["stringToArrayBuffer"])(message))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(signature => Object(_encoding_encoding__WEBPACK_IMPORTED_MODULE_2__["arrayBufferToHex"])(signature)));
 }
 function verifyWithSha256AndEcdsa$(message, signatureHex, publicKeyHex) {
-    return importKeyInJwk$(publicKeyHex, { name: ECDSA, namedCurve: SECP256R1 }, ["verify" /* Verify */]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(key => subtle.verify({ name: ECDSA, hash: SHA_256 }, key, Object(_encoding_encoding__WEBPACK_IMPORTED_MODULE_2__["hexToArrayBuffer"])(signatureHex), Object(_encoding_encoding__WEBPACK_IMPORTED_MODULE_2__["stringToArrayBuffer"])(message))));
+    return importEcdsaPublicKey$(publicKeyHex).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(key => subtle.verify({ name: ECDSA, hash: SHA_256 }, key, Object(_encoding_encoding__WEBPACK_IMPORTED_MODULE_2__["hexToArrayBuffer"])(signatureHex), Object(_encoding_encoding__WEBPACK_IMPORTED_MODULE_2__["stringToArrayBuffer"])(message))));
 }
-function exportKeyInJwk$(key) {
-    return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["defer"])(() => subtle.exportKey(KEY_FORMAT, key)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(exported => JSON.stringify(exported, undefined, 2)));
+function exportEcdsaPublicKey$(key) {
+    return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["defer"])(() => subtle.exportKey("spki" /* SubjectPublicKeyInfo */, key)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(arrayBuffer => Object(_encoding_encoding__WEBPACK_IMPORTED_MODULE_2__["arrayBufferToHex"])(arrayBuffer)));
 }
-function importKeyInJwk$(keyInJwk, algorithm, keyUsages) {
-    return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["defer"])(() => subtle.importKey(KEY_FORMAT, JSON.parse(keyInJwk), algorithm, true, keyUsages));
+function exportEcdsaPrivateKey$(key) {
+    return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["defer"])(() => subtle.exportKey("pkcs8" /* PKCS8 */, key)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(arrayBuffer => Object(_encoding_encoding__WEBPACK_IMPORTED_MODULE_2__["arrayBufferToHex"])(arrayBuffer)));
+}
+function importEcdsaPublicKey$(keyHex) {
+    return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["defer"])(() => subtle.importKey("spki" /* SubjectPublicKeyInfo */, Object(_encoding_encoding__WEBPACK_IMPORTED_MODULE_2__["hexToArrayBuffer"])(keyHex), {
+        name: ECDSA,
+        hash: SHA_256,
+        namedCurve: SECP256R1
+    }, true, ["verify" /* Verify */]));
+}
+function importEcdsaPrivateKey$(keyHex) {
+    return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["defer"])(() => subtle.importKey("pkcs8" /* PKCS8 */, Object(_encoding_encoding__WEBPACK_IMPORTED_MODULE_2__["hexToArrayBuffer"])(keyHex), {
+        name: ECDSA,
+        hash: SHA_256,
+        namedCurve: SECP256R1
+    }, true, ["sign" /* Sign */]));
 }
 
 
@@ -1689,39 +1764,6 @@ class Preferences {
     setString$(key, value) {
         return this.set$(key, value, (v) => v);
     }
-}
-
-
-/***/ }),
-
-/***/ "./src/app/utils/serialization/serialization.ts":
-/*!******************************************************!*\
-  !*** ./src/app/utils/serialization/serialization.ts ***!
-  \******************************************************/
-/*! exports provided: createSortedProofInformation */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSortedProofInformation", function() { return createSortedProofInformation; });
-function createSortedProofInformation(proof, informationList) {
-    const sortedInformation = informationList.sort((a, b) => {
-        const proofHashCompared = a.proofHash.localeCompare(b.proofHash);
-        const providerCompared = a.provider.localeCompare(b.provider);
-        const nameCompared = a.name.localeCompare(b.name);
-        const valueCompared = a.value.localeCompare(b.value);
-        if (proofHashCompared !== 0) {
-            return proofHashCompared;
-        }
-        if (providerCompared !== 0) {
-            return providerCompared;
-        }
-        if (nameCompared !== 0) {
-            return nameCompared;
-        }
-        return valueCompared;
-    });
-    return ({ proof, sortedInformation });
 }
 
 
