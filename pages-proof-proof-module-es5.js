@@ -614,12 +614,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function isNonNullable() {
       return function (source$) {
-        return source$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["filter"])(valueIsNonNullable));
+        return source$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["filter"])(function (v) {
+          return v !== null && v !== undefined;
+        }));
       };
-    }
-
-    function valueIsNonNullable(value) {
-      return value !== null && value !== undefined;
     }
     /***/
 

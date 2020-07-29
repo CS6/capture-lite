@@ -309,10 +309,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
 
 function isNonNullable() {
-    return (source$) => source$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["filter"])(valueIsNonNullable));
-}
-function valueIsNonNullable(value) {
-    return value !== null && value !== undefined;
+    return (source$) => source$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["filter"])((v) => v !== null && v !== undefined));
 }
 
 
