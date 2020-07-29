@@ -2433,7 +2433,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var BackgroundTask = _capacitor_core__WEBPACK_IMPORTED_MODULE_0__["Plugins"].BackgroundTask;
 
     function subscribeInBackground(work$) {
-      if (_capacitor_core__WEBPACK_IMPORTED_MODULE_0__["Capacitor"].isNative) {
+      if (_capacitor_core__WEBPACK_IMPORTED_MODULE_0__["Capacitor"].isPluginAvailable('BackgroundTask')) {
         var taskId = BackgroundTask.beforeExit(function () {
           work$.subscribe(function (_) {
             return BackgroundTask.finish({

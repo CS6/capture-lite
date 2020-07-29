@@ -1559,7 +1559,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const { BackgroundTask } = _capacitor_core__WEBPACK_IMPORTED_MODULE_0__["Plugins"];
 function subscribeInBackground(work$) {
-    if (_capacitor_core__WEBPACK_IMPORTED_MODULE_0__["Capacitor"].isNative) {
+    if (_capacitor_core__WEBPACK_IMPORTED_MODULE_0__["Capacitor"].isPluginAvailable('BackgroundTask')) {
         const taskId = BackgroundTask.beforeExit(() => {
             work$.subscribe(_ => BackgroundTask.finish({ taskId }));
         });
