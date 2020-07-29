@@ -2193,7 +2193,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }, {
                 text: _this24.translateService.instant('ok'),
                 handler: function handler(name) {
-                  return _this24.getPublisherByName(name).publish(proof);
+                  var _a;
+
+                  return (_a = _this24.getPublisherByName(name)) === null || _a === void 0 ? void 0 : _a.publish(proof);
                 }
               }]
             });
@@ -2716,6 +2718,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }
 
     function hexToArrayBuffer(hex) {
+      // tslint:disable-next-line: no-non-null-assertion
       return new Uint8Array(hex.match(/[\da-f]{2}/gi).map(function (h) {
         return parseInt(h, 16);
       })).buffer;
@@ -2753,6 +2756,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     });
 
     function fileNameWithoutExtension(uri) {
+      // tslint:disable-next-line: no-non-null-assertion
       return uri.match(/([^\/]+)(?=\.\w+$)/)[0];
     }
     /***/

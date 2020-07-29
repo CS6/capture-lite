@@ -20281,11 +20281,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   /*! no static exports found */
 
   /***/
-  function srcZoneFlagsTs(module, exports) {
+  function srcZoneFlagsTs(module, exports, __webpack_require__) {
+    "use strict";
     /**
      * Prevents Angular change detection from
      * running with certain Web Component callbacks
      */
+
     window.__Zone_disable_customElements = true;
     /***/
   },

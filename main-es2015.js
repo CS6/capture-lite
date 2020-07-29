@@ -1434,7 +1434,7 @@ let PublishersAlert = class PublishersAlert {
                     role: 'cancel'
                 }, {
                     text: this.translateService.instant('ok'),
-                    handler: (name) => this.getPublisherByName(name).publish(proof)
+                    handler: (name) => { var _a; return (_a = this.getPublisherByName(name)) === null || _a === void 0 ? void 0 : _a.publish(proof); }
                 }]
         })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMap"])(alertElement => alertElement.present()));
     }
@@ -1676,6 +1676,7 @@ function arrayBufferToHex(arrayBuffer) {
         .join('');
 }
 function hexToArrayBuffer(hex) {
+    // tslint:disable-next-line: no-non-null-assertion
     return new Uint8Array(hex.match(/[\da-f]{2}/gi).map(h => parseInt(h, 16))).buffer;
 }
 function stringToArrayBuffer(str) {
@@ -1699,6 +1700,7 @@ function arrayBufferToString(arrayBuffer) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fileNameWithoutExtension", function() { return fileNameWithoutExtension; });
 function fileNameWithoutExtension(uri) {
+    // tslint:disable-next-line: no-non-null-assertion
     return uri.match(/([^\/]+)(?=\.\w+$)/)[0];
 }
 

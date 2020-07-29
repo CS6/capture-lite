@@ -130,6 +130,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_services_data_signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/services/data/signature/signature-repository.service */ "./src/app/services/data/signature/signature-repository.service.ts");
 /* harmony import */ var src_app_services_publisher_publishers_alert_publishers_alert_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/services/publisher/publishers-alert/publishers-alert.service */ "./src/app/services/publisher/publishers-alert/publishers-alert.service.ts");
 /* harmony import */ var src_app_services_serialization_serialization_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/services/serialization/serialization.service */ "./src/app/services/serialization/serialization.service.ts");
+/* harmony import */ var src_app_utils_type__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! src/app/utils/type */ "./src/app/utils/type.ts");
+
 
 
 
@@ -157,7 +159,7 @@ let ProofPage = class ProofPage {
         this.informationRepository = informationRepository;
         this.signatureRepository = signatureRepository;
         this.serializationService = serializationService;
-        this.proof$ = this.route.paramMap.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(params => params.get('hash')), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["filter"])(hash => !!hash), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(hash => this.proofRepository.getByHash$(hash)));
+        this.proof$ = this.route.paramMap.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(params => params.get('hash')), Object(src_app_utils_type__WEBPACK_IMPORTED_MODULE_14__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(hash => this.proofRepository.getByHash$(hash)), Object(src_app_utils_type__WEBPACK_IMPORTED_MODULE_14__["isNonNullable"])());
         this.rawBase64$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(proof => this.proofRepository.getRawFile$(proof)));
         this.hash$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(proof => proof.hash));
         this.mimeType$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(proof => proof.mimeType.type));
@@ -290,6 +292,28 @@ ConfirmAlert = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     })
 ], ConfirmAlert);
 
+
+
+/***/ }),
+
+/***/ "./src/app/utils/type.ts":
+/*!*******************************!*\
+  !*** ./src/app/utils/type.ts ***!
+  \*******************************/
+/*! exports provided: isNonNullable */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isNonNullable", function() { return isNonNullable; });
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+
+function isNonNullable() {
+    return (source$) => source$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["filter"])(valueIsNonNullable));
+}
+function valueIsNonNullable(value) {
+    return value !== null && value !== undefined;
+}
 
 
 /***/ })

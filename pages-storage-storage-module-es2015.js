@@ -187,6 +187,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+
 
 
 
@@ -199,7 +201,11 @@ let CameraService = class CameraService {
             source: _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["CameraSource"].Camera,
             quality: 100,
             allowEditing: false
-        }));
+        })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(cameraPhoto => ({
+            format: cameraPhoto.format,
+            // tslint:disable-next-line: no-non-null-assertion
+            base64String: cameraPhoto.base64String
+        })));
     }
 };
 CameraService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([

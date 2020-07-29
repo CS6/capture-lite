@@ -6127,7 +6127,9 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./src/zone-flags.ts ***!
   \***************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 /**
  * Prevents Angular change detection from

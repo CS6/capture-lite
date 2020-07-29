@@ -299,6 +299,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var src_app_services_serialization_serialization_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
     /*! src/app/services/serialization/serialization.service */
     "./src/app/services/serialization/serialization.service.ts");
+    /* harmony import */
+
+
+    var src_app_utils_type__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+    /*! src/app/utils/type */
+    "./src/app/utils/type.ts");
 
     var ProofPage = /*#__PURE__*/function () {
       function ProofPage(router, route, translateService, alertController, confirmAlert, publishersAlert, proofRepository, captionRepository, informationRepository, signatureRepository, serializationService) {
@@ -319,11 +325,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.serializationService = serializationService;
         this.proof$ = this.route.paramMap.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (params) {
           return params.get('hash');
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["filter"])(function (hash) {
-          return !!hash;
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function (hash) {
+        }), Object(src_app_utils_type__WEBPACK_IMPORTED_MODULE_14__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function (hash) {
           return _this.proofRepository.getByHash$(hash);
-        }));
+        }), Object(src_app_utils_type__WEBPACK_IMPORTED_MODULE_14__["isNonNullable"])());
         this.rawBase64$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function (proof) {
           return _this.proofRepository.getRawFile$(proof);
         }));
@@ -580,6 +584,45 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       providedIn: 'root'
     })], ConfirmAlert);
     /***/
+  },
+
+  /***/
+  "./src/app/utils/type.ts":
+  /*!*******************************!*\
+    !*** ./src/app/utils/type.ts ***!
+    \*******************************/
+
+  /*! exports provided: isNonNullable */
+
+  /***/
+  function srcAppUtilsTypeTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "isNonNullable", function () {
+      return isNonNullable;
+    });
+    /* harmony import */
+
+
+    var rxjs_operators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! rxjs/operators */
+    "./node_modules/rxjs/_esm2015/operators/index.js");
+
+    function isNonNullable() {
+      return function (source$) {
+        return source$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["filter"])(valueIsNonNullable));
+      };
+    }
+
+    function valueIsNonNullable(value) {
+      return value !== null && value !== undefined;
+    }
+    /***/
+
   }
 }]);
 //# sourceMappingURL=pages-proof-proof-module-es5.js.map

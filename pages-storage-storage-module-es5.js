@@ -391,6 +391,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! rxjs */
     "./node_modules/rxjs/_esm2015/index.js");
+    /* harmony import */
+
+
+    var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! rxjs/operators */
+    "./node_modules/rxjs/_esm2015/operators/index.js");
 
     var Camera = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"].Camera;
 
@@ -409,7 +415,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               quality: 100,
               allowEditing: false
             });
-          });
+          }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (cameraPhoto) {
+            return {
+              format: cameraPhoto.format,
+              // tslint:disable-next-line: no-non-null-assertion
+              base64String: cameraPhoto.base64String
+            };
+          }));
         }
       }]);
 
