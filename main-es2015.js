@@ -563,8 +563,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-/* harmony import */ var _ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngneat/until-destroy */ "./node_modules/@ngneat/until-destroy/__ivy_ngcc__/fesm2015/ngneat-until-destroy.js");
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/__ivy_ngcc__/fesm2015/ngx-translate-core.js");
+/* harmony import */ var _ngneat_transloco__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngneat/transloco */ "./node_modules/@ngneat/transloco/__ivy_ngcc__/fesm2015/ngneat-transloco.js");
+/* harmony import */ var _ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngneat/until-destroy */ "./node_modules/@ngneat/until-destroy/__ivy_ngcc__/fesm2015/ngneat-until-destroy.js");
 /* harmony import */ var _services_collector_collector_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./services/collector/collector.service */ "./src/app/services/collector/collector.service.ts");
 /* harmony import */ var _services_collector_information_capacitor_provider_capacitor_provider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./services/collector/information/capacitor-provider/capacitor-provider */ "./src/app/services/collector/information/capacitor-provider/capacitor-provider.ts");
 /* harmony import */ var _services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./services/collector/signature/default-provider/default-provider */ "./src/app/services/collector/signature/default-provider/default-provider.ts");
@@ -593,19 +593,19 @@ __webpack_require__.r(__webpack_exports__);
 
 const { SplashScreen } = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"];
 let AppComponent = class AppComponent {
-    constructor(platform, collectorService, publishersAlert, serializationService, informationRepository, signatureRepository, translateService, notificationService, langaugeService) {
+    constructor(platform, collectorService, publishersAlert, serializationService, informationRepository, signatureRepository, translocoService, notificationService, langaugeService) {
         this.platform = platform;
         this.collectorService = collectorService;
         this.publishersAlert = publishersAlert;
         this.serializationService = serializationService;
         this.informationRepository = informationRepository;
         this.signatureRepository = signatureRepository;
-        this.translateService = translateService;
+        this.translocoService = translocoService;
         this.notificationService = notificationService;
         this.initializeApp();
         this.initializeCollector();
         this.initializePublisher();
-        langaugeService.initialize$().pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
+        langaugeService.initialize$().pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["untilDestroyed"])(this)).subscribe();
     }
     initializeApp() {
         this.platform.ready().then(() => {
@@ -613,12 +613,12 @@ let AppComponent = class AppComponent {
         });
     }
     initializeCollector() {
-        _services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_8__["DefaultSignatureProvider"].initialize$().pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
-        this.collectorService.addInformationProvider(new _services_collector_information_capacitor_provider_capacitor_provider__WEBPACK_IMPORTED_MODULE_7__["CapacitorProvider"](this.informationRepository, this.translateService));
+        _services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_8__["DefaultSignatureProvider"].initialize$().pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["untilDestroyed"])(this)).subscribe();
+        this.collectorService.addInformationProvider(new _services_collector_information_capacitor_provider_capacitor_provider__WEBPACK_IMPORTED_MODULE_7__["CapacitorProvider"](this.informationRepository, this.translocoService));
         this.collectorService.addSignatureProvider(new _services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_8__["DefaultSignatureProvider"](this.signatureRepository, this.serializationService));
     }
     initializePublisher() {
-        this.publishersAlert.addPublisher(new _services_publisher_sample_publisher_sample_publisher__WEBPACK_IMPORTED_MODULE_14__["SamplePublisher"](this.translateService, this.notificationService));
+        this.publishersAlert.addPublisher(new _services_publisher_sample_publisher_sample_publisher__WEBPACK_IMPORTED_MODULE_14__["SamplePublisher"](this.translocoService, this.notificationService));
     }
 };
 AppComponent.ctorParameters = () => [
@@ -628,12 +628,12 @@ AppComponent.ctorParameters = () => [
     { type: _services_serialization_serialization_service__WEBPACK_IMPORTED_MODULE_15__["SerializationService"] },
     { type: _services_data_information_information_repository_service__WEBPACK_IMPORTED_MODULE_9__["InformationRepository"] },
     { type: _services_data_signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_10__["SignatureRepository"] },
-    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateService"] },
+    { type: _ngneat_transloco__WEBPACK_IMPORTED_MODULE_4__["TranslocoService"] },
     { type: _services_notification_notification_service__WEBPACK_IMPORTED_MODULE_12__["NotificationService"] },
     { type: _services_language_language_service__WEBPACK_IMPORTED_MODULE_11__["LanguageService"] }
 ];
 AppComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-    Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["UntilDestroy"])({ checkProperties: true }),
+    Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["UntilDestroy"])({ checkProperties: true }),
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-root',
         template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./app.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html")).default,
@@ -649,12 +649,11 @@ AppComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 /*!*******************************!*\
   !*** ./src/app/app.module.ts ***!
   \*******************************/
-/*! exports provided: createTranslateLoader, AppModule */
+/*! exports provided: AppModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTranslateLoader", function() { return createTranslateLoader; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
@@ -664,10 +663,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/__ivy_ngcc__/fesm2015/ngx-translate-core.js");
-/* harmony import */ var _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ngx-translate/http-loader */ "./node_modules/@ngx-translate/http-loader/__ivy_ngcc__/fesm2015/ngx-translate-http-loader.js");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _transloco_root_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./transloco-root.module */ "./src/app/transloco-root.module.ts");
 
 
 
@@ -679,35 +677,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-function createTranslateLoader(http) {
-    return new _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_9__["TranslateHttpLoader"](http, './assets/i18n/', '.json');
-}
 let AppModule = class AppModule {
 };
 AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_11__["AppComponent"]],
+        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]],
         entryComponents: [],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["BrowserModule"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["IonicModule"].forRoot(),
-            _app_routing_module__WEBPACK_IMPORTED_MODULE_10__["AppRoutingModule"],
+            _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClientModule"],
-            _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__["TranslateModule"].forRoot({
-                loader: {
-                    provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__["TranslateLoader"],
-                    useFactory: (createTranslateLoader),
-                    deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]]
-                }
-            })
+            _transloco_root_module__WEBPACK_IMPORTED_MODULE_10__["TranslocoRootModule"]
         ],
         providers: [
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
             _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
             { provide: _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["IonicRouteStrategy"] }
         ],
-        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_11__["AppComponent"]]
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]]
     })
 ], AppModule);
 
@@ -727,7 +715,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CollectorService", function() { return CollectorService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/__ivy_ngcc__/fesm2015/ngx-translate-core.js");
+/* harmony import */ var _ngneat_transloco__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngneat/transloco */ "./node_modules/@ngneat/transloco/__ivy_ngcc__/fesm2015/ngneat-transloco.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
 /* harmony import */ var src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/utils/background-task/background-task */ "./src/app/utils/background-task/background-task.ts");
@@ -744,10 +732,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let CollectorService = class CollectorService {
-    constructor(proofRepository, notificationService, translateService) {
+    constructor(proofRepository, notificationService, translocoService) {
         this.proofRepository = proofRepository;
         this.notificationService = notificationService;
-        this.translateService = translateService;
+        this.translocoService = translocoService;
         this.informationProviders = new Set();
         this.signatureProviders = new Set();
     }
@@ -767,8 +755,8 @@ let CollectorService = class CollectorService {
     }
     collectAndSign$(proof) {
         const notificationId = this.notificationService.createNotificationId();
-        this.notificationService.notify(notificationId, this.translateService.instant('collectingProof'), this.translateService.instant('collectingInformation'));
-        return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["forkJoin"])([...this.informationProviders].map(provider => provider.collectAndStore$(proof))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["defaultIfEmpty"])([]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(_ => this.notificationService.notify(notificationId, this.translateService.instant('collectingProof'), this.translateService.instant('signingProof'))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["forkJoin"])([...this.signatureProviders].map(provider => provider.collectAndStore$(proof)))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(_ => this.notificationService.cancel(notificationId)));
+        this.notificationService.notify(notificationId, this.translocoService.translate('collectingProof'), this.translocoService.translate('collectingInformation'));
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["forkJoin"])([...this.informationProviders].map(provider => provider.collectAndStore$(proof))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["defaultIfEmpty"])([]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(_ => this.notificationService.notify(notificationId, this.translocoService.translate('collectingProof'), this.translocoService.translate('signingProof'))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["forkJoin"])([...this.signatureProviders].map(provider => provider.collectAndStore$(proof)))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(_ => this.notificationService.cancel(notificationId)));
     }
     addInformationProvider(...providers) {
         providers.forEach(provider => this.informationProviders.add(provider));
@@ -786,7 +774,7 @@ let CollectorService = class CollectorService {
 CollectorService.ctorParameters = () => [
     { type: _data_proof_proof_repository_service__WEBPACK_IMPORTED_MODULE_7__["ProofRepository"] },
     { type: _notification_notification_service__WEBPACK_IMPORTED_MODULE_8__["NotificationService"] },
-    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_2__["TranslateService"] }
+    { type: _ngneat_transloco__WEBPACK_IMPORTED_MODULE_2__["TranslocoService"] }
 ];
 CollectorService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -818,9 +806,9 @@ __webpack_require__.r(__webpack_exports__);
 
 const { Device, Geolocation } = _capacitor_core__WEBPACK_IMPORTED_MODULE_0__["Plugins"];
 class CapacitorProvider extends _information_provider__WEBPACK_IMPORTED_MODULE_3__["InformationProvider"] {
-    constructor(informationRepository, translateService) {
+    constructor(informationRepository, translocoService) {
         super(informationRepository);
-        this.translateService = translateService;
+        this.translocoService = translocoService;
         this.name = 'Capacitor';
     }
     provide$(proof) {
@@ -832,87 +820,87 @@ class CapacitorProvider extends _information_provider__WEBPACK_IMPORTED_MODULE_3
             return [{
                     proofHash: proof.hash,
                     provider: this.name,
-                    name: this.translateService.instant('deviceName'),
+                    name: this.translocoService.translate('deviceName'),
                     value: String(deviceInfo.name)
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
-                    name: this.translateService.instant('deviceModel'),
+                    name: this.translocoService.translate('deviceModel'),
                     value: String(deviceInfo.model)
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
-                    name: this.translateService.instant('devicePlatform'),
+                    name: this.translocoService.translate('devicePlatform'),
                     value: String(deviceInfo.platform)
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
-                    name: this.translateService.instant('uuid'),
+                    name: this.translocoService.translate('uuid'),
                     value: String(deviceInfo.uuid)
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
-                    name: this.translateService.instant('appVersion'),
+                    name: this.translocoService.translate('appVersion'),
                     value: String(deviceInfo.appVersion)
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
-                    name: this.translateService.instant('appVersionCode'),
+                    name: this.translocoService.translate('appVersionCode'),
                     value: String(deviceInfo.appBuild)
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
-                    name: this.translateService.instant('operatingSystem'),
+                    name: this.translocoService.translate('operatingSystem'),
                     value: String(deviceInfo.operatingSystem)
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
-                    name: this.translateService.instant('osVersion'),
+                    name: this.translocoService.translate('osVersion'),
                     value: String(deviceInfo.osVersion)
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
-                    name: this.translateService.instant('deviceManufacturer'),
+                    name: this.translocoService.translate('deviceManufacturer'),
                     value: String(deviceInfo.manufacturer)
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
-                    name: this.translateService.instant('runningOnVm'),
+                    name: this.translocoService.translate('runningOnVm'),
                     value: String(deviceInfo.isVirtual)
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
-                    name: this.translateService.instant('usedMemory'),
+                    name: this.translocoService.translate('usedMemory'),
                     value: String(deviceInfo.memUsed)
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
-                    name: this.translateService.instant('freeDiskSpace'),
+                    name: this.translocoService.translate('freeDiskSpace'),
                     value: String(deviceInfo.diskFree)
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
-                    name: this.translateService.instant('totalDiskSpace'),
+                    name: this.translocoService.translate('totalDiskSpace'),
                     value: String(deviceInfo.diskTotal)
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
-                    name: this.translateService.instant('batteryLevel'),
+                    name: this.translocoService.translate('batteryLevel'),
                     value: String(batteryInfo.batteryLevel)
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
-                    name: this.translateService.instant('batteryCharging'),
+                    name: this.translocoService.translate('batteryCharging'),
                     value: String(batteryInfo.isCharging)
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
-                    name: this.translateService.instant('deviceLanguageCode'),
+                    name: this.translocoService.translate('deviceLanguageCode'),
                     value: String(languageCode.value)
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
-                    name: this.translateService.instant('location'),
+                    name: this.translocoService.translate('location'),
                     value: `(${geolocationPosition.coords.latitude}, ${geolocationPosition.coords.longitude})`
                 }];
         }));
@@ -1264,38 +1252,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LanguageService", function() { return LanguageService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/__ivy_ngcc__/fesm2015/ngx-translate-core.js");
+/* harmony import */ var _ngneat_transloco__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngneat/transloco */ "./node_modules/@ngneat/transloco/__ivy_ngcc__/fesm2015/ngneat-transloco.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
-/* harmony import */ var _utils_preferences_preference_manager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/preferences/preference-manager */ "./src/app/utils/preferences/preference-manager.ts");
+/* harmony import */ var src_app_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/transloco-root.module */ "./src/app/transloco-root.module.ts");
+/* harmony import */ var _utils_preferences_preference_manager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/preferences/preference-manager */ "./src/app/utils/preferences/preference-manager.ts");
+
 
 
 
 
 
 let LanguageService = class LanguageService {
-    constructor(translateService) {
-        this.translateService = translateService;
-        this.preferences = _utils_preferences_preference_manager__WEBPACK_IMPORTED_MODULE_4__["PreferenceManager"].LANGUAGE_PREF;
+    constructor(translocoService) {
+        this.translocoService = translocoService;
+        this.preferences = _utils_preferences_preference_manager__WEBPACK_IMPORTED_MODULE_5__["PreferenceManager"].LANGUAGE_PREF;
         this.prefKeys = {
             langauge: 'langauge'
         };
-        this.languages = {
-            'en-us': 'English (United State)',
-            'zh-tw': '繁體中文（台灣）'
-        };
-        this.defaultLanguage = Object.entries(this.languages)[0];
-        this.currentLanguageKey$ = this.preferences.get$(this.prefKeys.langauge, this.defaultLanguage[0]);
+        this.languages = src_app_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__["languages"];
+        this.defaultLanguage = src_app_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__["defaultLanguage"];
+        this.currentLanguageKey$ = this.preferences.get$(this.prefKeys.langauge, src_app_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__["defaultLanguage"][0]);
     }
     initialize$() {
-        this.translateService.setDefaultLang(this.defaultLanguage[0]);
+        this.translocoService.setDefaultLang(src_app_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__["defaultLanguage"][0]);
         return this.currentLanguageKey$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(key => this.setCurrentLanguage$(key)));
     }
     setCurrentLanguage$(key) {
-        return this.preferences.set$(this.prefKeys.langauge, key).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMapTo"])(this.translateService.use(key)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["mapTo"])(key));
+        return this.preferences.set$(this.prefKeys.langauge, key).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["mapTo"])(this.translocoService.setActiveLang(key)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["mapTo"])(key));
     }
 };
 LanguageService.ctorParameters = () => [
-    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_2__["TranslateService"] }
+    { type: _ngneat_transloco__WEBPACK_IMPORTED_MODULE_2__["TranslocoService"] }
 ];
 LanguageService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -1374,14 +1361,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class Publisher {
-    constructor(translateService, notificationService) {
-        this.translateService = translateService;
+    constructor(translocoService, notificationService) {
+        this.translocoService = translocoService;
         this.notificationService = notificationService;
     }
     publish(proof) {
         const notificationId = this.notificationService.createNotificationId();
-        this.notificationService.notify(notificationId, this.translateService.instant('publishingProof'), this.translateService.instant('message.publishingProof', { hash: proof.hash, publisherName: this.name }));
-        Object(src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_1__["subscribeInBackground"])(this.run$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["tap"])(_ => this.notificationService.notify(notificationId, this.translateService.instant('proofPublished'), this.translateService.instant('message.proofPublished', { hash: proof.hash, publisherName: this.name })))));
+        this.notificationService.notify(notificationId, this.translocoService.translate('publishingProof'), this.translocoService.translate('message.publishingProof', { hash: proof.hash, publisherName: this.name }));
+        Object(src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_1__["subscribeInBackground"])(this.run$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["tap"])(_ => this.notificationService.notify(notificationId, this.translocoService.translate('proofPublished'), this.translocoService.translate('message.proofPublished', { hash: proof.hash, publisherName: this.name })))));
     }
 }
 
@@ -1401,7 +1388,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/__ivy_ngcc__/fesm2015/ngx-translate-core.js");
+/* harmony import */ var _ngneat_transloco__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngneat/transloco */ "./node_modules/@ngneat/transloco/__ivy_ngcc__/fesm2015/ngneat-transloco.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
 
@@ -1411,9 +1398,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let PublishersAlert = class PublishersAlert {
-    constructor(alertController, translateService) {
+    constructor(alertController, translocoService) {
         this.alertController = alertController;
-        this.translateService = translateService;
+        this.translocoService = translocoService;
         this.publishers = [];
     }
     addPublisher(publisher) {
@@ -1421,7 +1408,7 @@ let PublishersAlert = class PublishersAlert {
     }
     present$(proof) {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["defer"])(() => this.alertController.create({
-            header: this.translateService.instant('selectAPublisher'),
+            header: this.translocoService.translate('selectAPublisher'),
             inputs: this.publishers.map((publisher, index) => ({
                 name: publisher.name,
                 type: 'radio',
@@ -1430,10 +1417,10 @@ let PublishersAlert = class PublishersAlert {
                 checked: index === 0
             })),
             buttons: [{
-                    text: this.translateService.instant('cancel'),
+                    text: this.translocoService.translate('cancel'),
                     role: 'cancel'
                 }, {
-                    text: this.translateService.instant('ok'),
+                    text: this.translocoService.translate('ok'),
                     handler: (name) => { var _a; return (_a = this.getPublisherByName(name)) === null || _a === void 0 ? void 0 : _a.publish(proof); }
                 }]
         })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMap"])(alertElement => alertElement.present()));
@@ -1444,7 +1431,7 @@ let PublishersAlert = class PublishersAlert {
 };
 PublishersAlert.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] },
-    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__["TranslateService"] }
+    { type: _ngneat_transloco__WEBPACK_IMPORTED_MODULE_3__["TranslocoService"] }
 ];
 PublishersAlert = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -1540,6 +1527,76 @@ SerializationService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])(
         providedIn: 'root'
     })
 ], SerializationService);
+
+
+
+/***/ }),
+
+/***/ "./src/app/transloco-root.module.ts":
+/*!******************************************!*\
+  !*** ./src/app/transloco-root.module.ts ***!
+  \******************************************/
+/*! exports provided: languages, defaultLanguage, TranslocoHttpLoader, TranslocoRootModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "languages", function() { return languages; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultLanguage", function() { return defaultLanguage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TranslocoHttpLoader", function() { return TranslocoHttpLoader; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TranslocoRootModule", function() { return TranslocoRootModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _ngneat_transloco__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngneat/transloco */ "./node_modules/@ngneat/transloco/__ivy_ngcc__/fesm2015/ngneat-transloco.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
+
+
+
+
+
+const languages = {
+    'en-us': 'English (United State)',
+    'zh-tw': '繁體中文（台灣）'
+};
+const defaultLanguage = Object.entries(languages)[0];
+let TranslocoHttpLoader = class TranslocoHttpLoader {
+    constructor(http) {
+        this.http = http;
+    }
+    getTranslation(lang) {
+        return this.http.get(`/assets/i18n/${lang}.json`);
+    }
+};
+TranslocoHttpLoader.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
+];
+TranslocoHttpLoader = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({ providedIn: 'root' })
+], TranslocoHttpLoader);
+
+let TranslocoRootModule = class TranslocoRootModule {
+};
+TranslocoRootModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
+        exports: [_ngneat_transloco__WEBPACK_IMPORTED_MODULE_3__["TranslocoModule"]],
+        providers: [
+            {
+                provide: _ngneat_transloco__WEBPACK_IMPORTED_MODULE_3__["TRANSLOCO_CONFIG"],
+                useValue: Object(_ngneat_transloco__WEBPACK_IMPORTED_MODULE_3__["translocoConfig"])({
+                    availableLangs: Object.keys(languages),
+                    defaultLang: defaultLanguage[0],
+                    fallbackLang: defaultLanguage[0],
+                    missingHandler: { useFallbackTranslation: true },
+                    // Remove this option if your application doesn't support changing language in runtime.
+                    reRenderOnLangChange: true,
+                    prodMode: _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].production,
+                })
+            },
+            { provide: _ngneat_transloco__WEBPACK_IMPORTED_MODULE_3__["TRANSLOCO_LOADER"], useClass: TranslocoHttpLoader }
+        ]
+    })
+], TranslocoRootModule);
 
 
 

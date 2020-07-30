@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button routerLink=\"..\" routerDirection=\"back\">\n        <ion-icon slot=\"icon-only\" name=\"arrow-back\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>{{ 'proofDetails' | translate }}</ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-button (click)=\"publish()\">\n        <ion-icon slot=\"icon-only\" name=\"cloud-upload\"></ion-icon>\n      </ion-button>\n      <ion-button (click)=\"remove()\">\n        <ion-icon slot=\"icon-only\" name=\"trash\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-img [src]=\"'data:image/*;base64,' + (rawBase64$ | async)\"></ion-img>\n  <ion-list lines=\"none\">\n    <ion-item>\n      <ion-icon slot=\"start\" name=\"reader\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ 'caption' | translate }}</h2>\n        <p>{{ (caption$ | async) === '' ? '(' + ( 'nothingHere' | translate ) + ')' : (caption$ | async) }}</p>\n      </ion-label>\n      <ion-button (click)=\"editCaption()\" slot=\"end\" fill=\"clear\" shape=\"round\">\n        <ion-icon slot=\"icon-only\" name=\"create\"></ion-icon>\n      </ion-button>\n    </ion-item>\n    <ion-item>\n      <ion-icon slot=\"start\" name=\"information\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ 'hash' | translate }}</h2>\n        <p>{{ hash$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-icon slot=\"start\" name=\"image\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ 'mimeType' | translate }}</h2>\n        <p>{{ mimeType$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-icon slot=\"start\" name=\"time\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ 'timestamp' | translate }}</h2>\n        <p>{{ timestamp$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-list-header>\n      <ion-label>\n        <h2>{{ 'information' | translate }}</h2>\n      </ion-label>\n    </ion-list-header>\n    <ion-item>\n      <ion-slides pager>\n        <ion-slide *ngFor=\"let providerWithInformationList of (providersWithInformationList$ | async)\">\n          <ion-card class=\"slide-card\">\n            <ion-card-header>\n              <ion-card-title>{{ providerWithInformationList.provider }}</ion-card-title>\n            </ion-card-header>\n            <ion-card-content>\n              <ion-list>\n                <ion-item *ngFor=\"let information of providerWithInformationList.informationList\">\n                  <ion-label class=\"ion-text-wrap\">\n                    <h3>{{ information.name }}</h3>\n                    <p>{{ information.value }}</p>\n                  </ion-label>\n                </ion-item>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n        </ion-slide>\n      </ion-slides>\n    </ion-item>\n    <ion-list-header>\n      <ion-label>\n        <h2>{{ 'signatures' | translate }}</h2>\n      </ion-label>\n    </ion-list-header>\n    <ion-item>\n      <ion-slides pager>\n        <ion-slide *ngFor=\"let signature of (signatures$ | async)\">\n          <ion-card class=\"slide-card\">\n            <ion-card-header>\n              <ion-card-title>{{ signature.provider }}</ion-card-title>\n            </ion-card-header>\n            <ion-card-content>\n              <ion-list>\n                <ion-item>\n                  <ion-label class=\"ion-text-wrap\">\n                    <h3>{{ 'signature' | translate }}</h3>\n                    <p>{{ signature.signature }}</p>\n                  </ion-label>\n                </ion-item>\n                <ion-item>\n                  <ion-label class=\"ion-text-wrap\">\n                    <h3>{{ 'publicKey' | translate }}</h3>\n                    <p class=\"multiline\">{{ signature.publicKey }}</p>\n                  </ion-label>\n                </ion-item>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n        </ion-slide>\n      </ion-slides>\n    </ion-item>\n  </ion-list>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header *transloco=\"let t\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button routerLink=\"..\" routerDirection=\"back\">\n        <ion-icon slot=\"icon-only\" name=\"arrow-back\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>{{ t('proofDetails') }}</ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-button (click)=\"publish()\">\n        <ion-icon slot=\"icon-only\" name=\"cloud-upload\"></ion-icon>\n      </ion-button>\n      <ion-button (click)=\"remove()\">\n        <ion-icon slot=\"icon-only\" name=\"trash\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content *transloco=\"let t\">\n  <ion-img [src]=\"'data:image/*;base64,' + (rawBase64$ | async)\"></ion-img>\n  <ion-list lines=\"none\">\n    <ion-item>\n      <ion-icon slot=\"start\" name=\"reader\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ t('caption') }}</h2>\n        <p>{{ (caption$ | async) === '' ? '(' + ( t('nothingHere') ) + ')' : (caption$ | async) }}</p>\n      </ion-label>\n      <ion-button (click)=\"editCaption()\" slot=\"end\" fill=\"clear\" shape=\"round\">\n        <ion-icon slot=\"icon-only\" name=\"create\"></ion-icon>\n      </ion-button>\n    </ion-item>\n    <ion-item>\n      <ion-icon slot=\"start\" name=\"information\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ t('hash') }}</h2>\n        <p>{{ hash$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-icon slot=\"start\" name=\"image\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ t('mimeType') }}</h2>\n        <p>{{ mimeType$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-icon slot=\"start\" name=\"time\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ t('timestamp') }}</h2>\n        <p>{{ timestamp$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-list-header>\n      <ion-label>\n        <h2>{{ t('information') }}</h2>\n      </ion-label>\n    </ion-list-header>\n    <ion-item>\n      <ion-slides pager>\n        <ion-slide *ngFor=\"let providerWithInformationList of (providersWithInformationList$ | async)\">\n          <ion-card class=\"slide-card\">\n            <ion-card-header>\n              <ion-card-title>{{ providerWithInformationList.provider }}</ion-card-title>\n            </ion-card-header>\n            <ion-card-content>\n              <ion-list>\n                <ion-item *ngFor=\"let information of providerWithInformationList.informationList\">\n                  <ion-label class=\"ion-text-wrap\">\n                    <h3>{{ information.name }}</h3>\n                    <p>{{ information.value }}</p>\n                  </ion-label>\n                </ion-item>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n        </ion-slide>\n      </ion-slides>\n    </ion-item>\n    <ion-list-header>\n      <ion-label>\n        <h2>{{ t('signatures') }}</h2>\n      </ion-label>\n    </ion-list-header>\n    <ion-item>\n      <ion-slides pager>\n        <ion-slide *ngFor=\"let signature of (signatures$ | async)\">\n          <ion-card class=\"slide-card\">\n            <ion-card-header>\n              <ion-card-title>{{ signature.provider }}</ion-card-title>\n            </ion-card-header>\n            <ion-card-content>\n              <ion-list>\n                <ion-item>\n                  <ion-label class=\"ion-text-wrap\">\n                    <h3>{{ t('signature') }}</h3>\n                    <p>{{ signature.signature }}</p>\n                  </ion-label>\n                </ion-item>\n                <ion-item>\n                  <ion-label class=\"ion-text-wrap\">\n                    <h3>{{ t('publicKey') }}</h3>\n                    <p class=\"multiline\">{{ signature.publicKey }}</p>\n                  </ion-label>\n                </ion-item>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n        </ion-slide>\n      </ion-slides>\n    </ion-item>\n  </ion-list>\n</ion-content>");
 
 /***/ }),
 
@@ -63,7 +63,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/__ivy_ngcc__/fesm2015/ngx-translate-core.js");
+/* harmony import */ var _ngneat_transloco__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngneat/transloco */ "./node_modules/@ngneat/transloco/__ivy_ngcc__/fesm2015/ngneat-transloco.js");
 /* harmony import */ var _proof_routing_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./proof-routing.module */ "./src/app/pages/proof/proof-routing.module.ts");
 /* harmony import */ var _proof_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./proof.page */ "./src/app/pages/proof/proof.page.ts");
 
@@ -83,7 +83,7 @@ ProofPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"],
             _proof_routing_module__WEBPACK_IMPORTED_MODULE_6__["ProofPageRoutingModule"],
-            _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateModule"]
+            _ngneat_transloco__WEBPACK_IMPORTED_MODULE_5__["TranslocoModule"]
         ],
         declarations: [_proof_page__WEBPACK_IMPORTED_MODULE_7__["ProofPage"]]
     })
@@ -120,8 +120,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-/* harmony import */ var _ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngneat/until-destroy */ "./node_modules/@ngneat/until-destroy/__ivy_ngcc__/fesm2015/ngneat-until-destroy.js");
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/__ivy_ngcc__/fesm2015/ngx-translate-core.js");
+/* harmony import */ var _ngneat_transloco__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngneat/transloco */ "./node_modules/@ngneat/transloco/__ivy_ngcc__/fesm2015/ngneat-transloco.js");
+/* harmony import */ var _ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngneat/until-destroy */ "./node_modules/@ngneat/until-destroy/__ivy_ngcc__/fesm2015/ngneat-until-destroy.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
 /* harmony import */ var src_app_services_confirm_alert_confirm_alert_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/services/confirm-alert/confirm-alert.service */ "./src/app/services/confirm-alert/confirm-alert.service.ts");
 /* harmony import */ var src_app_services_data_caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/services/data/caption/caption-repository.service */ "./src/app/services/data/caption/caption-repository.service.ts");
@@ -129,9 +129,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_services_data_proof_proof_repository_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/services/data/proof/proof-repository.service */ "./src/app/services/data/proof/proof-repository.service.ts");
 /* harmony import */ var src_app_services_data_signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/services/data/signature/signature-repository.service */ "./src/app/services/data/signature/signature-repository.service.ts");
 /* harmony import */ var src_app_services_publisher_publishers_alert_publishers_alert_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/services/publisher/publishers-alert/publishers-alert.service */ "./src/app/services/publisher/publishers-alert/publishers-alert.service.ts");
-/* harmony import */ var src_app_services_serialization_serialization_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/services/serialization/serialization.service */ "./src/app/services/serialization/serialization.service.ts");
-/* harmony import */ var src_app_utils_type__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! src/app/utils/type */ "./src/app/utils/type.ts");
-
+/* harmony import */ var src_app_utils_type__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/utils/type */ "./src/app/utils/type.ts");
 
 
 
@@ -147,10 +145,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ProofPage = class ProofPage {
-    constructor(router, route, translateService, alertController, confirmAlert, publishersAlert, proofRepository, captionRepository, informationRepository, signatureRepository, serializationService) {
+    constructor(router, route, translocoService, alertController, confirmAlert, publishersAlert, proofRepository, captionRepository, informationRepository, signatureRepository) {
         this.router = router;
         this.route = route;
-        this.translateService = translateService;
+        this.translocoService = translocoService;
         this.alertController = alertController;
         this.confirmAlert = confirmAlert;
         this.publishersAlert = publishersAlert;
@@ -158,8 +156,7 @@ let ProofPage = class ProofPage {
         this.captionRepository = captionRepository;
         this.informationRepository = informationRepository;
         this.signatureRepository = signatureRepository;
-        this.serializationService = serializationService;
-        this.proof$ = this.route.paramMap.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(params => params.get('hash')), Object(src_app_utils_type__WEBPACK_IMPORTED_MODULE_14__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(hash => this.proofRepository.getByHash$(hash)), Object(src_app_utils_type__WEBPACK_IMPORTED_MODULE_14__["isNonNullable"])());
+        this.proof$ = this.route.paramMap.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(params => params.get('hash')), Object(src_app_utils_type__WEBPACK_IMPORTED_MODULE_13__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(hash => this.proofRepository.getByHash$(hash)), Object(src_app_utils_type__WEBPACK_IMPORTED_MODULE_13__["isNonNullable"])());
         this.rawBase64$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(proof => this.proofRepository.getRawFile$(proof)));
         this.hash$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(proof => proof.hash));
         this.mimeType$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(proof => proof.mimeType.type));
@@ -180,56 +177,55 @@ let ProofPage = class ProofPage {
         this.signatures$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(proof => this.signatureRepository.getByProof$(proof)));
     }
     ionViewWillEnter() {
-        this.proofRepository.refresh$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.captionRepository.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.informationRepository.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.signatureRepository.refresh$()), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
+        this.proofRepository.refresh$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.captionRepository.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.informationRepository.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.signatureRepository.refresh$()), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["untilDestroyed"])(this)).subscribe();
     }
     publish() {
-        this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(proof => this.publishersAlert.present$(proof)), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
+        this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(proof => this.publishersAlert.present$(proof)), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["untilDestroyed"])(this)).subscribe();
     }
     remove() {
-        const onConfirm = () => this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(proof => this.proofRepository.remove$(proof)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.router.navigate(['..'])), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
-        return this.confirmAlert.present$(onConfirm).pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
+        const onConfirm = () => this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(proof => this.proofRepository.remove$(proof)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.router.navigate(['..'])), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["untilDestroyed"])(this)).subscribe();
+        return this.confirmAlert.present$(onConfirm).pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["untilDestroyed"])(this)).subscribe();
     }
     editCaption() {
         const captionInputName = 'captionInputName';
         this.caption$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(caption => this.alertController.create({
-            header: this.translateService.instant('editCaption'),
+            header: this.translocoService.translate('editCaption'),
             inputs: [{
                     name: captionInputName,
                     type: 'text',
                     value: caption,
-                    placeholder: this.translateService.instant('nothingHere')
+                    placeholder: this.translocoService.translate('nothingHere')
                 }],
             buttons: [{
-                    text: this.translateService.instant('cancel'),
+                    text: this.translocoService.translate('cancel'),
                     role: 'cancel'
                 }, {
-                    text: this.translateService.instant('ok'),
+                    text: this.translocoService.translate('ok'),
                     handler: (inputs) => this.saveCaption(inputs[captionInputName])
                 }]
-        })), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(alertElement => alertElement.present()), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
+        })), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(alertElement => alertElement.present()), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["untilDestroyed"])(this)).subscribe();
     }
     saveCaption(text) {
         this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(proof => this.captionRepository.addOrEdit$({
             proofHash: proof.hash,
             text
-        })), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["untilDestroyed"])(this)).subscribe();
+        })), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["untilDestroyed"])(this)).subscribe();
     }
 };
 ProofPage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
-    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateService"] },
+    { type: _ngneat_transloco__WEBPACK_IMPORTED_MODULE_4__["TranslocoService"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"] },
     { type: src_app_services_confirm_alert_confirm_alert_service__WEBPACK_IMPORTED_MODULE_7__["ConfirmAlert"] },
     { type: src_app_services_publisher_publishers_alert_publishers_alert_service__WEBPACK_IMPORTED_MODULE_12__["PublishersAlert"] },
     { type: src_app_services_data_proof_proof_repository_service__WEBPACK_IMPORTED_MODULE_10__["ProofRepository"] },
     { type: src_app_services_data_caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_8__["CaptionRepository"] },
     { type: src_app_services_data_information_information_repository_service__WEBPACK_IMPORTED_MODULE_9__["InformationRepository"] },
-    { type: src_app_services_data_signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_11__["SignatureRepository"] },
-    { type: src_app_services_serialization_serialization_service__WEBPACK_IMPORTED_MODULE_13__["SerializationService"] }
+    { type: src_app_services_data_signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_11__["SignatureRepository"] }
 ];
 ProofPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-    Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_4__["UntilDestroy"])({ checkProperties: true }),
+    Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["UntilDestroy"])({ checkProperties: true }),
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-proof',
         template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./proof.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/proof/proof.page.html")).default,
@@ -254,7 +250,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/__ivy_ngcc__/fesm2015/ngx-translate-core.js");
+/* harmony import */ var _ngneat_transloco__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngneat/transloco */ "./node_modules/@ngneat/transloco/__ivy_ngcc__/fesm2015/ngneat-transloco.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
 
@@ -264,19 +260,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ConfirmAlert = class ConfirmAlert {
-    constructor(alertController, translateService) {
+    constructor(alertController, translocoService) {
         this.alertController = alertController;
-        this.translateService = translateService;
+        this.translocoService = translocoService;
     }
     present$(onConfirm) {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["defer"])(() => this.alertController.create({
-            header: this.translateService.instant('areYouSure'),
-            message: this.translateService.instant('message.areYouSure'),
+            header: this.translocoService.translate('areYouSure'),
+            message: this.translocoService.translate('message.areYouSure'),
             buttons: [{
-                    text: this.translateService.instant('cancel'),
+                    text: this.translocoService.translate('cancel'),
                     role: 'cancel'
                 }, {
-                    text: this.translateService.instant('ok'),
+                    text: this.translocoService.translate('ok'),
                     handler: onConfirm
                 }]
         })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMap"])(alertElement => alertElement.present()));
@@ -284,7 +280,7 @@ let ConfirmAlert = class ConfirmAlert {
 };
 ConfirmAlert.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] },
-    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__["TranslateService"] }
+    { type: _ngneat_transloco__WEBPACK_IMPORTED_MODULE_3__["TranslocoService"] }
 ];
 ConfirmAlert = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

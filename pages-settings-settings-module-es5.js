@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button routerLink=\"..\" routerDirection=\"back\">\n        <ion-icon slot=\"icon-only\" name=\"arrow-back\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>{{ 'settings' | translate }}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-list-header>{{ 'general' | translate }}</ion-list-header>\n    <ion-item>\n      <ion-icon name=\"language\" slot=\"start\"></ion-icon>\n      <ion-label>{{ 'languages' | translate }}</ion-label>\n      <ion-select [ngModel]=\"currentLanguageKey$ | async\" (ngModelChange)=\"setCurrentLanguage($event)\">\n        <ion-select-option *ngFor=\"let language of langauges | keyvalue\" [value]=\"language.key\">{{ language.value }}\n        </ion-select-option>\n      </ion-select>\n    </ion-item>\n    <ion-list-header>{{ 'defaultSignature' | translate }}</ion-list-header>\n    <ion-item>\n      <ion-icon name=\"key\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ 'publicKey' | translate }}</h2>\n        <p>{{ publicKey$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-icon name=\"key\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ 'privateKey' | translate }}</h2>\n        <p>{{ privateKey$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-list-header>{{ 'about' | translate }}</ion-list-header>\n    <ion-item>\n      <ion-icon name=\"information\" slot=\"start\"></ion-icon>\n      <ion-label>\n        <h2>{{ 'version' | translate }}</h2>\n        <p>{{ version$ | async }}</p>\n      </ion-label>\n    </ion-item>\n  </ion-list>\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-header *transloco=\"let t\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button routerLink=\"..\" routerDirection=\"back\">\n        <ion-icon slot=\"icon-only\" name=\"arrow-back\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>{{ t('settings') }}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content *transloco=\"let t\">\n  <ion-list>\n    <ion-list-header>{{ t('general') }}</ion-list-header>\n    <ion-item>\n      <ion-icon name=\"language\" slot=\"start\"></ion-icon>\n      <ion-label>{{ t('languages') }}</ion-label>\n      <ion-select [ngModel]=\"currentLanguageKey$ | async\" (ngModelChange)=\"setCurrentLanguage($event)\">\n        <ion-select-option *ngFor=\"let language of langauges | keyvalue\" [value]=\"language.key\">{{ language.value }}\n        </ion-select-option>\n      </ion-select>\n    </ion-item>\n    <ion-list-header>{{ t('defaultSignature') }}</ion-list-header>\n    <ion-item>\n      <ion-icon name=\"key\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ t('publicKey') }}</h2>\n        <p>{{ publicKey$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-icon name=\"key\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ t('privateKey') }}</h2>\n        <p>{{ privateKey$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-list-header>{{ t('about') }}</ion-list-header>\n    <ion-item>\n      <ion-icon name=\"information\" slot=\"start\"></ion-icon>\n      <ion-label>\n        <h2>{{ t('version') }}</h2>\n        <p>{{ version$ | async }}</p>\n      </ion-label>\n    </ion-item>\n  </ion-list>\n</ion-content>";
     /***/
   },
 
@@ -137,9 +137,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-    /*! @ngx-translate/core */
-    "./node_modules/@ngx-translate/core/__ivy_ngcc__/fesm2015/ngx-translate-core.js");
+    var _ngneat_transloco__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! @ngneat/transloco */
+    "./node_modules/@ngneat/transloco/__ivy_ngcc__/fesm2015/ngneat-transloco.js");
     /* harmony import */
 
 
@@ -158,9 +158,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     };
 
     SettingsPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _settings_routing_module__WEBPACK_IMPORTED_MODULE_6__["SettingsPageRoutingModule"], _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateModule"].forChild({
-        extend: true
-      })],
+      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _settings_routing_module__WEBPACK_IMPORTED_MODULE_6__["SettingsPageRoutingModule"], _ngneat_transloco__WEBPACK_IMPORTED_MODULE_5__["TranslocoModule"]],
       declarations: [_settings_page__WEBPACK_IMPORTED_MODULE_7__["SettingsPage"]]
     })], SettingsPageModule);
     /***/
@@ -262,7 +260,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         this.languageService = languageService;
         this.langauges = this.languageService.languages;
-        this.defaultLanguage = this.languageService.defaultLanguage;
         this.currentLanguageKey$ = this.languageService.currentLanguageKey$;
         this.publicKey$ = src_app_services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_6__["DefaultSignatureProvider"].getPublicKey$();
         this.privateKey$ = src_app_services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_6__["DefaultSignatureProvider"].getPrivateKey$();

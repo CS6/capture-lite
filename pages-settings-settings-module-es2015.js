@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button routerLink=\"..\" routerDirection=\"back\">\n        <ion-icon slot=\"icon-only\" name=\"arrow-back\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>{{ 'settings' | translate }}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-list-header>{{ 'general' | translate }}</ion-list-header>\n    <ion-item>\n      <ion-icon name=\"language\" slot=\"start\"></ion-icon>\n      <ion-label>{{ 'languages' | translate }}</ion-label>\n      <ion-select [ngModel]=\"currentLanguageKey$ | async\" (ngModelChange)=\"setCurrentLanguage($event)\">\n        <ion-select-option *ngFor=\"let language of langauges | keyvalue\" [value]=\"language.key\">{{ language.value }}\n        </ion-select-option>\n      </ion-select>\n    </ion-item>\n    <ion-list-header>{{ 'defaultSignature' | translate }}</ion-list-header>\n    <ion-item>\n      <ion-icon name=\"key\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ 'publicKey' | translate }}</h2>\n        <p>{{ publicKey$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-icon name=\"key\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ 'privateKey' | translate }}</h2>\n        <p>{{ privateKey$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-list-header>{{ 'about' | translate }}</ion-list-header>\n    <ion-item>\n      <ion-icon name=\"information\" slot=\"start\"></ion-icon>\n      <ion-label>\n        <h2>{{ 'version' | translate }}</h2>\n        <p>{{ version$ | async }}</p>\n      </ion-label>\n    </ion-item>\n  </ion-list>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header *transloco=\"let t\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button routerLink=\"..\" routerDirection=\"back\">\n        <ion-icon slot=\"icon-only\" name=\"arrow-back\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>{{ t('settings') }}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content *transloco=\"let t\">\n  <ion-list>\n    <ion-list-header>{{ t('general') }}</ion-list-header>\n    <ion-item>\n      <ion-icon name=\"language\" slot=\"start\"></ion-icon>\n      <ion-label>{{ t('languages') }}</ion-label>\n      <ion-select [ngModel]=\"currentLanguageKey$ | async\" (ngModelChange)=\"setCurrentLanguage($event)\">\n        <ion-select-option *ngFor=\"let language of langauges | keyvalue\" [value]=\"language.key\">{{ language.value }}\n        </ion-select-option>\n      </ion-select>\n    </ion-item>\n    <ion-list-header>{{ t('defaultSignature') }}</ion-list-header>\n    <ion-item>\n      <ion-icon name=\"key\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ t('publicKey') }}</h2>\n        <p>{{ publicKey$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-icon name=\"key\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ t('privateKey') }}</h2>\n        <p>{{ privateKey$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-list-header>{{ t('about') }}</ion-list-header>\n    <ion-item>\n      <ion-icon name=\"information\" slot=\"start\"></ion-icon>\n      <ion-label>\n        <h2>{{ t('version') }}</h2>\n        <p>{{ version$ | async }}</p>\n      </ion-label>\n    </ion-item>\n  </ion-list>\n</ion-content>");
 
 /***/ }),
 
@@ -65,7 +65,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/__ivy_ngcc__/fesm2015/ngx-translate-core.js");
+/* harmony import */ var _ngneat_transloco__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngneat/transloco */ "./node_modules/@ngneat/transloco/__ivy_ngcc__/fesm2015/ngneat-transloco.js");
 /* harmony import */ var _settings_routing_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./settings-routing.module */ "./src/app/pages/settings/settings-routing.module.ts");
 /* harmony import */ var _settings_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./settings.page */ "./src/app/pages/settings/settings.page.ts");
 
@@ -85,7 +85,7 @@ SettingsPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"],
             _settings_routing_module__WEBPACK_IMPORTED_MODULE_6__["SettingsPageRoutingModule"],
-            _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateModule"].forChild({ extend: true })
+            _ngneat_transloco__WEBPACK_IMPORTED_MODULE_5__["TranslocoModule"]
         ],
         declarations: [_settings_page__WEBPACK_IMPORTED_MODULE_7__["SettingsPage"]]
     })
@@ -139,7 +139,6 @@ let SettingsPage = class SettingsPage {
     constructor(languageService) {
         this.languageService = languageService;
         this.langauges = this.languageService.languages;
-        this.defaultLanguage = this.languageService.defaultLanguage;
         this.currentLanguageKey$ = this.languageService.currentLanguageKey$;
         this.publicKey$ = src_app_services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_6__["DefaultSignatureProvider"].getPublicKey$();
         this.privateKey$ = src_app_services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_6__["DefaultSignatureProvider"].getPrivateKey$();

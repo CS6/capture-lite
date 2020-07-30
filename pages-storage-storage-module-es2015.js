@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"primary\">\n      <ion-button routerLink=\"/settings\">\n        <ion-icon slot=\"icon-only\" name=\"settings\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>{{ 'capture' | translate }}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"refresh($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-grid>\n    <ion-row>\n      <ion-col *ngFor=\"let proofWithRaw of proofsWithRaw$ | async\"\n        [routerLink]=\"['/proof', {hash: proofWithRaw.proof.hash}]\" size=\"3\" class=\"ion-no-padding\">\n        <ion-card>\n          <ion-thumbnail>\n            <ion-img [src]=\"'data:image/*;base64,' + proofWithRaw.rawBase64\"></ion-img>\n          </ion-thumbnail>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-fab horizontal=\"end\" vertical=\"bottom\" slot=\"fixed\">\n    <ion-fab-button (click)=\"capture()\">\n      <ion-icon name=\"camera\"></ion-icon>\n    </ion-fab-button>\n  </ion-fab>\n\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header *transloco=\"let t\">\n  <ion-toolbar>\n    <ion-buttons slot=\"primary\">\n      <ion-button routerLink=\"/settings\">\n        <ion-icon slot=\"icon-only\" name=\"settings\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>{{ t('capture') }}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"refresh($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-grid>\n    <ion-row>\n      <ion-col *ngFor=\"let proofWithRaw of proofsWithRaw$ | async\"\n        [routerLink]=\"['/proof', {hash: proofWithRaw.proof.hash}]\" size=\"3\" class=\"ion-no-padding\">\n        <ion-card>\n          <ion-thumbnail>\n            <ion-img [src]=\"'data:image/*;base64,' + proofWithRaw.rawBase64\"></ion-img>\n          </ion-thumbnail>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-fab horizontal=\"end\" vertical=\"bottom\" slot=\"fixed\">\n    <ion-fab-button (click)=\"capture()\">\n      <ion-icon name=\"camera\"></ion-icon>\n    </ion-fab-button>\n  </ion-fab>\n\n</ion-content>");
 
 /***/ }),
 
@@ -63,7 +63,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/__ivy_ngcc__/fesm2015/ngx-translate-core.js");
+/* harmony import */ var _ngneat_transloco__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngneat/transloco */ "./node_modules/@ngneat/transloco/__ivy_ngcc__/fesm2015/ngneat-transloco.js");
 /* harmony import */ var _storage_routing_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./storage-routing.module */ "./src/app/pages/storage/storage-routing.module.ts");
 /* harmony import */ var _storage_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./storage.page */ "./src/app/pages/storage/storage.page.ts");
 
@@ -83,7 +83,7 @@ StoragePageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"],
             _storage_routing_module__WEBPACK_IMPORTED_MODULE_6__["StoragePageRoutingModule"],
-            _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateModule"]
+            _ngneat_transloco__WEBPACK_IMPORTED_MODULE_5__["TranslocoModule"]
         ],
         declarations: [_storage_page__WEBPACK_IMPORTED_MODULE_7__["StoragePage"]]
     })
