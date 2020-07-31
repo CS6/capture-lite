@@ -2442,7 +2442,7 @@
         _createClass(TranslocoHttpLoader, [{
           key: "getTranslation",
           value: function getTranslation(lang) {
-            return this.http.get("/assets/i18n/".concat(lang, ".json"));
+            return this.http.get("./assets/i18n/".concat(lang, ".json"));
           }
         }]);
 

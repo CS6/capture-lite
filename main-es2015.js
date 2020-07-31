@@ -1400,7 +1400,7 @@ let TranslocoHttpLoader = class TranslocoHttpLoader {
         this.http = http;
     }
     getTranslation(lang) {
-        return this.http.get(`/assets/i18n/${lang}.json`);
+        return this.http.get(`./assets/i18n/${lang}.json`);
     }
 };
 TranslocoHttpLoader.ctorParameters = () => [
