@@ -4,7 +4,7 @@ import { Proof } from '../proof/proof';
 import { Information } from './information';
 import { InformationRepository } from './information-repository.service';
 
-fdescribe('InformationRepository', () => {
+describe('InformationRepository', () => {
   let service: InformationRepository;
   let information: Information;
   let proof: Proof;
