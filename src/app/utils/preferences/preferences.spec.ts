@@ -1,6 +1,6 @@
 import { Preferences } from './preferences';
 
-fdescribe('preferences', () => {
+describe('preferences', () => {
 
     let preferences: Preferences;
 
