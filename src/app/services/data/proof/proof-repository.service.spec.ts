@@ -31,7 +31,7 @@ describe('ProofRepository', () => {
     expect(service).toBeTruthy();
   });
 
-  it('test add$ & getByHash$ & refresh$', (done: DoneFn) => {
+  it('test add$ & getByHash$', (done: DoneFn) => {
     service.add$(proof).subscribe(x => {
       expect(x[x.length - 1]).toEqual(proof);
       done();
@@ -41,11 +41,6 @@ describe('ProofRepository', () => {
       expect(x?.hash).toEqual(proof.hash);
       expect(x?.mimeType).toEqual(proof.mimeType);
       expect(x?.timestamp).toEqual(proof.timestamp);
-      done();
-    });
-
-    service.refresh$().subscribe(x => {
-      expect(x[x.length - 1]).toEqual(proof);
       done();
     });
   });
