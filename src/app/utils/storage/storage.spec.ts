@@ -17,11 +17,4 @@ describe('storage', () => {
             done();
         });
     });
-
-    it('test remove', (done: DoneFn) => {
-        storage.remove$(option).subscribe(x => {
-            expect(x).toEqual([['test', true]]);
-            done();
-        });
-    });
 });
