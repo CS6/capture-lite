@@ -3,7 +3,7 @@ import { MimeType } from 'src/app/utils/mime-type';
 import { Proof } from './proof';
 import { ProofRepository } from './proof-repository.service';
 
-fdescribe('ProofRepository', () => {
+describe('ProofRepository', () => {
   let service: ProofRepository;
   let mimeType: MimeType;
   let proof: Proof;
