@@ -50,18 +50,20 @@ describe('ProofRepository', () => {
     });
   });
 
-  it('test saveRawFile$', (done: DoneFn) => {
-    const expectedOutput = '/DATA/raw/da55696ca8b934ddeb4d81a58196446cb8f94998ba733697815d1b986088ff9f.jpeg';
-    service.saveRawFile$('dGhpcyBpcyB0ZXN0Cg==', mimeType).subscribe(x => {
-      expect(x).toEqual(expectedOutput);
-      done();
+  describe('ProofRepository saveRawFiles & getRawFiles', () => {
+    it('test saveRawFile$', (done: DoneFn) => {
+      const expectedOutput = '/DATA/raw/da55696ca8b934ddeb4d81a58196446cb8f94998ba733697815d1b986088ff9f.jpeg';
+      service.saveRawFile$('dGhpcyBpcyB0ZXN0Cg==', mimeType).subscribe(x => {
+        expect(x).toEqual(expectedOutput);
+        done();
+      });
     });
-  });
 
-  it('test getRawFile$', (done: DoneFn) => {
-    service.getRawFile$(proof).subscribe(x => {
-      expect(x).toEqual('dGhpcyBpcyB0ZXN0Cg==');
-      done();
+    it('test getRawFile$', (done: DoneFn) => {
+      service.getRawFile$(proof).subscribe(x => {
+        expect(x).toEqual('dGhpcyBpcyB0ZXN0Cg==');
+        done();
+      });
     });
   });
 });
