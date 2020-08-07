@@ -3,7 +3,7 @@ import { MimeType } from 'src/app/utils/mime-type';
 import { Proof } from '../data/proof/proof';
 import { SerializationService } from './serialization.service';
 
-fdescribe('SerializationService', () => {
+describe('SerializationService', () => {
   let service: SerializationService;
 
   beforeEach(() => {
