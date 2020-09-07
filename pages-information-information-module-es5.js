@@ -1,8 +1,4 @@
 (function () {
-  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
   (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["pages-information-information-module"], {
@@ -253,59 +249,48 @@
       /*! src/app/utils/rx-operators */
       "./src/app/utils/rx-operators.ts");
 
-      var InformationPage = /*#__PURE__*/function () {
-        function InformationPage(route, proofRepository, informationRepository) {
-          var _this = this;
+      var InformationPage = function InformationPage(route, proofRepository, informationRepository) {
+        var _this = this;
 
-          _classCallCheck(this, InformationPage);
+        _classCallCheck(this, InformationPage);
 
-          this.route = route;
-          this.proofRepository = proofRepository;
-          this.informationRepository = informationRepository;
-          this.proof$ = this.route.paramMap.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (params) {
-            return params.get('hash');
-          }), Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (hash) {
-            return _this.proofRepository.getByHash$(hash);
-          }), Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["isNonNullable"])());
-          this.hash$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["pluck"])('hash'));
-          this.locationInformation$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (proof) {
-            return _this.informationRepository.getByProof$(proof);
-          }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (informationList) {
-            return informationList.filter(function (information) {
-              return information.type === "location";
-            }
-            /* Location */
-            );
-          }));
-          this.otherInformation$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (proof) {
-            return _this.informationRepository.getByProof$(proof);
-          }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (informationList) {
-            return informationList.filter(function (information) {
-              return information.type === "other";
-            }
-            /* Other */
-            );
-          }));
-          this.deviceInformation$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (proof) {
-            return _this.informationRepository.getByProof$(proof);
-          }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (informationList) {
-            return informationList.filter(function (information) {
-              return information.type === "device";
-            }
-            /* Device */
-            );
-          }));
-        }
-
-        _createClass(InformationPage, [{
-          key: "ionViewWillEnter",
-          value: function ionViewWillEnter() {
-            this.proofRepository.refresh$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(this.informationRepository.refresh$()), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_3__["untilDestroyed"])(this)).subscribe();
+        this.route = route;
+        this.proofRepository = proofRepository;
+        this.informationRepository = informationRepository;
+        this.proof$ = this.route.paramMap.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (params) {
+          return params.get('hash');
+        }), Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (hash) {
+          return _this.proofRepository.getByHash$(hash);
+        }), Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["isNonNullable"])());
+        this.hash$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["pluck"])('hash'));
+        this.locationInformation$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (proof) {
+          return _this.informationRepository.getByProof$(proof);
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (informationList) {
+          return informationList.filter(function (information) {
+            return information.type === "location";
           }
-        }]);
-
-        return InformationPage;
-      }();
+          /* Location */
+          );
+        }));
+        this.otherInformation$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (proof) {
+          return _this.informationRepository.getByProof$(proof);
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (informationList) {
+          return informationList.filter(function (information) {
+            return information.type === "other";
+          }
+          /* Other */
+          );
+        }));
+        this.deviceInformation$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (proof) {
+          return _this.informationRepository.getByProof$(proof);
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (informationList) {
+          return informationList.filter(function (information) {
+            return information.type === "device";
+          }
+          /* Device */
+          );
+        }));
+      };
 
       InformationPage.ctorParameters = function () {
         return [{

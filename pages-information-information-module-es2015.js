@@ -143,9 +143,6 @@ let InformationPage = class InformationPage {
         this.otherInformation$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(proof => this.informationRepository.getByProof$(proof)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(informationList => informationList.filter(information => information.type === "other" /* Other */)));
         this.deviceInformation$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(proof => this.informationRepository.getByProof$(proof)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(informationList => informationList.filter(information => information.type === "device" /* Device */)));
     }
-    ionViewWillEnter() {
-        this.proofRepository.refresh$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(this.informationRepository.refresh$()), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_3__["untilDestroyed"])(this)).subscribe();
-    }
 };
 InformationPage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },

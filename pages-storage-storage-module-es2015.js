@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header *transloco=\"let t\">\n  <ion-toolbar>\n    <ion-buttons slot=\"primary\">\n      <ion-button routerLink=\"/settings\">\n        <ion-icon slot=\"icon-only\" name=\"settings\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>{{ t('capture') }}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"refresh($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-grid>\n    <ion-row>\n      <ion-col *ngFor=\"let proofWithRaw of proofsWithRaw$ | async\"\n        [routerLink]=\"['/proof', {hash: proofWithRaw.proof.hash}]\" size=\"3\" class=\"ion-no-padding\">\n        <ion-card>\n          <ion-thumbnail>\n            <ion-img [src]=\"'data:image/*;base64,' + proofWithRaw.rawBase64\"></ion-img>\n          </ion-thumbnail>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-fab horizontal=\"end\" vertical=\"bottom\" slot=\"fixed\">\n    <ion-fab-button (click)=\"capture()\">\n      <ion-icon name=\"camera\"></ion-icon>\n    </ion-fab-button>\n  </ion-fab>\n\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header *transloco=\"let t\">\n  <ion-toolbar>\n    <ion-buttons slot=\"primary\">\n      <ion-button routerLink=\"/settings\">\n        <ion-icon slot=\"icon-only\" name=\"settings\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>{{ t('capture') }}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-grid>\n    <ion-row>\n      <ion-col *ngFor=\"let proofWithRaw of proofsWithRaw$ | async\"\n        [routerLink]=\"['/proof', {hash: proofWithRaw.proof.hash}]\" size=\"3\" class=\"ion-no-padding\">\n        <ion-card>\n          <ion-thumbnail>\n            <ion-img [src]=\"'data:image/*;base64,' + proofWithRaw.rawBase64\"></ion-img>\n          </ion-thumbnail>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-fab horizontal=\"end\" vertical=\"bottom\" slot=\"fixed\">\n    <ion-fab-button (click)=\"capture()\">\n      <ion-icon name=\"camera\"></ion-icon>\n    </ion-fab-button>\n  </ion-fab>\n\n</ion-content>");
 
 /***/ }),
 
@@ -142,16 +142,10 @@ let StoragePage = class StoragePage {
         this.cameraService = cameraService;
         this.collectorService = collectorService;
         this.proofs$ = this.proofRepository.getAll$();
-        this.proofsWithRaw$ = this.proofs$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["concatMap"])(proofs => Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_9__["forkJoinWithDefault"])(proofs.map(proof => this.proofRepository.getRawFile$(proof)))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["concatMap"])(base64Strings => Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["zip"])(this.proofs$, Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(base64Strings))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(([proofs, base64Strings]) => proofs.map((proof, index) => ({
+        this.proofsWithRaw$ = this.proofs$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["concatMap"])(proofs => Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_9__["forkJoinWithDefault"])(proofs.map(proof => this.proofRepository.getThumbnail$(proof)))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["concatMap"])(base64Strings => Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["zip"])(this.proofs$, Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(base64Strings))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(([proofs, base64Strings]) => proofs.map((proof, index) => ({
             proof,
             rawBase64: base64Strings[index]
         }))));
-    }
-    ionViewWillEnter() {
-        this.proofRepository.refresh$().pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_2__["untilDestroyed"])(this)).subscribe();
-    }
-    refresh(event) {
-        this.proofRepository.refresh$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mapTo"])(event.target.complete()), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_2__["untilDestroyed"])(this)).subscribe();
     }
     capture() {
         this.cameraService.capture$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(cameraPhoto => this.collectorService.storeAndCollect(cameraPhoto.base64String, Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_8__["fromExtension"])(cameraPhoto.format))), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_2__["untilDestroyed"])(this)).subscribe();
@@ -170,51 +164,6 @@ StoragePage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./storage.page.scss */ "./src/app/pages/storage/storage.page.scss")).default]
     })
 ], StoragePage);
-
-
-
-/***/ }),
-
-/***/ "./src/app/services/camera/camera.service.ts":
-/*!***************************************************!*\
-  !*** ./src/app/services/camera/camera.service.ts ***!
-  \***************************************************/
-/*! exports provided: CameraService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CameraService", function() { return CameraService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
-
-
-
-
-
-const { Camera } = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"];
-let CameraService = class CameraService {
-    capture$() {
-        return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["defer"])(() => Camera.getPhoto({
-            resultType: _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["CameraResultType"].Base64,
-            source: _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["CameraSource"].Camera,
-            quality: 100,
-            allowEditing: false
-        })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(cameraPhoto => ({
-            format: cameraPhoto.format,
-            // tslint:disable-next-line: no-non-null-assertion
-            base64String: cameraPhoto.base64String
-        })));
-    }
-};
-CameraService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
-    })
-], CameraService);
 
 
 

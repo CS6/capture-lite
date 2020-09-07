@@ -7,15 +7,15 @@
 
   (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["common"], {
     /***/
-    "./node_modules/@ionic/core/dist/esm/button-active-0d5784f9.js":
+    "./node_modules/@ionic/core/dist/esm/button-active-5da929d4.js":
     /*!*********************************************************************!*\
-      !*** ./node_modules/@ionic/core/dist/esm/button-active-0d5784f9.js ***!
+      !*** ./node_modules/@ionic/core/dist/esm/button-active-5da929d4.js ***!
       \*********************************************************************/
 
     /*! exports provided: c */
 
     /***/
-    function node_modulesIonicCoreDistEsmButtonActive0d5784f9Js(module, __webpack_exports__, __webpack_require__) {
+    function node_modulesIonicCoreDistEsmButtonActive5da929d4Js(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
@@ -28,9 +28,9 @@
       /* harmony import */
 
 
-      var _index_44bf8136_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! ./index-44bf8136.js */
-      "./node_modules/@ionic/core/dist/esm/index-44bf8136.js");
+      var _index_92848855_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ./index-92848855.js */
+      "./node_modules/@ionic/core/dist/esm/index-92848855.js");
       /* harmony import */
 
 
@@ -74,7 +74,7 @@
           }
 
           var buttonToModify = currentTouchedButton;
-          Object(_index_44bf8136_js__WEBPACK_IMPORTED_MODULE_0__["c"])(function () {
+          Object(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["c"])(function () {
             return buttonToModify.classList.add('ion-activated');
           });
           hapticFeedbackFn();
@@ -88,7 +88,7 @@
           }
 
           var buttonToModify = currentTouchedButton;
-          Object(_index_44bf8136_js__WEBPACK_IMPORTED_MODULE_0__["c"])(function () {
+          Object(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["c"])(function () {
             return buttonToModify.classList.remove('ion-activated');
           });
           /**
@@ -537,15 +537,15 @@
     },
 
     /***/
-    "./node_modules/@ionic/core/dist/esm/theme-3f0b0c04.js":
+    "./node_modules/@ionic/core/dist/esm/theme-5641d27f.js":
     /*!*************************************************************!*\
-      !*** ./node_modules/@ionic/core/dist/esm/theme-3f0b0c04.js ***!
+      !*** ./node_modules/@ionic/core/dist/esm/theme-5641d27f.js ***!
       \*************************************************************/
 
     /*! exports provided: c, g, h, o */
 
     /***/
-    function node_modulesIonicCoreDistEsmTheme3f0b0c04Js(module, __webpack_exports__, __webpack_require__) {
+    function node_modulesIonicCoreDistEsmTheme5641d27fJs(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
@@ -582,10 +582,10 @@
        */
 
 
-      var createColorClasses = function createColorClasses(color) {
-        return typeof color === 'string' && color.length > 0 ? _defineProperty({
+      var createColorClasses = function createColorClasses(color, cssClassMap) {
+        return typeof color === 'string' && color.length > 0 ? Object.assign(_defineProperty({
           'ion-color': true
-        }, "ion-color-".concat(color), true) : undefined;
+        }, "ion-color-".concat(color), true), cssClassMap) : cssClassMap;
       };
 
       var getClassList = function getClassList(classes) {
@@ -614,7 +614,7 @@
       var SCHEME = /^[a-z][a-z0-9+\-.]*:/;
 
       var openURL = /*#__PURE__*/function () {
-        var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(url, ev, direction, animation) {
+        var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(url, ev, direction, animation) {
           var router;
           return regeneratorRuntime.wrap(function _callee2$(_context2) {
             while (1) {
@@ -650,7 +650,7 @@
         }));
 
         return function openURL(_x6, _x7, _x8, _x9) {
-          return _ref3.apply(this, arguments);
+          return _ref2.apply(this, arguments);
         };
       }();
       /***/

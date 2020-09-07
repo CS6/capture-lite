@@ -394,68 +394,86 @@
       /* harmony import */
 
 
-      var _services_collector_collector_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! rxjs/operators */
+      "./node_modules/rxjs/_esm2015/operators/index.js");
+      /* harmony import */
+
+
+      var _services_camera_camera_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! ./services/camera/camera.service */
+      "./src/app/services/camera/camera.service.ts");
+      /* harmony import */
+
+
+      var _services_collector_collector_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
       /*! ./services/collector/collector.service */
       "./src/app/services/collector/collector.service.ts");
       /* harmony import */
 
 
-      var _services_collector_information_capacitor_provider_capacitor_provider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      var _services_collector_information_capacitor_provider_capacitor_provider__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
       /*! ./services/collector/information/capacitor-provider/capacitor-provider */
       "./src/app/services/collector/information/capacitor-provider/capacitor-provider.ts");
       /* harmony import */
 
 
-      var _services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      var _services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
       /*! ./services/collector/signature/default-provider/default-provider */
       "./src/app/services/collector/signature/default-provider/default-provider.ts");
       /* harmony import */
 
 
-      var _services_data_information_information_repository_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      var _services_data_information_information_repository_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
       /*! ./services/data/information/information-repository.service */
       "./src/app/services/data/information/information-repository.service.ts");
       /* harmony import */
 
 
-      var _services_data_signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+      var _services_data_signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
       /*! ./services/data/signature/signature-repository.service */
       "./src/app/services/data/signature/signature-repository.service.ts");
       /* harmony import */
 
 
-      var _services_language_language_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+      var _services_language_language_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
       /*! ./services/language/language.service */
       "./src/app/services/language/language.service.ts");
       /* harmony import */
 
 
-      var _services_notification_notification_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+      var _services_notification_notification_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
       /*! ./services/notification/notification.service */
       "./src/app/services/notification/notification.service.ts");
       /* harmony import */
 
 
-      var _services_publisher_publishers_alert_publishers_alert_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+      var _services_publisher_publishers_alert_publishers_alert_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
       /*! ./services/publisher/publishers-alert/publishers-alert.service */
       "./src/app/services/publisher/publishers-alert/publishers-alert.service.ts");
       /* harmony import */
 
 
-      var _services_publisher_sample_publisher_sample_publisher__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+      var _services_publisher_sample_publisher_sample_publisher__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
       /*! ./services/publisher/sample-publisher/sample-publisher */
       "./src/app/services/publisher/sample-publisher/sample-publisher.ts");
       /* harmony import */
 
 
-      var _services_serialization_serialization_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+      var _services_serialization_serialization_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
       /*! ./services/serialization/serialization.service */
       "./src/app/services/serialization/serialization.service.ts");
+      /* harmony import */
+
+
+      var _utils_mime_type__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(
+      /*! ./utils/mime-type */
+      "./src/app/utils/mime-type.ts");
 
       var SplashScreen = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"].SplashScreen;
 
       var AppComponent = /*#__PURE__*/function () {
-        function AppComponent(platform, collectorService, publishersAlert, serializationService, informationRepository, signatureRepository, translocoService, notificationService, langaugeService) {
+        function AppComponent(platform, collectorService, publishersAlert, serializationService, informationRepository, signatureRepository, translocoService, notificationService, langaugeService, cameraService) {
           _classCallCheck(this, AppComponent);
 
           this.platform = platform;
@@ -466,6 +484,8 @@
           this.signatureRepository = signatureRepository;
           this.translocoService = translocoService;
           this.notificationService = notificationService;
+          this.cameraService = cameraService;
+          this.restoreAppStatus();
           this.initializeApp();
           this.initializeCollector();
           this.initializePublisher();
@@ -473,6 +493,15 @@
         }
 
         _createClass(AppComponent, [{
+          key: "restoreAppStatus",
+          value: function restoreAppStatus() {
+            var _this = this;
+
+            this.cameraService.restoreKilledAppResult$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (cameraPhoto) {
+              return _this.collectorService.storeAndCollect(cameraPhoto.base64String, Object(_utils_mime_type__WEBPACK_IMPORTED_MODULE_18__["fromExtension"])(cameraPhoto.format));
+            }), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["untilDestroyed"])(this)).subscribe();
+          }
+        }, {
           key: "initializeApp",
           value: function initializeApp() {
             this.platform.ready().then(function () {
@@ -482,15 +511,15 @@
         }, {
           key: "initializeCollector",
           value: function initializeCollector() {
-            _services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_8__["DefaultSignatureProvider"].initialize$().pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["untilDestroyed"])(this)).subscribe();
+            _services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_10__["DefaultSignatureProvider"].initialize$().pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["untilDestroyed"])(this)).subscribe();
 
-            this.collectorService.addInformationProvider(new _services_collector_information_capacitor_provider_capacitor_provider__WEBPACK_IMPORTED_MODULE_7__["CapacitorProvider"](this.informationRepository, this.translocoService));
-            this.collectorService.addSignatureProvider(new _services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_8__["DefaultSignatureProvider"](this.signatureRepository, this.serializationService));
+            this.collectorService.addInformationProvider(new _services_collector_information_capacitor_provider_capacitor_provider__WEBPACK_IMPORTED_MODULE_9__["CapacitorProvider"](this.informationRepository, this.translocoService));
+            this.collectorService.addSignatureProvider(new _services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_10__["DefaultSignatureProvider"](this.signatureRepository, this.serializationService));
           }
         }, {
           key: "initializePublisher",
           value: function initializePublisher() {
-            this.publishersAlert.addPublisher(new _services_publisher_sample_publisher_sample_publisher__WEBPACK_IMPORTED_MODULE_14__["SamplePublisher"](this.translocoService, this.notificationService));
+            this.publishersAlert.addPublisher(new _services_publisher_sample_publisher_sample_publisher__WEBPACK_IMPORTED_MODULE_16__["SamplePublisher"](this.translocoService, this.notificationService));
           }
         }]);
 
@@ -501,21 +530,23 @@
         return [{
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"]
         }, {
-          type: _services_collector_collector_service__WEBPACK_IMPORTED_MODULE_6__["CollectorService"]
+          type: _services_collector_collector_service__WEBPACK_IMPORTED_MODULE_8__["CollectorService"]
         }, {
-          type: _services_publisher_publishers_alert_publishers_alert_service__WEBPACK_IMPORTED_MODULE_13__["PublishersAlert"]
+          type: _services_publisher_publishers_alert_publishers_alert_service__WEBPACK_IMPORTED_MODULE_15__["PublishersAlert"]
         }, {
-          type: _services_serialization_serialization_service__WEBPACK_IMPORTED_MODULE_15__["SerializationService"]
+          type: _services_serialization_serialization_service__WEBPACK_IMPORTED_MODULE_17__["SerializationService"]
         }, {
-          type: _services_data_information_information_repository_service__WEBPACK_IMPORTED_MODULE_9__["InformationRepository"]
+          type: _services_data_information_information_repository_service__WEBPACK_IMPORTED_MODULE_11__["InformationRepository"]
         }, {
-          type: _services_data_signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_10__["SignatureRepository"]
+          type: _services_data_signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_12__["SignatureRepository"]
         }, {
           type: _ngneat_transloco__WEBPACK_IMPORTED_MODULE_4__["TranslocoService"]
         }, {
-          type: _services_notification_notification_service__WEBPACK_IMPORTED_MODULE_12__["NotificationService"]
+          type: _services_notification_notification_service__WEBPACK_IMPORTED_MODULE_14__["NotificationService"]
         }, {
-          type: _services_language_language_service__WEBPACK_IMPORTED_MODULE_11__["LanguageService"]
+          type: _services_language_language_service__WEBPACK_IMPORTED_MODULE_13__["LanguageService"]
+        }, {
+          type: _services_camera_camera_service__WEBPACK_IMPORTED_MODULE_7__["CameraService"]
         }];
       };
 
@@ -625,6 +656,112 @@
     },
 
     /***/
+    "./src/app/services/camera/camera.service.ts":
+    /*!***************************************************!*\
+      !*** ./src/app/services/camera/camera.service.ts ***!
+      \***************************************************/
+
+    /*! exports provided: CameraService */
+
+    /***/
+    function srcAppServicesCameraCameraServiceTs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "CameraService", function () {
+        return CameraService;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "./node_modules/tslib/tslib.es6.js");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @angular/core */
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+      /* harmony import */
+
+
+      var _capacitor_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! @capacitor/core */
+      "./node_modules/@capacitor/core/dist/esm/index.js");
+      /* harmony import */
+
+
+      var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! rxjs */
+      "./node_modules/rxjs/_esm2015/index.js");
+      /* harmony import */
+
+
+      var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! rxjs/operators */
+      "./node_modules/rxjs/_esm2015/operators/index.js");
+
+      var _capacitor_core__WEBP = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"],
+          App = _capacitor_core__WEBP.App,
+          Camera = _capacitor_core__WEBP.Camera;
+
+      var CameraService = /*#__PURE__*/function () {
+        function CameraService() {
+          _classCallCheck(this, CameraService);
+        }
+
+        _createClass(CameraService, [{
+          key: "capture$",
+          value: function capture$() {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["defer"])(function () {
+              return Camera.getPhoto({
+                resultType: _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["CameraResultType"].Base64,
+                source: _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["CameraSource"].Camera,
+                quality: 100,
+                allowEditing: false
+              });
+            }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (cameraPhoto) {
+              return {
+                format: cameraPhoto.format,
+                // tslint:disable-next-line: no-non-null-assertion
+                base64String: cameraPhoto.base64String
+              };
+            }));
+          }
+        }, {
+          key: "restoreKilledAppResult$",
+          value: function restoreKilledAppResult$() {
+            var appRestored$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["fromEventPattern"])(function (handler) {
+              return App.addListener('appRestoredResult', handler);
+            });
+            return appRestored$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(function (result) {
+              return result.pluginId === 'Camera' && result.methodName === 'getPhoto' && result.success;
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) {
+              return result.data;
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (cameraPhoto) {
+              return {
+                format: cameraPhoto.format,
+                // tslint:disable-next-line: no-non-null-assertion
+                base64String: cameraPhoto.base64String
+              };
+            }));
+          }
+        }]);
+
+        return CameraService;
+      }();
+
+      CameraService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+      })], CameraService);
+      /***/
+    },
+
+    /***/
     "./src/app/services/collector/collector.service.ts":
     /*!*********************************************************!*\
       !*** ./src/app/services/collector/collector.service.ts ***!
@@ -718,25 +855,25 @@
         _createClass(CollectorService, [{
           key: "storeAndCollect",
           value: function storeAndCollect(rawBase64, mimeType) {
-            var _this = this;
+            var _this2 = this;
 
             // Deliberately store proof and its media file in the foreground, so the app page can
             // correctly and continuously subscribe the Storage.getAll$().
             this.store$(rawBase64, mimeType).subscribe(function (proof) {
-              Object(src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_5__["subscribeInBackground"])(_this.collectAndSign$(proof));
+              Object(src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_5__["subscribeInBackground"])(_this2.collectAndSign$(proof));
             });
           }
         }, {
           key: "store$",
           value: function store$(rawBase64, mimeType) {
-            var _this2 = this;
+            var _this3 = this;
 
             return this.proofRepository.saveRawFile$(rawBase64, mimeType).pipe( // Get the proof hash from the uri.
             Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (uri) {
               return Object(src_app_utils_file_file__WEBPACK_IMPORTED_MODULE_6__["fileNameWithoutExtension"])(uri);
             }), // Store the media file.
             Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (hash) {
-              return _this2.proofRepository.add$({
+              return _this3.proofRepository.add$({
                 hash: hash,
                 mimeType: mimeType,
                 timestamp: Date.now()
@@ -746,20 +883,20 @@
         }, {
           key: "collectAndSign$",
           value: function collectAndSign$(proof) {
-            var _this3 = this;
+            var _this4 = this;
 
             var notificationId = this.notificationService.createNotificationId();
             this.notificationService.notify(notificationId, this.translocoService.translate('collectingProof'), this.translocoService.translate('collectingInformation'));
             return Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["forkJoinWithDefault"])(_toConsumableArray(this.informationProviders).map(function (provider) {
               return provider.collectAndStore$(proof);
             })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (_) {
-              return _this3.notificationService.notify(notificationId, _this3.translocoService.translate('collectingProof'), _this3.translocoService.translate('signingProof'));
+              return _this4.notificationService.notify(notificationId, _this4.translocoService.translate('collectingProof'), _this4.translocoService.translate('signingProof'));
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["forkJoinWithDefault"])(_toConsumableArray(this.signatureProviders).map(function (provider) {
               return provider.signAndStore$(proof);
             }))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (_) {
-              return _this3.notificationService.cancel(notificationId);
+              return _this4.notificationService.cancel(notificationId);
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
-              _this3.notificationService.notifyError(notificationId, error);
+              _this4.notificationService.notifyError(notificationId, error);
 
               return rxjs__WEBPACK_IMPORTED_MODULE_3__["EMPTY"];
             }));
@@ -767,53 +904,53 @@
         }, {
           key: "addInformationProvider",
           value: function addInformationProvider() {
-            var _this4 = this;
+            var _this5 = this;
 
             for (var _len = arguments.length, providers = new Array(_len), _key = 0; _key < _len; _key++) {
               providers[_key] = arguments[_key];
             }
 
             providers.forEach(function (provider) {
-              return _this4.informationProviders.add(provider);
+              return _this5.informationProviders.add(provider);
             });
           }
         }, {
           key: "removeInformationProvider",
           value: function removeInformationProvider() {
-            var _this5 = this;
+            var _this6 = this;
 
             for (var _len2 = arguments.length, providers = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
               providers[_key2] = arguments[_key2];
             }
 
             providers.forEach(function (provider) {
-              return _this5.informationProviders["delete"](provider);
+              return _this6.informationProviders["delete"](provider);
             });
           }
         }, {
           key: "addSignatureProvider",
           value: function addSignatureProvider() {
-            var _this6 = this;
+            var _this7 = this;
 
             for (var _len3 = arguments.length, providers = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
               providers[_key3] = arguments[_key3];
             }
 
             providers.forEach(function (provider) {
-              return _this6.signatureProviders.add(provider);
+              return _this7.signatureProviders.add(provider);
             });
           }
         }, {
           key: "removeSignatureProvider",
           value: function removeSignatureProvider() {
-            var _this7 = this;
+            var _this8 = this;
 
             for (var _len4 = arguments.length, providers = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
               providers[_key4] = arguments[_key4];
             }
 
             providers.forEach(function (provider) {
-              return _this7.signatureProviders["delete"](provider);
+              return _this8.signatureProviders["delete"](provider);
             });
           }
         }]);
@@ -887,9 +1024,9 @@
       /*! ../information-provider */
       "./src/app/services/collector/information/information-provider.ts");
 
-      var _capacitor_core__WEBP = _capacitor_core__WEBPACK_IMPORTED_MODULE_0__["Plugins"],
-          Device = _capacitor_core__WEBP.Device,
-          Geolocation = _capacitor_core__WEBP.Geolocation;
+      var _capacitor_core__WEBP2 = _capacitor_core__WEBPACK_IMPORTED_MODULE_0__["Plugins"],
+          Device = _capacitor_core__WEBP2.Device,
+          Geolocation = _capacitor_core__WEBP2.Geolocation;
       var preferences = src_app_utils_preferences_preference_manager__WEBPACK_IMPORTED_MODULE_3__["PreferenceManager"].DEFAULT_INFORMATION_PROVIDER_PREF;
 
       var CapacitorProvider = /*#__PURE__*/function (_information_provider) {
@@ -898,20 +1035,20 @@
         var _super = _createSuper(CapacitorProvider);
 
         function CapacitorProvider(informationRepository, translocoService) {
-          var _this8;
+          var _this9;
 
           _classCallCheck(this, CapacitorProvider);
 
-          _this8 = _super.call(this, informationRepository);
-          _this8.translocoService = translocoService;
-          _this8.name = 'Capacitor';
-          return _this8;
+          _this9 = _super.call(this, informationRepository);
+          _this9.translocoService = translocoService;
+          _this9.name = 'Capacitor';
+          return _this9;
         }
 
         _createClass(CapacitorProvider, [{
           key: "provide$",
           value: function provide$(proof) {
-            var _this9 = this;
+            var _this10 = this;
 
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["zip"])(CapacitorProvider.isDeviceInfoCollectionEnabled$(), CapacitorProvider.isLocationInfoCollectionEnabled$()).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(function (_ref) {
               var _ref2 = _slicedToArray(_ref, 2),
@@ -943,8 +1080,8 @@
               if (deviceInfo !== undefined) {
                 informationList.push({
                   proofHash: proof.hash,
-                  provider: _this9.name,
-                  name: _this9.translocoService.translate('uuid'),
+                  provider: _this10.name,
+                  name: _this10.translocoService.translate('uuid'),
                   value: String(deviceInfo.uuid),
                   importance: "high"
                   /* High */
@@ -954,8 +1091,8 @@
 
                 }, {
                   proofHash: proof.hash,
-                  provider: _this9.name,
-                  name: _this9.translocoService.translate('deviceName'),
+                  provider: _this10.name,
+                  name: _this10.translocoService.translate('deviceName'),
                   value: String(deviceInfo.name),
                   importance: "low"
                   /* Low */
@@ -965,8 +1102,8 @@
 
                 }, {
                   proofHash: proof.hash,
-                  provider: _this9.name,
-                  name: _this9.translocoService.translate('deviceModel'),
+                  provider: _this10.name,
+                  name: _this10.translocoService.translate('deviceModel'),
                   value: String(deviceInfo.model),
                   importance: "low"
                   /* Low */
@@ -976,8 +1113,8 @@
 
                 }, {
                   proofHash: proof.hash,
-                  provider: _this9.name,
-                  name: _this9.translocoService.translate('devicePlatform'),
+                  provider: _this10.name,
+                  name: _this10.translocoService.translate('devicePlatform'),
                   value: String(deviceInfo.platform),
                   importance: "low"
                   /* Low */
@@ -987,8 +1124,8 @@
 
                 }, {
                   proofHash: proof.hash,
-                  provider: _this9.name,
-                  name: _this9.translocoService.translate('appVersion'),
+                  provider: _this10.name,
+                  name: _this10.translocoService.translate('appVersion'),
                   value: String(deviceInfo.appVersion),
                   importance: "low"
                   /* Low */
@@ -998,8 +1135,8 @@
 
                 }, {
                   proofHash: proof.hash,
-                  provider: _this9.name,
-                  name: _this9.translocoService.translate('appVersionCode'),
+                  provider: _this10.name,
+                  name: _this10.translocoService.translate('appVersionCode'),
                   value: String(deviceInfo.appBuild),
                   importance: "low"
                   /* Low */
@@ -1009,8 +1146,8 @@
 
                 }, {
                   proofHash: proof.hash,
-                  provider: _this9.name,
-                  name: _this9.translocoService.translate('operatingSystem'),
+                  provider: _this10.name,
+                  name: _this10.translocoService.translate('operatingSystem'),
                   value: String(deviceInfo.operatingSystem),
                   importance: "low"
                   /* Low */
@@ -1020,8 +1157,8 @@
 
                 }, {
                   proofHash: proof.hash,
-                  provider: _this9.name,
-                  name: _this9.translocoService.translate('osVersion'),
+                  provider: _this10.name,
+                  name: _this10.translocoService.translate('osVersion'),
                   value: String(deviceInfo.osVersion),
                   importance: "low"
                   /* Low */
@@ -1031,8 +1168,8 @@
 
                 }, {
                   proofHash: proof.hash,
-                  provider: _this9.name,
-                  name: _this9.translocoService.translate('deviceManufacturer'),
+                  provider: _this10.name,
+                  name: _this10.translocoService.translate('deviceManufacturer'),
                   value: String(deviceInfo.manufacturer),
                   importance: "low"
                   /* Low */
@@ -1042,8 +1179,8 @@
 
                 }, {
                   proofHash: proof.hash,
-                  provider: _this9.name,
-                  name: _this9.translocoService.translate('runningOnVm'),
+                  provider: _this10.name,
+                  name: _this10.translocoService.translate('runningOnVm'),
                   value: String(deviceInfo.isVirtual),
                   importance: "low"
                   /* Low */
@@ -1053,8 +1190,8 @@
 
                 }, {
                   proofHash: proof.hash,
-                  provider: _this9.name,
-                  name: _this9.translocoService.translate('usedMemory'),
+                  provider: _this10.name,
+                  name: _this10.translocoService.translate('usedMemory'),
                   value: String(deviceInfo.memUsed),
                   importance: "low"
                   /* Low */
@@ -1064,8 +1201,8 @@
 
                 }, {
                   proofHash: proof.hash,
-                  provider: _this9.name,
-                  name: _this9.translocoService.translate('freeDiskSpace'),
+                  provider: _this10.name,
+                  name: _this10.translocoService.translate('freeDiskSpace'),
                   value: String(deviceInfo.diskFree),
                   importance: "low"
                   /* Low */
@@ -1075,8 +1212,8 @@
 
                 }, {
                   proofHash: proof.hash,
-                  provider: _this9.name,
-                  name: _this9.translocoService.translate('totalDiskSpace'),
+                  provider: _this10.name,
+                  name: _this10.translocoService.translate('totalDiskSpace'),
                   value: String(deviceInfo.diskTotal),
                   importance: "low"
                   /* Low */
@@ -1090,8 +1227,8 @@
               if (batteryInfo !== undefined) {
                 informationList.push({
                   proofHash: proof.hash,
-                  provider: _this9.name,
-                  name: _this9.translocoService.translate('batteryLevel'),
+                  provider: _this10.name,
+                  name: _this10.translocoService.translate('batteryLevel'),
                   value: String(batteryInfo.batteryLevel),
                   importance: "low"
                   /* Low */
@@ -1101,8 +1238,8 @@
 
                 }, {
                   proofHash: proof.hash,
-                  provider: _this9.name,
-                  name: _this9.translocoService.translate('batteryCharging'),
+                  provider: _this10.name,
+                  name: _this10.translocoService.translate('batteryCharging'),
                   value: String(batteryInfo.isCharging),
                   importance: "low"
                   /* Low */
@@ -1116,8 +1253,8 @@
               if (languageCode !== undefined) {
                 informationList.push({
                   proofHash: proof.hash,
-                  provider: _this9.name,
-                  name: _this9.translocoService.translate('deviceLanguageCode'),
+                  provider: _this10.name,
+                  name: _this10.translocoService.translate('deviceLanguageCode'),
                   value: String(languageCode.value),
                   importance: "low"
                   /* Low */
@@ -1131,8 +1268,8 @@
               if (geolocationPosition !== undefined) {
                 informationList.push({
                   proofHash: proof.hash,
-                  provider: _this9.name,
-                  name: _this9.translocoService.translate('location'),
+                  provider: _this10.name,
+                  name: _this10.translocoService.translate('location'),
                   value: "(".concat(geolocationPosition.coords.latitude, ", ").concat(geolocationPosition.coords.longitude, ")"),
                   importance: "high"
                   /* High */
@@ -1218,12 +1355,12 @@
         _createClass(InformationProvider, [{
           key: "collectAndStore$",
           value: function collectAndStore$(proof) {
-            var _this10 = this;
+            var _this11 = this;
 
             return this.provide$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["switchMap"])(function (information) {
-              var _this10$informationRe;
+              var _this11$informationRe;
 
-              return (_this10$informationRe = _this10.informationRepository).add$.apply(_this10$informationRe, _toConsumableArray(information));
+              return (_this11$informationRe = _this11.informationRepository).add$.apply(_this11$informationRe, _toConsumableArray(information));
             }));
           }
         }]);
@@ -1292,19 +1429,19 @@
         var _super2 = _createSuper(DefaultSignatureProvider);
 
         function DefaultSignatureProvider() {
-          var _this11;
+          var _this12;
 
           _classCallCheck(this, DefaultSignatureProvider);
 
-          _this11 = _super2.apply(this, arguments);
-          _this11.name = 'Web Crypto API';
-          return _this11;
+          _this12 = _super2.apply(this, arguments);
+          _this12.name = 'Web Crypto API';
+          return _this12;
         }
 
         _createClass(DefaultSignatureProvider, [{
           key: "provide$",
           value: function provide$(proof, serialized) {
-            var _this12 = this;
+            var _this13 = this;
 
             return DefaultSignatureProvider.getPrivateKey$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(function (privateKeyHex) {
               return Object(src_app_utils_crypto_crypto__WEBPACK_IMPORTED_MODULE_2__["signWithSha256AndEcdsa$"])(serialized, privateKeyHex);
@@ -1317,7 +1454,7 @@
 
               return {
                 proofHash: proof.hash,
-                provider: _this12.name,
+                provider: _this13.name,
                 signature: signatureHex,
                 publicKey: publicKeyHex
               };
@@ -1401,12 +1538,12 @@
         _createClass(SignatureProvider, [{
           key: "signAndStore$",
           value: function signAndStore$(proof) {
-            var _this13 = this;
+            var _this14 = this;
 
             return this.serializationService.stringify$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["switchMap"])(function (serialized) {
-              return _this13.provide$(proof, serialized);
+              return _this14.provide$(proof, serialized);
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["switchMap"])(function (signature) {
-              return _this13.signatureRepository.add$(signature);
+              return _this14.signatureRepository.add$(signature);
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["pluck"])(0));
           }
         }]);
@@ -1481,11 +1618,6 @@
         }
 
         _createClass(CaptionRepository, [{
-          key: "refresh$",
-          value: function refresh$() {
-            return this.captionStorage.refresh$();
-          }
-        }, {
           key: "getByProof$",
           value: function getByProof$(proof) {
             return this.captionStorage.getAll$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (captions) {
@@ -1497,7 +1629,7 @@
         }, {
           key: "addOrEdit$",
           value: function addOrEdit$(value) {
-            var _this14 = this;
+            var _this15 = this;
 
             return this.captionStorage.getAll$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (captions) {
               return captions.find(function (caption) {
@@ -1505,7 +1637,7 @@
               });
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["concatMap"])(function (found) {
               if (found) {
-                return _this14.remove$(found);
+                return _this15.remove$(found);
               }
 
               return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(found);
@@ -1514,10 +1646,10 @@
         }, {
           key: "removeByProof$",
           value: function removeByProof$(proof) {
-            var _this15 = this;
+            var _this16 = this;
 
             return this.getByProof$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["first"])(), Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(function (caption) {
-              return _this15.remove$(caption);
+              return _this16.remove$(caption);
             }));
           }
         }, {
@@ -1590,11 +1722,6 @@
         }
 
         _createClass(InformationRepository, [{
-          key: "refresh$",
-          value: function refresh$() {
-            return this.informationStorage.refresh$();
-          }
-        }, {
           key: "getByProof$",
           value: function getByProof$(proof) {
             return this.informationStorage.getAll$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (informationList) {
@@ -1613,10 +1740,10 @@
         }, {
           key: "removeByProof$",
           value: function removeByProof$(proof) {
-            var _this16 = this;
+            var _this17 = this;
 
             return this.getByProof$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(function (informationList) {
-              return _this16.remove$.apply(_this16, _toConsumableArray(informationList));
+              return _this17.remove$.apply(_this17, _toConsumableArray(informationList));
             }));
           }
         }, {
@@ -1695,41 +1822,51 @@
       /* harmony import */
 
 
-      var src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      var src_app_utils_encoding_encoding__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! src/app/utils/encoding/encoding */
+      "./src/app/utils/encoding/encoding.ts");
+      /* harmony import */
+
+
+      var src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! src/app/utils/mime-type */
       "./src/app/utils/mime-type.ts");
       /* harmony import */
 
 
-      var src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      var src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
       /*! src/app/utils/rx-operators */
       "./src/app/utils/rx-operators.ts");
       /* harmony import */
 
 
-      var src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      var src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
       /*! src/app/utils/storage/storage */
       "./src/app/utils/storage/storage.ts");
       /* harmony import */
 
 
-      var _caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      var _caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
       /*! ../caption/caption-repository.service */
       "./src/app/services/data/caption/caption-repository.service.ts");
       /* harmony import */
 
 
-      var _information_information_repository_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+      var _information_information_repository_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
       /*! ../information/information-repository.service */
       "./src/app/services/data/information/information-repository.service.ts");
       /* harmony import */
 
 
-      var _signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+      var _signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
       /*! ../signature/signature-repository.service */
       "./src/app/services/data/signature/signature-repository.service.ts");
 
-      var Filesystem = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"].Filesystem;
+      var Filesystem = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"].Filesystem; // @ts-ignore
+
+      var ImageBlobReduce = __webpack_require__(
+      /*! image-blob-reduce */
+      "./node_modules/image-blob-reduce/index.js")();
 
       var ProofRepository = /*#__PURE__*/function () {
         function ProofRepository(captionRepository, informationRepository, signatureRepository) {
@@ -1738,17 +1875,15 @@
           this.captionRepository = captionRepository;
           this.informationRepository = informationRepository;
           this.signatureRepository = signatureRepository;
-          this.proofStorage = new src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_8__["Storage"]('proof');
+          this.proofStorage = new src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_9__["Storage"]('proof');
           this.rawFileDir = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["FilesystemDirectory"].Data;
           this.rawFileFolderName = 'raw';
+          this.thumbnailFileDir = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["FilesystemDirectory"].Data;
+          this.thumbnailFileFolderName = 'thumb';
+          this.thumbnailSize = 200;
         }
 
         _createClass(ProofRepository, [{
-          key: "refresh$",
-          value: function refresh$() {
-            return this.proofStorage.refresh$();
-          }
-        }, {
           key: "getAll$",
           value: function getAll$() {
             return this.proofStorage.getAll$();
@@ -1760,8 +1895,6 @@
               return proofList.find(function (proof) {
                 return proof.hash === hash;
               });
-            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(function (proof) {
-              return !!proof;
             }));
           }
         }, {
@@ -1775,31 +1908,31 @@
           key: "remove$",
           value: function remove$() {
             var _this$proofStorage2,
-                _this17 = this;
+                _this18 = this;
 
             for (var _len5 = arguments.length, proofs = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
               proofs[_key5] = arguments[_key5];
             }
 
-            return (_this$proofStorage2 = this.proofStorage).remove$.apply(_this$proofStorage2, proofs).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["forkJoinWithDefault"])(proofs.map(function (proof) {
-              return _this17.deleteRawFile$(proof);
-            }))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["forkJoinWithDefault"])(proofs.map(function (proof) {
-              return _this17.captionRepository.removeByProof$(proof);
-            }))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["forkJoinWithDefault"])(proofs.map(function (proof) {
-              return _this17.informationRepository.removeByProof$(proof);
-            }))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["forkJoinWithDefault"])(proofs.map(function (proof) {
-              return _this17.signatureRepository.removeByProof$(proof);
+            return (_this$proofStorage2 = this.proofStorage).remove$.apply(_this$proofStorage2, proofs).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_8__["forkJoinWithDefault"])(proofs.map(function (proof) {
+              return _this18.deleteRawFile$(proof);
+            }))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_8__["forkJoinWithDefault"])(proofs.map(function (proof) {
+              return _this18.captionRepository.removeByProof$(proof);
+            }))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_8__["forkJoinWithDefault"])(proofs.map(function (proof) {
+              return _this18.informationRepository.removeByProof$(proof);
+            }))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_8__["forkJoinWithDefault"])(proofs.map(function (proof) {
+              return _this18.signatureRepository.removeByProof$(proof);
             }))));
           }
         }, {
           key: "getRawFile$",
           value: function getRawFile$(proof) {
-            var _this18 = this;
+            var _this19 = this;
 
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["defer"])(function () {
               return Filesystem.readFile({
-                path: "".concat(_this18.rawFileFolderName, "/").concat(proof.hash, ".").concat(Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_6__["getExtension"])(proof.mimeType)),
-                directory: _this18.rawFileDir
+                path: "".concat(_this19.rawFileFolderName, "/").concat(proof.hash, ".").concat(Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_7__["getExtension"])(proof.mimeType)),
+                directory: _this19.rawFileDir
               });
             }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["pluck"])('data'));
           }
@@ -1812,13 +1945,24 @@
         }, {
           key: "saveRawFile$",
           value: function saveRawFile$(rawBase64, mimeType) {
-            var _this19 = this;
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["zip"])(this._saveRawFile$(rawBase64, mimeType), this.generateAndSaveThumbnailFile$(rawBase64, mimeType)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (_ref10) {
+              var _ref11 = _slicedToArray(_ref10, 2),
+                  rawUri = _ref11[0],
+                  _ = _ref11[1];
+
+              return rawUri;
+            }));
+          }
+        }, {
+          key: "_saveRawFile$",
+          value: function _saveRawFile$(rawBase64, mimeType) {
+            var _this20 = this;
 
             return Object(src_app_utils_crypto_crypto__WEBPACK_IMPORTED_MODULE_5__["sha256WithBase64$"])(rawBase64).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (hash) {
               return Filesystem.writeFile({
-                path: "".concat(_this19.rawFileFolderName, "/").concat(hash, ".").concat(Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_6__["getExtension"])(mimeType)),
+                path: "".concat(_this20.rawFileFolderName, "/").concat(hash, ".").concat(Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_7__["getExtension"])(mimeType)),
                 data: rawBase64,
-                directory: _this19.rawFileDir,
+                directory: _this20.rawFileDir,
                 recursive: true
               });
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["pluck"])('uri'));
@@ -1826,14 +1970,50 @@
         }, {
           key: "deleteRawFile$",
           value: function deleteRawFile$(proof) {
-            var _this20 = this;
+            var _this21 = this;
 
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["defer"])(function () {
               return Filesystem.deleteFile({
-                path: "".concat(_this20.rawFileFolderName, "/").concat(proof.hash, ".").concat(Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_6__["getExtension"])(proof.mimeType)),
-                directory: _this20.rawFileDir
+                path: "".concat(_this21.rawFileFolderName, "/").concat(proof.hash, ".").concat(Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_7__["getExtension"])(proof.mimeType)),
+                directory: _this21.rawFileDir
               });
             });
+          }
+        }, {
+          key: "getThumbnail$",
+          value: function getThumbnail$(proof) {
+            var _this22 = this;
+
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["defer"])(function () {
+              return Filesystem.readFile({
+                path: "".concat(_this22.thumbnailFileFolderName, "/").concat(proof.hash, ".").concat(Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_7__["getExtension"])(proof.mimeType)),
+                directory: _this22.thumbnailFileDir
+              });
+            }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["pluck"])('data'));
+          }
+        }, {
+          key: "generateAndSaveThumbnailFile$",
+          value: function generateAndSaveThumbnailFile$(rawBase64, mimeType) {
+            var _this23 = this;
+
+            return Object(src_app_utils_encoding_encoding__WEBPACK_IMPORTED_MODULE_6__["base64ToBlob$"])("data:".concat(mimeType, ";base64,").concat(rawBase64)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (rawImageBlob) {
+              return ImageBlobReduce.toBlob(rawImageBlob, {
+                max: _this23.thumbnailSize
+              });
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (thumbnailBlob) {
+              return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["zip"])(Object(src_app_utils_encoding_encoding__WEBPACK_IMPORTED_MODULE_6__["blobToBase64$"])(thumbnailBlob), Object(src_app_utils_crypto_crypto__WEBPACK_IMPORTED_MODULE_5__["sha256WithBase64$"])(rawBase64));
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (_ref12) {
+              var _ref13 = _slicedToArray(_ref12, 2),
+                  thumbnailBase64 = _ref13[0],
+                  hash = _ref13[1];
+
+              return Filesystem.writeFile({
+                path: "".concat(_this23.thumbnailFileFolderName, "/").concat(hash, ".").concat(Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_7__["getExtension"])(mimeType)),
+                data: thumbnailBase64,
+                directory: _this23.thumbnailFileDir,
+                recursive: true
+              });
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["pluck"])('uri'));
           }
         }]);
 
@@ -1842,11 +2022,11 @@
 
       ProofRepository.ctorParameters = function () {
         return [{
-          type: _caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_9__["CaptionRepository"]
+          type: _caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_10__["CaptionRepository"]
         }, {
-          type: _information_information_repository_service__WEBPACK_IMPORTED_MODULE_10__["InformationRepository"]
+          type: _information_information_repository_service__WEBPACK_IMPORTED_MODULE_11__["InformationRepository"]
         }, {
-          type: _signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_11__["SignatureRepository"]
+          type: _signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_12__["SignatureRepository"]
         }];
       };
 
@@ -1908,11 +2088,6 @@
         }
 
         _createClass(SignatureRepository, [{
-          key: "refresh$",
-          value: function refresh$() {
-            return this.signatureStorage.refresh$();
-          }
-        }, {
           key: "getByProof$",
           value: function getByProof$(proof) {
             return this.signatureStorage.getAll$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (signatures) {
@@ -1931,10 +2106,10 @@
         }, {
           key: "removeByProof$",
           value: function removeByProof$(proof) {
-            var _this21 = this;
+            var _this24 = this;
 
             return this.getByProof$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(function (signatures) {
-              return _this21.remove$.apply(_this21, _toConsumableArray(signatures));
+              return _this24.remove$.apply(_this24, _toConsumableArray(signatures));
             }));
           }
         }, {
@@ -2028,11 +2203,11 @@
         _createClass(LanguageService, [{
           key: "initialize$",
           value: function initialize$() {
-            var _this22 = this;
+            var _this25 = this;
 
             this.translocoService.setDefaultLang(src_app_transloco_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__["defaultLanguage"][0]);
             return this.currentLanguageKey$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(function (key) {
-              return _this22.setCurrentLanguage$(key);
+              return _this25.setCurrentLanguage$(key);
             }));
           }
         }, {
@@ -2226,7 +2401,7 @@
         _createClass(Publisher, [{
           key: "publish",
           value: function publish(proof) {
-            var _this23 = this;
+            var _this26 = this;
 
             var notificationId = this.notificationService.createNotificationId();
             this.notificationService.notify(notificationId, this.translocoService.translate('publishingProof'), this.translocoService.translate('message.publishingProof', {
@@ -2234,12 +2409,12 @@
               publisherName: this.name
             }));
             Object(src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_1__["subscribeInBackground"])(this.run$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["tap"])(function (_) {
-              return _this23.notificationService.notify(notificationId, _this23.translocoService.translate('proofPublished'), _this23.translocoService.translate('message.proofPublished', {
+              return _this26.notificationService.notify(notificationId, _this26.translocoService.translate('proofPublished'), _this26.translocoService.translate('message.proofPublished', {
                 hash: proof.hash,
-                publisherName: _this23.name
+                publisherName: _this26.name
               }));
             })), function (error) {
-              return _this23.notificationService.notifyError(notificationId, error);
+              return _this26.notificationService.notifyError(notificationId, error);
             });
           }
         }]);
@@ -2323,11 +2498,11 @@
         }, {
           key: "present$",
           value: function present$(proof) {
-            var _this24 = this;
+            var _this27 = this;
 
             return this.getEnabledPublishers$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMap"])(function (publishers) {
-              return _this24.alertController.create({
-                header: _this24.translocoService.translate('selectAPublisher'),
+              return _this27.alertController.create({
+                header: _this27.translocoService.translate('selectAPublisher'),
                 inputs: publishers.map(function (publisher, index) {
                   return {
                     name: publisher.name,
@@ -2338,14 +2513,14 @@
                   };
                 }),
                 buttons: [{
-                  text: _this24.translocoService.translate('cancel'),
+                  text: _this27.translocoService.translate('cancel'),
                   role: 'cancel'
                 }, {
-                  text: _this24.translocoService.translate('ok'),
+                  text: _this27.translocoService.translate('ok'),
                   handler: function handler(name) {
                     var _a;
 
-                    return (_a = _this24.getPublisherByName(name)) === null || _a === void 0 ? void 0 : _a.publish(proof);
+                    return (_a = _this27.getPublisherByName(name)) === null || _a === void 0 ? void 0 : _a.publish(proof);
                   }
                 }]
               });
@@ -2358,10 +2533,10 @@
           value: function getEnabledPublishers$() {
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["from"])(this.publishers).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMap"])(function (publisher) {
               return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["zip"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["of"])(publisher), publisher.isEnabled$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["first"])()));
-            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["filter"])(function (_ref10) {
-              var _ref11 = _slicedToArray(_ref10, 2),
-                  _ = _ref11[0],
-                  isEnabled = _ref11[1];
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["filter"])(function (_ref14) {
+              var _ref15 = _slicedToArray(_ref14, 2),
+                  _ = _ref15[0],
+                  isEnabled = _ref15[1];
 
               return isEnabled;
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["pluck"])(0), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["toArray"])());
@@ -2436,13 +2611,13 @@
         var _super3 = _createSuper(SamplePublisher);
 
         function SamplePublisher() {
-          var _this25;
+          var _this28;
 
           _classCallCheck(this, SamplePublisher);
 
-          _this25 = _super3.apply(this, arguments);
-          _this25.name = 'Sample Publisher';
-          return _this25;
+          _this28 = _super3.apply(this, arguments);
+          _this28.name = 'Sample Publisher';
+          return _this28;
         }
 
         _createClass(SamplePublisher, [{
@@ -2539,10 +2714,10 @@
                 }
 
                 return valueCompared;
-              }).map(function (_ref12) {
-                var provider = _ref12.provider,
-                    name = _ref12.name,
-                    value = _ref12.value;
+              }).map(function (_ref16) {
+                var provider = _ref16.provider,
+                    name = _ref16.name,
+                    value = _ref16.value;
                 return {
                   provider: provider,
                   name: name,
@@ -2819,6 +2994,10 @@
       var SHA_256 = 'SHA-256';
       var ECDSA = 'ECDSA';
       var SECP256R1 = 'P-256';
+      /**
+       * Use SHA-256 to hash the object.
+       * @param object The target object. Note that the order of the object properties is sensitive.
+       */
 
       function sha256$(object) {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["of"])(JSON.stringify(object)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(function (json) {
@@ -2852,14 +3031,14 @@
           , "verify"
           /* Verify */
           ]);
-        }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(function (_ref13) {
-          var publicKey = _ref13.publicKey,
-              privateKey = _ref13.privateKey;
+        }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(function (_ref17) {
+          var publicKey = _ref17.publicKey,
+              privateKey = _ref17.privateKey;
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["zip"])(exportEcdsaPublicKey$(publicKey), exportEcdsaPrivateKey$(privateKey));
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (_ref14) {
-          var _ref15 = _slicedToArray(_ref14, 2),
-              publicKey = _ref15[0],
-              privateKey = _ref15[1];
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (_ref18) {
+          var _ref19 = _slicedToArray(_ref18, 2),
+              publicKey = _ref19[0],
+              privateKey = _ref19[1];
 
           return {
             publicKey: publicKey,
@@ -2945,7 +3124,7 @@
       !*** ./src/app/utils/encoding/encoding.ts ***!
       \********************************************/
 
-    /*! exports provided: base64ToArrayBuffer, arrayBufferToBase64, arrayBufferToHex, hexToArrayBuffer, stringToArrayBuffer, arrayBufferToString */
+    /*! exports provided: base64ToArrayBuffer, arrayBufferToBase64, arrayBufferToHex, hexToArrayBuffer, stringToArrayBuffer, arrayBufferToString, base64ToBlob$, blobToBase64$ */
 
     /***/
     function srcAppUtilsEncodingEncodingTs(module, __webpack_exports__, __webpack_require__) {
@@ -2988,6 +3167,30 @@
       __webpack_require__.d(__webpack_exports__, "arrayBufferToString", function () {
         return arrayBufferToString;
       });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "base64ToBlob$", function () {
+        return base64ToBlob$;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "blobToBase64$", function () {
+        return blobToBase64$;
+      });
+      /* harmony import */
+
+
+      var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! rxjs */
+      "./node_modules/rxjs/_esm2015/index.js");
+      /* harmony import */
+
+
+      var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! rxjs/operators */
+      "./node_modules/rxjs/_esm2015/operators/index.js");
 
       var textEncoder = new TextEncoder();
       var textDecoder = new TextDecoder();
@@ -3026,6 +3229,27 @@
 
       function arrayBufferToString(arrayBuffer) {
         return textDecoder.decode(arrayBuffer);
+      }
+
+      function base64ToBlob$(base64) {
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["defer"])(function () {
+          return fetch(base64);
+        }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(function (res) {
+          return res.blob();
+        }));
+      }
+
+      function blobToBase64$(blob) {
+        var fileReader = new FileReader();
+        var subject$ = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
+
+        fileReader.onloadend = function () {
+          subject$.next(fileReader.result);
+          subject$.complete();
+        };
+
+        fileReader.readAsDataURL(blob);
+        return subject$.asObservable();
       }
       /***/
 
@@ -3205,35 +3429,35 @@
         _createClass(Preferences, [{
           key: "get$",
           value: function get$(key, defaultValue) {
-            var _this26 = this;
+            var _this29 = this;
 
             var converter = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : JSON.parse;
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
-              return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(_this26.subjects.has(key));
+              return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(_this29.subjects.has(key));
             }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(function (existed) {
               if (!existed) {
-                return _this26._get$(key, defaultValue, converter);
+                return _this29._get$(key, defaultValue, converter);
               }
 
               return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(existed);
             }), // tslint:disable-next-line: no-non-null-assertion
             Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
-              return _this26.subjects.get(key).asObservable();
+              return _this29.subjects.get(key).asObservable();
             })));
           }
         }, {
           key: "_get$",
           value: function _get$(key, defaultValue, converter) {
-            var _this27 = this;
+            var _this30 = this;
 
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
               return Storage.get({
-                key: "".concat(_this27.name, "_").concat(key)
+                key: "".concat(_this30.name, "_").concat(key)
               });
             }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["pluck"])('value'), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (value) {
               return value && value !== '[null]' ? converter(value) : defaultValue;
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (converted) {
-              return _this27.updateSubjects(key, converted);
+              return _this30.updateSubjects(key, converted);
             }));
           }
         }, {
@@ -3261,12 +3485,12 @@
         }, {
           key: "set$",
           value: function set$(key, value) {
-            var _this28 = this;
+            var _this31 = this;
 
             var converter = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : JSON.stringify;
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
               return Storage.set({
-                key: "".concat(_this28.name, "_").concat(key),
+                key: "".concat(_this31.name, "_").concat(key),
                 value: converter(value)
               });
             }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(this.updateSubjects(key, value)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(value));
@@ -3422,60 +3646,76 @@
           this.name = name;
           this.directory = directory;
           this.tuples$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"]([]);
+          this.hasInitialized = false;
         }
 
         _createClass(Storage, [{
+          key: "checkInitialization$",
+          value: function checkInitialization$() {
+            var _this32 = this;
+
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
+              if (_this32.hasInitialized) {
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(void 0);
+              } else {
+                return _this32.refresh$();
+              }
+            });
+          }
+        }, {
           key: "refresh$",
           value: function refresh$() {
-            var _this29 = this;
+            var _this33 = this;
 
-            return this.makeNameDir$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMapTo"])(this.readNameDir$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["pluck"])('files'), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(function (fileNames) {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(void 0).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (_) {
+              return _this33.hasInitialized = true;
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMapTo"])(this.makeNameDir$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMapTo"])(this.readNameDir$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["pluck"])('files'), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])(function (fileNames) {
               return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["from"])(fileNames);
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])(function (fileName) {
-              return _this29.readFile$(fileName);
+              return _this33.readFile$(fileName);
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (result) {
               return JSON.parse(result.data);
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["toArray"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (tuples) {
-              return _this29.tuples$.next(tuples);
+              return _this33.tuples$.next(tuples);
             }));
           }
         }, {
           key: "makeNameDir$",
           value: function makeNameDir$() {
-            var _this30 = this;
+            var _this34 = this;
 
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
               return Filesystem.mkdir({
-                path: _this30.name,
-                directory: _this30.directory,
+                path: _this34.name,
+                directory: _this34.directory,
                 recursive: true
               });
             }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(void 0), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(function (err) {
-              console.log("".concat(_this30.directory, "/").concat(_this30.name, ": ").concat(err.message));
+              console.log("".concat(_this34.directory, "/").concat(_this34.name, ": ").concat(err.message));
               return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(void 0);
             }));
           }
         }, {
           key: "readNameDir$",
           value: function readNameDir$() {
-            var _this31 = this;
+            var _this35 = this;
 
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
               return Filesystem.readdir({
-                path: _this31.name,
-                directory: _this31.directory
+                path: _this35.name,
+                directory: _this35.directory
               });
             });
           }
         }, {
           key: "readFile$",
           value: function readFile$(fileName) {
-            var _this32 = this;
+            var _this36 = this;
 
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
               return Filesystem.readFile({
-                path: "".concat(_this32.name, "/").concat(fileName),
-                directory: _this32.directory,
+                path: "".concat(_this36.name, "/").concat(fileName),
+                directory: _this36.directory,
                 encoding: _capacitor_core__WEBPACK_IMPORTED_MODULE_0__["FilesystemEncoding"].UTF8
               });
             });
@@ -3483,31 +3723,36 @@
         }, {
           key: "getAll$",
           value: function getAll$() {
-            return this.tuples$.asObservable();
+            return this.checkInitialization$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMapTo"])(this.tuples$.asObservable()));
           }
         }, {
           key: "add$",
           value: function add$() {
-            var _this33 = this;
+            var _this37 = this;
 
             for (var _len6 = arguments.length, tuples = new Array(_len6), _key6 = 0; _key6 < _len6; _key6++) {
               tuples[_key6] = arguments[_key6];
             }
 
             return Object(_rx_operators__WEBPACK_IMPORTED_MODULE_4__["forkJoinWithDefault"])(tuples.map(function (tuple) {
-              return _this33.saveFile$(tuple);
-            })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMapTo"])(this.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(tuples));
+              return _this37.saveFile$(tuple);
+            })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMapTo"])(this.checkInitialization$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (_) {
+              return _this37.tuples$.next([].concat(_toConsumableArray(_this37.tuples$.value), tuples));
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(tuples));
           }
         }, {
           key: "saveFile$",
           value: function saveFile$(tuple) {
-            var _this34 = this;
+            var _this38 = this;
 
-            return Object(_crypto_crypto__WEBPACK_IMPORTED_MODULE_3__["sha256$"])(tuple).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(function (hash) {
+            // XXX: Use sha256 is not a good idea as `sha256$()` uses `JSON.stringify()` under the hood.
+            //      Thus, the order of the tuple (properties) will result in different hash if tuple is
+            //      an array (object).
+            return Object(_crypto_crypto__WEBPACK_IMPORTED_MODULE_3__["sha256$"])(tuple).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])(function (hash) {
               return Filesystem.writeFile({
-                path: "".concat(_this34.name, "/").concat(hash, ".json"),
+                path: "".concat(_this38.name, "/").concat(hash, ".json"),
                 data: JSON.stringify(tuple),
-                directory: _this34.directory,
+                directory: _this38.directory,
                 encoding: _capacitor_core__WEBPACK_IMPORTED_MODULE_0__["FilesystemEncoding"].UTF8,
                 recursive: true
               });
@@ -3516,25 +3761,28 @@
         }, {
           key: "remove$",
           value: function remove$() {
-            var _this35 = this;
+            var _this39 = this;
 
             for (var _len7 = arguments.length, tuples = new Array(_len7), _key7 = 0; _key7 < _len7; _key7++) {
               tuples[_key7] = arguments[_key7];
             }
 
             return Object(_rx_operators__WEBPACK_IMPORTED_MODULE_4__["forkJoinWithDefault"])(tuples.map(function (tuple) {
-              return _this35.deleteFile$(tuple);
-            })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMapTo"])(this.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(tuples));
+              return _this39.deleteFile$(tuple);
+            })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMapTo"])(this.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(tuples));
           }
         }, {
           key: "deleteFile$",
           value: function deleteFile$(tuple) {
-            var _this36 = this;
+            var _this40 = this;
 
-            return Object(_crypto_crypto__WEBPACK_IMPORTED_MODULE_3__["sha256$"])(tuple).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(function (hash) {
+            // XXX: Use sha256 is not a good idea as `sha256$()` uses `JSON.stringify()` under the hood.
+            //      Thus, the order of the tuple (properties) will result in different hash if tuple is
+            //      an array (object).
+            return Object(_crypto_crypto__WEBPACK_IMPORTED_MODULE_3__["sha256$"])(tuple).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])(function (hash) {
               return Filesystem.deleteFile({
-                path: "".concat(_this36.name, "/").concat(hash, ".json"),
-                directory: _this36.directory
+                path: "".concat(_this40.name, "/").concat(hash, ".json"),
+                directory: _this40.directory
               });
             }));
           }

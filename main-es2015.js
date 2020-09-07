@@ -405,16 +405,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
 /* harmony import */ var _ngneat_transloco__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngneat/transloco */ "./node_modules/@ngneat/transloco/__ivy_ngcc__/fesm2015/ngneat-transloco.js");
 /* harmony import */ var _ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngneat/until-destroy */ "./node_modules/@ngneat/until-destroy/__ivy_ngcc__/fesm2015/ngneat-until-destroy.js");
-/* harmony import */ var _services_collector_collector_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./services/collector/collector.service */ "./src/app/services/collector/collector.service.ts");
-/* harmony import */ var _services_collector_information_capacitor_provider_capacitor_provider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./services/collector/information/capacitor-provider/capacitor-provider */ "./src/app/services/collector/information/capacitor-provider/capacitor-provider.ts");
-/* harmony import */ var _services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./services/collector/signature/default-provider/default-provider */ "./src/app/services/collector/signature/default-provider/default-provider.ts");
-/* harmony import */ var _services_data_information_information_repository_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./services/data/information/information-repository.service */ "./src/app/services/data/information/information-repository.service.ts");
-/* harmony import */ var _services_data_signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./services/data/signature/signature-repository.service */ "./src/app/services/data/signature/signature-repository.service.ts");
-/* harmony import */ var _services_language_language_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./services/language/language.service */ "./src/app/services/language/language.service.ts");
-/* harmony import */ var _services_notification_notification_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./services/notification/notification.service */ "./src/app/services/notification/notification.service.ts");
-/* harmony import */ var _services_publisher_publishers_alert_publishers_alert_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./services/publisher/publishers-alert/publishers-alert.service */ "./src/app/services/publisher/publishers-alert/publishers-alert.service.ts");
-/* harmony import */ var _services_publisher_sample_publisher_sample_publisher__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./services/publisher/sample-publisher/sample-publisher */ "./src/app/services/publisher/sample-publisher/sample-publisher.ts");
-/* harmony import */ var _services_serialization_serialization_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./services/serialization/serialization.service */ "./src/app/services/serialization/serialization.service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var _services_camera_camera_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./services/camera/camera.service */ "./src/app/services/camera/camera.service.ts");
+/* harmony import */ var _services_collector_collector_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./services/collector/collector.service */ "./src/app/services/collector/collector.service.ts");
+/* harmony import */ var _services_collector_information_capacitor_provider_capacitor_provider__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./services/collector/information/capacitor-provider/capacitor-provider */ "./src/app/services/collector/information/capacitor-provider/capacitor-provider.ts");
+/* harmony import */ var _services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./services/collector/signature/default-provider/default-provider */ "./src/app/services/collector/signature/default-provider/default-provider.ts");
+/* harmony import */ var _services_data_information_information_repository_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./services/data/information/information-repository.service */ "./src/app/services/data/information/information-repository.service.ts");
+/* harmony import */ var _services_data_signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./services/data/signature/signature-repository.service */ "./src/app/services/data/signature/signature-repository.service.ts");
+/* harmony import */ var _services_language_language_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./services/language/language.service */ "./src/app/services/language/language.service.ts");
+/* harmony import */ var _services_notification_notification_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./services/notification/notification.service */ "./src/app/services/notification/notification.service.ts");
+/* harmony import */ var _services_publisher_publishers_alert_publishers_alert_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./services/publisher/publishers-alert/publishers-alert.service */ "./src/app/services/publisher/publishers-alert/publishers-alert.service.ts");
+/* harmony import */ var _services_publisher_sample_publisher_sample_publisher__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./services/publisher/sample-publisher/sample-publisher */ "./src/app/services/publisher/sample-publisher/sample-publisher.ts");
+/* harmony import */ var _services_serialization_serialization_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./services/serialization/serialization.service */ "./src/app/services/serialization/serialization.service.ts");
+/* harmony import */ var _utils_mime_type__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./utils/mime-type */ "./src/app/utils/mime-type.ts");
+
+
+
 
 
 
@@ -433,7 +439,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const { SplashScreen } = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"];
 let AppComponent = class AppComponent {
-    constructor(platform, collectorService, publishersAlert, serializationService, informationRepository, signatureRepository, translocoService, notificationService, langaugeService) {
+    constructor(platform, collectorService, publishersAlert, serializationService, informationRepository, signatureRepository, translocoService, notificationService, langaugeService, cameraService) {
         this.platform = platform;
         this.collectorService = collectorService;
         this.publishersAlert = publishersAlert;
@@ -442,10 +448,15 @@ let AppComponent = class AppComponent {
         this.signatureRepository = signatureRepository;
         this.translocoService = translocoService;
         this.notificationService = notificationService;
+        this.cameraService = cameraService;
+        this.restoreAppStatus();
         this.initializeApp();
         this.initializeCollector();
         this.initializePublisher();
         langaugeService.initialize$().pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["untilDestroyed"])(this)).subscribe();
+    }
+    restoreAppStatus() {
+        this.cameraService.restoreKilledAppResult$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(cameraPhoto => this.collectorService.storeAndCollect(cameraPhoto.base64String, Object(_utils_mime_type__WEBPACK_IMPORTED_MODULE_18__["fromExtension"])(cameraPhoto.format))), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["untilDestroyed"])(this)).subscribe();
     }
     initializeApp() {
         this.platform.ready().then(() => {
@@ -453,24 +464,25 @@ let AppComponent = class AppComponent {
         });
     }
     initializeCollector() {
-        _services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_8__["DefaultSignatureProvider"].initialize$().pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["untilDestroyed"])(this)).subscribe();
-        this.collectorService.addInformationProvider(new _services_collector_information_capacitor_provider_capacitor_provider__WEBPACK_IMPORTED_MODULE_7__["CapacitorProvider"](this.informationRepository, this.translocoService));
-        this.collectorService.addSignatureProvider(new _services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_8__["DefaultSignatureProvider"](this.signatureRepository, this.serializationService));
+        _services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_10__["DefaultSignatureProvider"].initialize$().pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["untilDestroyed"])(this)).subscribe();
+        this.collectorService.addInformationProvider(new _services_collector_information_capacitor_provider_capacitor_provider__WEBPACK_IMPORTED_MODULE_9__["CapacitorProvider"](this.informationRepository, this.translocoService));
+        this.collectorService.addSignatureProvider(new _services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_10__["DefaultSignatureProvider"](this.signatureRepository, this.serializationService));
     }
     initializePublisher() {
-        this.publishersAlert.addPublisher(new _services_publisher_sample_publisher_sample_publisher__WEBPACK_IMPORTED_MODULE_14__["SamplePublisher"](this.translocoService, this.notificationService));
+        this.publishersAlert.addPublisher(new _services_publisher_sample_publisher_sample_publisher__WEBPACK_IMPORTED_MODULE_16__["SamplePublisher"](this.translocoService, this.notificationService));
     }
 };
 AppComponent.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"] },
-    { type: _services_collector_collector_service__WEBPACK_IMPORTED_MODULE_6__["CollectorService"] },
-    { type: _services_publisher_publishers_alert_publishers_alert_service__WEBPACK_IMPORTED_MODULE_13__["PublishersAlert"] },
-    { type: _services_serialization_serialization_service__WEBPACK_IMPORTED_MODULE_15__["SerializationService"] },
-    { type: _services_data_information_information_repository_service__WEBPACK_IMPORTED_MODULE_9__["InformationRepository"] },
-    { type: _services_data_signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_10__["SignatureRepository"] },
+    { type: _services_collector_collector_service__WEBPACK_IMPORTED_MODULE_8__["CollectorService"] },
+    { type: _services_publisher_publishers_alert_publishers_alert_service__WEBPACK_IMPORTED_MODULE_15__["PublishersAlert"] },
+    { type: _services_serialization_serialization_service__WEBPACK_IMPORTED_MODULE_17__["SerializationService"] },
+    { type: _services_data_information_information_repository_service__WEBPACK_IMPORTED_MODULE_11__["InformationRepository"] },
+    { type: _services_data_signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_12__["SignatureRepository"] },
     { type: _ngneat_transloco__WEBPACK_IMPORTED_MODULE_4__["TranslocoService"] },
-    { type: _services_notification_notification_service__WEBPACK_IMPORTED_MODULE_12__["NotificationService"] },
-    { type: _services_language_language_service__WEBPACK_IMPORTED_MODULE_11__["LanguageService"] }
+    { type: _services_notification_notification_service__WEBPACK_IMPORTED_MODULE_14__["NotificationService"] },
+    { type: _services_language_language_service__WEBPACK_IMPORTED_MODULE_13__["LanguageService"] },
+    { type: _services_camera_camera_service__WEBPACK_IMPORTED_MODULE_7__["CameraService"] }
 ];
 AppComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["UntilDestroy"])({ checkProperties: true }),
@@ -530,6 +542,59 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
     })
 ], AppModule);
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/camera/camera.service.ts":
+/*!***************************************************!*\
+  !*** ./src/app/services/camera/camera.service.ts ***!
+  \***************************************************/
+/*! exports provided: CameraService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CameraService", function() { return CameraService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+
+
+
+
+
+const { App, Camera } = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"];
+let CameraService = class CameraService {
+    capture$() {
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["defer"])(() => Camera.getPhoto({
+            resultType: _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["CameraResultType"].Base64,
+            source: _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["CameraSource"].Camera,
+            quality: 100,
+            allowEditing: false
+        })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(cameraPhoto => ({
+            format: cameraPhoto.format,
+            // tslint:disable-next-line: no-non-null-assertion
+            base64String: cameraPhoto.base64String
+        })));
+    }
+    restoreKilledAppResult$() {
+        const appRestored$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["fromEventPattern"])(handler => App.addListener('appRestoredResult', handler));
+        return appRestored$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(result => result.pluginId === 'Camera' && result.methodName === 'getPhoto' && result.success), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(result => result.data), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(cameraPhoto => ({
+            format: cameraPhoto.format,
+            // tslint:disable-next-line: no-non-null-assertion
+            base64String: cameraPhoto.base64String
+        })));
+    }
+};
+CameraService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], CameraService);
 
 
 
@@ -932,7 +997,6 @@ let CaptionRepository = class CaptionRepository {
     constructor() {
         this.captionStorage = new src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_5__["Storage"]('caption');
     }
-    refresh$() { return this.captionStorage.refresh$(); }
     getByProof$(proof) {
         return this.captionStorage.getAll$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(captions => captions.find(caption => caption.proofHash === proof.hash)));
     }
@@ -983,7 +1047,6 @@ let InformationRepository = class InformationRepository {
     constructor() {
         this.informationStorage = new src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_3__["Storage"]('information');
     }
-    refresh$() { return this.informationStorage.refresh$(); }
     getByProof$(proof) {
         return this.informationStorage.getAll$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(informationList => informationList.filter(info => info.proofHash === proof.hash)));
     }
@@ -1021,12 +1084,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
 /* harmony import */ var src_app_utils_crypto_crypto__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/utils/crypto/crypto */ "./src/app/utils/crypto/crypto.ts");
-/* harmony import */ var src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/utils/mime-type */ "./src/app/utils/mime-type.ts");
-/* harmony import */ var src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/utils/rx-operators */ "./src/app/utils/rx-operators.ts");
-/* harmony import */ var src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/utils/storage/storage */ "./src/app/utils/storage/storage.ts");
-/* harmony import */ var _caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../caption/caption-repository.service */ "./src/app/services/data/caption/caption-repository.service.ts");
-/* harmony import */ var _information_information_repository_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../information/information-repository.service */ "./src/app/services/data/information/information-repository.service.ts");
-/* harmony import */ var _signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../signature/signature-repository.service */ "./src/app/services/data/signature/signature-repository.service.ts");
+/* harmony import */ var src_app_utils_encoding_encoding__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/utils/encoding/encoding */ "./src/app/utils/encoding/encoding.ts");
+/* harmony import */ var src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/utils/mime-type */ "./src/app/utils/mime-type.ts");
+/* harmony import */ var src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/utils/rx-operators */ "./src/app/utils/rx-operators.ts");
+/* harmony import */ var src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/utils/storage/storage */ "./src/app/utils/storage/storage.ts");
+/* harmony import */ var _caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../caption/caption-repository.service */ "./src/app/services/data/caption/caption-repository.service.ts");
+/* harmony import */ var _information_information_repository_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../information/information-repository.service */ "./src/app/services/data/information/information-repository.service.ts");
+/* harmony import */ var _signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../signature/signature-repository.service */ "./src/app/services/data/signature/signature-repository.service.ts");
+
 
 
 
@@ -1040,27 +1105,31 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const { Filesystem } = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"];
+// @ts-ignore
+const ImageBlobReduce = __webpack_require__(/*! image-blob-reduce */ "./node_modules/image-blob-reduce/index.js")();
 let ProofRepository = class ProofRepository {
     constructor(captionRepository, informationRepository, signatureRepository) {
         this.captionRepository = captionRepository;
         this.informationRepository = informationRepository;
         this.signatureRepository = signatureRepository;
-        this.proofStorage = new src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_8__["Storage"]('proof');
+        this.proofStorage = new src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_9__["Storage"]('proof');
         this.rawFileDir = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["FilesystemDirectory"].Data;
         this.rawFileFolderName = 'raw';
+        this.thumbnailFileDir = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["FilesystemDirectory"].Data;
+        this.thumbnailFileFolderName = 'thumb';
+        this.thumbnailSize = 200;
     }
-    refresh$() { return this.proofStorage.refresh$(); }
     getAll$() { return this.proofStorage.getAll$(); }
     getByHash$(hash) {
-        return this.getAll$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(proofList => proofList.find(proof => proof.hash === hash)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(proof => !!proof));
+        return this.getAll$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(proofList => proofList.find(proof => proof.hash === hash)));
     }
     add$(...proofs) { return this.proofStorage.add$(...proofs); }
     remove$(...proofs) {
-        return this.proofStorage.remove$(...proofs).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["forkJoinWithDefault"])(proofs.map(proof => this.deleteRawFile$(proof)))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["forkJoinWithDefault"])(proofs.map(proof => this.captionRepository.removeByProof$(proof)))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["forkJoinWithDefault"])(proofs.map(proof => this.informationRepository.removeByProof$(proof)))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["forkJoinWithDefault"])(proofs.map(proof => this.signatureRepository.removeByProof$(proof)))));
+        return this.proofStorage.remove$(...proofs).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_8__["forkJoinWithDefault"])(proofs.map(proof => this.deleteRawFile$(proof)))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_8__["forkJoinWithDefault"])(proofs.map(proof => this.captionRepository.removeByProof$(proof)))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_8__["forkJoinWithDefault"])(proofs.map(proof => this.informationRepository.removeByProof$(proof)))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_8__["forkJoinWithDefault"])(proofs.map(proof => this.signatureRepository.removeByProof$(proof)))));
     }
     getRawFile$(proof) {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["defer"])(() => Filesystem.readFile({
-            path: `${this.rawFileFolderName}/${proof.hash}.${Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_6__["getExtension"])(proof.mimeType)}`,
+            path: `${this.rawFileFolderName}/${proof.hash}.${Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_7__["getExtension"])(proof.mimeType)}`,
             directory: this.rawFileDir
         })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["pluck"])('data'));
     }
@@ -1070,8 +1139,11 @@ let ProofRepository = class ProofRepository {
      * @param mimeType The file added in the internal storage. The name of the returned file will be its hash with original extension.
      */
     saveRawFile$(rawBase64, mimeType) {
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["zip"])(this._saveRawFile$(rawBase64, mimeType), this.generateAndSaveThumbnailFile$(rawBase64, mimeType)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(([rawUri, _]) => rawUri));
+    }
+    _saveRawFile$(rawBase64, mimeType) {
         return Object(src_app_utils_crypto_crypto__WEBPACK_IMPORTED_MODULE_5__["sha256WithBase64$"])(rawBase64).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(hash => Filesystem.writeFile({
-            path: `${this.rawFileFolderName}/${hash}.${Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_6__["getExtension"])(mimeType)}`,
+            path: `${this.rawFileFolderName}/${hash}.${Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_7__["getExtension"])(mimeType)}`,
             data: rawBase64,
             directory: this.rawFileDir,
             recursive: true
@@ -1079,15 +1151,29 @@ let ProofRepository = class ProofRepository {
     }
     deleteRawFile$(proof) {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["defer"])(() => Filesystem.deleteFile({
-            path: `${this.rawFileFolderName}/${proof.hash}.${Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_6__["getExtension"])(proof.mimeType)}`,
+            path: `${this.rawFileFolderName}/${proof.hash}.${Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_7__["getExtension"])(proof.mimeType)}`,
             directory: this.rawFileDir
         }));
     }
+    getThumbnail$(proof) {
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["defer"])(() => Filesystem.readFile({
+            path: `${this.thumbnailFileFolderName}/${proof.hash}.${Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_7__["getExtension"])(proof.mimeType)}`,
+            directory: this.thumbnailFileDir
+        })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["pluck"])('data'));
+    }
+    generateAndSaveThumbnailFile$(rawBase64, mimeType) {
+        return Object(src_app_utils_encoding_encoding__WEBPACK_IMPORTED_MODULE_6__["base64ToBlob$"])(`data:${mimeType};base64,${rawBase64}`).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(rawImageBlob => ImageBlobReduce.toBlob(rawImageBlob, { max: this.thumbnailSize })), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(thumbnailBlob => Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["zip"])(Object(src_app_utils_encoding_encoding__WEBPACK_IMPORTED_MODULE_6__["blobToBase64$"])(thumbnailBlob), Object(src_app_utils_crypto_crypto__WEBPACK_IMPORTED_MODULE_5__["sha256WithBase64$"])(rawBase64))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(([thumbnailBase64, hash]) => Filesystem.writeFile({
+            path: `${this.thumbnailFileFolderName}/${hash}.${Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_7__["getExtension"])(mimeType)}`,
+            data: thumbnailBase64,
+            directory: this.thumbnailFileDir,
+            recursive: true
+        })), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["pluck"])('uri'));
+    }
 };
 ProofRepository.ctorParameters = () => [
-    { type: _caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_9__["CaptionRepository"] },
-    { type: _information_information_repository_service__WEBPACK_IMPORTED_MODULE_10__["InformationRepository"] },
-    { type: _signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_11__["SignatureRepository"] }
+    { type: _caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_10__["CaptionRepository"] },
+    { type: _information_information_repository_service__WEBPACK_IMPORTED_MODULE_11__["InformationRepository"] },
+    { type: _signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_12__["SignatureRepository"] }
 ];
 ProofRepository = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -1121,7 +1207,6 @@ let SignatureRepository = class SignatureRepository {
     constructor() {
         this.signatureStorage = new src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_3__["Storage"]('signature');
     }
-    refresh$() { return this.signatureStorage.refresh$(); }
     getByProof$(proof) {
         return this.signatureStorage.getAll$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(signatures => signatures.filter(info => info.proofHash === proof.hash)));
     }
@@ -1568,6 +1653,10 @@ const subtle = crypto.subtle;
 const SHA_256 = 'SHA-256';
 const ECDSA = 'ECDSA';
 const SECP256R1 = 'P-256';
+/**
+ * Use SHA-256 to hash the object.
+ * @param object The target object. Note that the order of the object properties is sensitive.
+ */
 function sha256$(object) {
     return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["of"])(JSON.stringify(object)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(json => sha256WithString$(json)));
 }
@@ -1617,7 +1706,7 @@ function importEcdsaPrivateKey$(keyHex) {
 /*!********************************************!*\
   !*** ./src/app/utils/encoding/encoding.ts ***!
   \********************************************/
-/*! exports provided: base64ToArrayBuffer, arrayBufferToBase64, arrayBufferToHex, hexToArrayBuffer, stringToArrayBuffer, arrayBufferToString */
+/*! exports provided: base64ToArrayBuffer, arrayBufferToBase64, arrayBufferToHex, hexToArrayBuffer, stringToArrayBuffer, arrayBufferToString, base64ToBlob$, blobToBase64$ */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1628,6 +1717,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hexToArrayBuffer", function() { return hexToArrayBuffer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stringToArrayBuffer", function() { return stringToArrayBuffer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "arrayBufferToString", function() { return arrayBufferToString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "base64ToBlob$", function() { return base64ToBlob$; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "blobToBase64$", function() { return blobToBase64$; });
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+
+
 const textEncoder = new TextEncoder();
 const textDecoder = new TextDecoder();
 function base64ToArrayBuffer(base64) {
@@ -1655,6 +1750,19 @@ function stringToArrayBuffer(str) {
 }
 function arrayBufferToString(arrayBuffer) {
     return textDecoder.decode(arrayBuffer);
+}
+function base64ToBlob$(base64) {
+    return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["defer"])(() => fetch(base64)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(res => res.blob()));
+}
+function blobToBase64$(blob) {
+    const fileReader = new FileReader();
+    const subject$ = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
+    fileReader.onloadend = () => {
+        subject$.next(fileReader.result);
+        subject$.complete();
+    };
+    fileReader.readAsDataURL(blob);
+    return subject$.asObservable();
 }
 
 
@@ -1854,9 +1962,20 @@ class Storage {
         this.name = name;
         this.directory = directory;
         this.tuples$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"]([]);
+        this.hasInitialized = false;
+    }
+    checkInitialization$() {
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => {
+            if (this.hasInitialized) {
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(void 0);
+            }
+            else {
+                return this.refresh$();
+            }
+        });
     }
     refresh$() {
-        return this.makeNameDir$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMapTo"])(this.readNameDir$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["pluck"])('files'), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(fileNames => Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["from"])(fileNames)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])(fileName => this.readFile$(fileName)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(result => JSON.parse(result.data)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["toArray"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(tuples => this.tuples$.next(tuples)));
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(void 0).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(_ => this.hasInitialized = true), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMapTo"])(this.makeNameDir$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMapTo"])(this.readNameDir$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["pluck"])('files'), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])(fileNames => Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["from"])(fileNames)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])(fileName => this.readFile$(fileName)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(result => JSON.parse(result.data)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["toArray"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(tuples => this.tuples$.next(tuples)));
     }
     makeNameDir$() {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Filesystem.mkdir({
@@ -1881,12 +2000,17 @@ class Storage {
             encoding: _capacitor_core__WEBPACK_IMPORTED_MODULE_0__["FilesystemEncoding"].UTF8
         }));
     }
-    getAll$() { return this.tuples$.asObservable(); }
+    getAll$() {
+        return this.checkInitialization$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMapTo"])(this.tuples$.asObservable()));
+    }
     add$(...tuples) {
-        return Object(_rx_operators__WEBPACK_IMPORTED_MODULE_4__["forkJoinWithDefault"])(tuples.map(tuple => this.saveFile$(tuple))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMapTo"])(this.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(tuples));
+        return Object(_rx_operators__WEBPACK_IMPORTED_MODULE_4__["forkJoinWithDefault"])(tuples.map(tuple => this.saveFile$(tuple))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMapTo"])(this.checkInitialization$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(_ => this.tuples$.next([...this.tuples$.value, ...tuples])), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(tuples));
     }
     saveFile$(tuple) {
-        return Object(_crypto_crypto__WEBPACK_IMPORTED_MODULE_3__["sha256$"])(tuple).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(hash => Filesystem.writeFile({
+        // XXX: Use sha256 is not a good idea as `sha256$()` uses `JSON.stringify()` under the hood.
+        //      Thus, the order of the tuple (properties) will result in different hash if tuple is
+        //      an array (object).
+        return Object(_crypto_crypto__WEBPACK_IMPORTED_MODULE_3__["sha256$"])(tuple).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])(hash => Filesystem.writeFile({
             path: `${this.name}/${hash}.json`,
             data: JSON.stringify(tuple),
             directory: this.directory,
@@ -1895,10 +2019,13 @@ class Storage {
         })));
     }
     remove$(...tuples) {
-        return Object(_rx_operators__WEBPACK_IMPORTED_MODULE_4__["forkJoinWithDefault"])(tuples.map(tuple => this.deleteFile$(tuple))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMapTo"])(this.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(tuples));
+        return Object(_rx_operators__WEBPACK_IMPORTED_MODULE_4__["forkJoinWithDefault"])(tuples.map(tuple => this.deleteFile$(tuple))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMapTo"])(this.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(tuples));
     }
     deleteFile$(tuple) {
-        return Object(_crypto_crypto__WEBPACK_IMPORTED_MODULE_3__["sha256$"])(tuple).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(hash => Filesystem.deleteFile({
+        // XXX: Use sha256 is not a good idea as `sha256$()` uses `JSON.stringify()` under the hood.
+        //      Thus, the order of the tuple (properties) will result in different hash if tuple is
+        //      an array (object).
+        return Object(_crypto_crypto__WEBPACK_IMPORTED_MODULE_3__["sha256$"])(tuple).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])(hash => Filesystem.deleteFile({
             path: `${this.name}/${hash}.json`,
             directory: this.directory
         })));

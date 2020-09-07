@@ -1,8 +1,8 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["common"],{
 
-/***/ "./node_modules/@ionic/core/dist/esm/button-active-0d5784f9.js":
+/***/ "./node_modules/@ionic/core/dist/esm/button-active-5da929d4.js":
 /*!*********************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/button-active-0d5784f9.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm/button-active-5da929d4.js ***!
   \*********************************************************************/
 /*! exports provided: c */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -10,7 +10,7 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return createButtonActiveGesture; });
-/* harmony import */ var _index_44bf8136_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-44bf8136.js */ "./node_modules/@ionic/core/dist/esm/index-44bf8136.js");
+/* harmony import */ var _index_92848855_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-92848855.js */ "./node_modules/@ionic/core/dist/esm/index-92848855.js");
 /* harmony import */ var _index_eea61379_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index-eea61379.js */ "./node_modules/@ionic/core/dist/esm/index-eea61379.js");
 /* harmony import */ var _haptic_7b8ba70a_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./haptic-7b8ba70a.js */ "./node_modules/@ionic/core/dist/esm/haptic-7b8ba70a.js");
 
@@ -40,7 +40,7 @@ const createButtonActiveGesture = (el, isButton) => {
             initialTouchedButton = currentTouchedButton;
         }
         const buttonToModify = currentTouchedButton;
-        Object(_index_44bf8136_js__WEBPACK_IMPORTED_MODULE_0__["c"])(() => buttonToModify.classList.add('ion-activated'));
+        Object(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["c"])(() => buttonToModify.classList.add('ion-activated'));
         hapticFeedbackFn();
     };
     const clearActiveButton = (dispatchClick = false) => {
@@ -48,7 +48,7 @@ const createButtonActiveGesture = (el, isButton) => {
             return;
         }
         const buttonToModify = currentTouchedButton;
-        Object(_index_44bf8136_js__WEBPACK_IMPORTED_MODULE_0__["c"])(() => buttonToModify.classList.remove('ion-activated'));
+        Object(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["c"])(() => buttonToModify.classList.remove('ion-activated'));
         /**
          * Clicking on one button, but releasing on another button
          * does not dispatch a click event in browsers, so we
@@ -378,9 +378,9 @@ const SPINNERS = spinners;
 
 /***/ }),
 
-/***/ "./node_modules/@ionic/core/dist/esm/theme-3f0b0c04.js":
+/***/ "./node_modules/@ionic/core/dist/esm/theme-5641d27f.js":
 /*!*************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/theme-3f0b0c04.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm/theme-5641d27f.js ***!
   \*************************************************************/
 /*! exports provided: c, g, h, o */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -397,11 +397,8 @@ const hostContext = (selector, el) => {
 /**
  * Create the mode and color classes for the component based on the classes passed in
  */
-const createColorClasses = (color) => {
-    return (typeof color === 'string' && color.length > 0) ? {
-        'ion-color': true,
-        [`ion-color-${color}`]: true
-    } : undefined;
+const createColorClasses = (color, cssClassMap) => {
+    return (typeof color === 'string' && color.length > 0) ? Object.assign({ 'ion-color': true, [`ion-color-${color}`]: true }, cssClassMap) : cssClassMap;
 };
 const getClassList = (classes) => {
     if (classes !== undefined) {
