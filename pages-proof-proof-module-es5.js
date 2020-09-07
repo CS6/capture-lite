@@ -1,4 +1,12 @@
 (function () {
+  function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+  function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+  function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+  function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
   function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
   function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -34,7 +42,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header *transloco=\"let t\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button routerLink=\"..\" routerDirection=\"back\">\n        <ion-icon slot=\"icon-only\" name=\"arrow-back\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>{{ t('proofDetails') }}</ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-button (click)=\"publish()\">\n        <ion-icon slot=\"icon-only\" name=\"cloud-upload\"></ion-icon>\n      </ion-button>\n      <ion-button (click)=\"remove()\">\n        <ion-icon slot=\"icon-only\" name=\"trash\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content *transloco=\"let t\">\n  <ion-img [src]=\"'data:image/*;base64,' + (rawBase64$ | async)\"></ion-img>\n  <ion-list lines=\"none\">\n    <ion-item>\n      <ion-icon slot=\"start\" name=\"reader\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ t('caption') }}</h2>\n        <p>{{ (caption$ | async) === '' ? '(' + ( t('nothingHere') ) + ')' : (caption$ | async) }}</p>\n      </ion-label>\n      <ion-button (click)=\"editCaption()\" slot=\"end\" fill=\"clear\" shape=\"round\">\n        <ion-icon slot=\"icon-only\" name=\"create\"></ion-icon>\n      </ion-button>\n    </ion-item>\n    <ion-item>\n      <ion-icon slot=\"start\" name=\"information\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ t('hash') }}</h2>\n        <p>{{ hash$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-icon slot=\"start\" name=\"image\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ t('mimeType') }}</h2>\n        <p>{{ mimeType$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-icon slot=\"start\" name=\"time\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ t('timestamp') }}</h2>\n        <p>{{ timestamp$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-list-header>\n      <ion-label>\n        <h2>{{ t('information') }}</h2>\n      </ion-label>\n    </ion-list-header>\n    <ion-item>\n      <ion-slides pager>\n        <ion-slide *ngFor=\"let providerWithInformationList of (providersWithInformationList$ | async)\">\n          <ion-card class=\"slide-card\">\n            <ion-card-header>\n              <ion-card-title>{{ providerWithInformationList.provider }}</ion-card-title>\n            </ion-card-header>\n            <ion-card-content>\n              <ion-list>\n                <ion-item *ngFor=\"let information of providerWithInformationList.informationList\">\n                  <ion-label class=\"ion-text-wrap\">\n                    <h3>{{ information.name }}</h3>\n                    <p>{{ information.value }}</p>\n                  </ion-label>\n                </ion-item>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n        </ion-slide>\n      </ion-slides>\n    </ion-item>\n    <ion-list-header>\n      <ion-label>\n        <h2>{{ t('signatures') }}</h2>\n      </ion-label>\n    </ion-list-header>\n    <ion-item>\n      <ion-slides pager>\n        <ion-slide *ngFor=\"let signature of (signatures$ | async)\">\n          <ion-card class=\"slide-card\">\n            <ion-card-header>\n              <ion-card-title>{{ signature.provider }}</ion-card-title>\n            </ion-card-header>\n            <ion-card-content>\n              <ion-list>\n                <ion-item>\n                  <ion-label class=\"ion-text-wrap\">\n                    <h3>{{ t('signature') }}</h3>\n                    <p>{{ signature.signature }}</p>\n                  </ion-label>\n                </ion-item>\n                <ion-item>\n                  <ion-label class=\"ion-text-wrap\">\n                    <h3>{{ t('publicKey') }}</h3>\n                    <p class=\"multiline\">{{ signature.publicKey }}</p>\n                  </ion-label>\n                </ion-item>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n        </ion-slide>\n      </ion-slides>\n    </ion-item>\n  </ion-list>\n</ion-content>";
+      __webpack_exports__["default"] = "<ion-header *transloco=\"let t\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button [routerLink]=\"['/storage']\" routerDirection=\"back\">\n        <ion-icon slot=\"icon-only\" name=\"arrow-back\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>{{ t('proofDetails') }}</ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-button (click)=\"publish()\">\n        <ion-icon slot=\"icon-only\" name=\"cloud-upload\"></ion-icon>\n      </ion-button>\n      <ion-button (click)=\"remove()\">\n        <ion-icon slot=\"icon-only\" name=\"trash\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content *transloco=\"let t\">\n  <ion-img [src]=\"'data:image/*;base64,' + (rawBase64$ | async)\"></ion-img>\n  <ion-list lines=\"none\">\n    <ion-item>\n      <ion-icon slot=\"start\" name=\"reader\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ t('caption') }}</h2>\n        <p>{{ (caption$ | async) === '' ? '(' + ( t('nothingHere') ) + ')' : (caption$ | async) }}</p>\n      </ion-label>\n      <ion-button (click)=\"editCaption()\" slot=\"end\" fill=\"clear\" shape=\"round\">\n        <ion-icon slot=\"icon-only\" name=\"create\"></ion-icon>\n      </ion-button>\n    </ion-item>\n    <ion-item>\n      <ion-icon slot=\"start\" name=\"information\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ t('hash') }}</h2>\n        <p>{{ hash$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-icon slot=\"start\" name=\"image\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ t('mimeType') }}</h2>\n        <p>{{ mimeType$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-icon slot=\"start\" name=\"time\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ t('timestamp') }}</h2>\n        <p>{{ timestamp$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-list-header>\n      <ion-label>\n        <h2>{{ t('information') }}</h2>\n      </ion-label>\n    </ion-list-header>\n    <ion-item>\n      <ion-slides pager>\n        <ion-slide>\n          <ion-card class=\"slide-card\"\n            *ngFor=\"let providerWithInformationList of (providersWithImportantInformation$ | async)\">\n            <ion-card-header>\n              <ion-card-title>{{ providerWithInformationList.provider }}</ion-card-title>\n            </ion-card-header>\n            <ion-card-content>\n              <ion-list *ngFor=\"let information of providerWithInformationList.informationList\">\n                <ion-item>\n                  <ion-label class=\"ion-text-wrap\">\n                    <h3>{{ information.name }}</h3>\n                    <p>{{ information.value }}</p>\n                  </ion-label>\n                </ion-item>\n              </ion-list>\n              <section>\n                <ion-button expand=\"block\" [routerLink]=\"['/information', {hash: (hash$ | async)}]\">View All\n                </ion-button>\n              </section>\n            </ion-card-content>\n          </ion-card>\n        </ion-slide>\n      </ion-slides>\n    </ion-item>\n    <ion-list-header>\n      <ion-label>\n        <h2>{{ t('signatures') }}</h2>\n      </ion-label>\n    </ion-list-header>\n    <ion-item>\n      <ion-slides pager>\n        <ion-slide *ngFor=\"let signature of (signatures$ | async)\">\n          <ion-card class=\"slide-card\">\n            <ion-card-header>\n              <ion-card-title>{{ signature.provider }}</ion-card-title>\n            </ion-card-header>\n            <ion-card-content>\n              <ion-list>\n                <ion-item>\n                  <ion-label class=\"ion-text-wrap\">\n                    <h3>{{ t('signature') }}</h3>\n                    <p>{{ signature.signature }}</p>\n                  </ion-label>\n                </ion-item>\n                <ion-item>\n                  <ion-label class=\"ion-text-wrap\">\n                    <h3>{{ t('publicKey') }}</h3>\n                    <p class=\"multiline\">{{ signature.publicKey }}</p>\n                  </ion-label>\n                </ion-item>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n        </ion-slide>\n      </ion-slides>\n    </ion-item>\n  </ion-list>\n</ion-content>";
       /***/
     },
 
@@ -255,54 +263,66 @@
       /* harmony import */
 
 
-      var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      var rxjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! rxjs */
+      "./node_modules/rxjs/_esm2015/index.js");
+      /* harmony import */
+
+
+      var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! rxjs/operators */
       "./node_modules/rxjs/_esm2015/operators/index.js");
       /* harmony import */
 
 
-      var src_app_services_confirm_alert_confirm_alert_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      var src_app_services_blocking_action_blocking_action_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! src/app/services/blocking-action/blocking-action.service */
+      "./src/app/services/blocking-action/blocking-action.service.ts");
+      /* harmony import */
+
+
+      var src_app_services_confirm_alert_confirm_alert_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
       /*! src/app/services/confirm-alert/confirm-alert.service */
       "./src/app/services/confirm-alert/confirm-alert.service.ts");
       /* harmony import */
 
 
-      var src_app_services_data_caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      var src_app_services_data_caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
       /*! src/app/services/data/caption/caption-repository.service */
       "./src/app/services/data/caption/caption-repository.service.ts");
       /* harmony import */
 
 
-      var src_app_services_data_information_information_repository_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      var src_app_services_data_information_information_repository_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
       /*! src/app/services/data/information/information-repository.service */
       "./src/app/services/data/information/information-repository.service.ts");
       /* harmony import */
 
 
-      var src_app_services_data_proof_proof_repository_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+      var src_app_services_data_proof_proof_repository_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
       /*! src/app/services/data/proof/proof-repository.service */
       "./src/app/services/data/proof/proof-repository.service.ts");
       /* harmony import */
 
 
-      var src_app_services_data_signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+      var src_app_services_data_signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
       /*! src/app/services/data/signature/signature-repository.service */
       "./src/app/services/data/signature/signature-repository.service.ts");
       /* harmony import */
 
 
-      var src_app_services_publisher_publishers_alert_publishers_alert_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+      var src_app_services_publisher_publishers_alert_publishers_alert_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
       /*! src/app/services/publisher/publishers-alert/publishers-alert.service */
       "./src/app/services/publisher/publishers-alert/publishers-alert.service.ts");
       /* harmony import */
 
 
-      var src_app_utils_type__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
-      /*! src/app/utils/type */
-      "./src/app/utils/type.ts");
+      var src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+      /*! src/app/utils/rx-operators */
+      "./src/app/utils/rx-operators.ts");
 
       var ProofPage = /*#__PURE__*/function () {
-        function ProofPage(router, route, translocoService, alertController, confirmAlert, publishersAlert, proofRepository, captionRepository, informationRepository, signatureRepository) {
+        function ProofPage(router, route, translocoService, alertController, confirmAlert, publishersAlert, proofRepository, captionRepository, informationRepository, signatureRepository, blockingActionService) {
           var _this = this;
 
           _classCallCheck(this, ProofPage);
@@ -317,35 +337,32 @@
           this.captionRepository = captionRepository;
           this.informationRepository = informationRepository;
           this.signatureRepository = signatureRepository;
-          this.proof$ = this.route.paramMap.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (params) {
+          this.blockingActionService = blockingActionService;
+          this.proof$ = this.route.paramMap.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (params) {
             return params.get('hash');
-          }), Object(src_app_utils_type__WEBPACK_IMPORTED_MODULE_13__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function (hash) {
+          }), Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_15__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["switchMap"])(function (hash) {
             return _this.proofRepository.getByHash$(hash);
-          }), Object(src_app_utils_type__WEBPACK_IMPORTED_MODULE_13__["isNonNullable"])());
-          this.rawBase64$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function (proof) {
+          }), Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_15__["isNonNullable"])());
+          this.rawBase64$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["switchMap"])(function (proof) {
             return _this.proofRepository.getRawFile$(proof);
           }));
-          this.hash$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (proof) {
-            return proof.hash;
-          }));
-          this.mimeType$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (proof) {
-            return proof.mimeType.type;
-          }));
-          this.timestamp$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (proof) {
+          this.hash$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["pluck"])('hash'));
+          this.mimeType$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["pluck"])('mimeType'));
+          this.timestamp$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (proof) {
             return new Date(proof.timestamp);
           }));
-          this.caption$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function (proof) {
+          this.caption$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["switchMap"])(function (proof) {
             return _this.captionRepository.getByProof$(proof);
-          }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (captions) {
-            if (captions.length === 0 || captions[0].text.length === 0) {
-              return '';
+          }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (caption) {
+            if (caption && caption.text.length > 0) {
+              return caption.text;
             }
 
-            return captions[0].text;
+            return '';
           }));
-          this.providersWithInformationList$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function (proof) {
+          this.providersWithImportantInformation$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["switchMap"])(function (proof) {
             return _this.informationRepository.getByProof$(proof);
-          }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (informationList) {
+          }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (informationList) {
             var providers = new Set(informationList.map(function (information) {
               return information.provider;
             }));
@@ -353,12 +370,14 @@
               return {
                 provider: provider,
                 informationList: informationList.filter(function (information) {
-                  return information.provider === provider;
-                })
+                  return information.provider === provider && information.importance === "high";
+                }
+                /* High */
+                )
               };
             });
           }));
-          this.signatures$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function (proof) {
+          this.signatures$ = this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["switchMap"])(function (proof) {
             return _this.signatureRepository.getByProof$(proof);
           }));
         }
@@ -366,14 +385,14 @@
         _createClass(ProofPage, [{
           key: "ionViewWillEnter",
           value: function ionViewWillEnter() {
-            this.proofRepository.refresh$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.captionRepository.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.informationRepository.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(this.signatureRepository.refresh$()), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["untilDestroyed"])(this)).subscribe();
+            this.proofRepository.refresh$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["switchMapTo"])(this.captionRepository.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["switchMapTo"])(this.informationRepository.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["switchMapTo"])(this.signatureRepository.refresh$()), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["untilDestroyed"])(this)).subscribe();
           }
         }, {
           key: "publish",
           value: function publish() {
             var _this2 = this;
 
-            this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function (proof) {
+            this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["switchMap"])(function (proof) {
               return _this2.publishersAlert.present$(proof);
             }), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["untilDestroyed"])(this)).subscribe();
           }
@@ -383,9 +402,13 @@
             var _this3 = this;
 
             var onConfirm = function onConfirm() {
-              return _this3.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function (proof) {
+              return _this3.blockingActionService.run$(_this3.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["switchMap"])(function (proof) {
                 return _this3.proofRepository.remove$(proof);
-              }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMapTo"])(_this3.router.navigate(['..'])), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["untilDestroyed"])(_this3)).subscribe();
+              }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["defer"])(function () {
+                return _this3.router.navigate(['..']);
+              }))), {
+                message: _this3.translocoService.translate('processing')
+              }).pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["untilDestroyed"])(_this3)).subscribe();
             };
 
             return this.confirmAlert.present$(onConfirm).pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["untilDestroyed"])(this)).subscribe();
@@ -396,7 +419,7 @@
             var _this4 = this;
 
             var captionInputName = 'captionInputName';
-            this.caption$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function (caption) {
+            this.caption$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["switchMap"])(function (caption) {
               return _this4.alertController.create({
                 header: _this4.translocoService.translate('editCaption'),
                 inputs: [{
@@ -415,7 +438,7 @@
                   }
                 }]
               });
-            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function (alertElement) {
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["switchMap"])(function (alertElement) {
               return alertElement.present();
             }), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_5__["untilDestroyed"])(this)).subscribe();
           }
@@ -424,7 +447,7 @@
           value: function saveCaption(text) {
             var _this5 = this;
 
-            this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(function (proof) {
+            this.proof$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["switchMap"])(function (proof) {
               return _this5.captionRepository.addOrEdit$({
                 proofHash: proof.hash,
                 text: text
@@ -446,17 +469,19 @@
         }, {
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]
         }, {
-          type: src_app_services_confirm_alert_confirm_alert_service__WEBPACK_IMPORTED_MODULE_7__["ConfirmAlert"]
+          type: src_app_services_confirm_alert_confirm_alert_service__WEBPACK_IMPORTED_MODULE_9__["ConfirmAlert"]
         }, {
-          type: src_app_services_publisher_publishers_alert_publishers_alert_service__WEBPACK_IMPORTED_MODULE_12__["PublishersAlert"]
+          type: src_app_services_publisher_publishers_alert_publishers_alert_service__WEBPACK_IMPORTED_MODULE_14__["PublishersAlert"]
         }, {
-          type: src_app_services_data_proof_proof_repository_service__WEBPACK_IMPORTED_MODULE_10__["ProofRepository"]
+          type: src_app_services_data_proof_proof_repository_service__WEBPACK_IMPORTED_MODULE_12__["ProofRepository"]
         }, {
-          type: src_app_services_data_caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_8__["CaptionRepository"]
+          type: src_app_services_data_caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_10__["CaptionRepository"]
         }, {
-          type: src_app_services_data_information_information_repository_service__WEBPACK_IMPORTED_MODULE_9__["InformationRepository"]
+          type: src_app_services_data_information_information_repository_service__WEBPACK_IMPORTED_MODULE_11__["InformationRepository"]
         }, {
-          type: src_app_services_data_signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_11__["SignatureRepository"]
+          type: src_app_services_data_signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_13__["SignatureRepository"]
+        }, {
+          type: src_app_services_blocking_action_blocking_action_service__WEBPACK_IMPORTED_MODULE_8__["BlockingActionService"]
         }];
       };
 
@@ -471,6 +496,111 @@
         /*! ./proof.page.scss */
         "./src/app/pages/proof/proof.page.scss"))["default"]]
       })], ProofPage);
+      /***/
+    },
+
+    /***/
+    "./src/app/services/blocking-action/blocking-action.service.ts":
+    /*!*********************************************************************!*\
+      !*** ./src/app/services/blocking-action/blocking-action.service.ts ***!
+      \*********************************************************************/
+
+    /*! exports provided: BlockingActionService */
+
+    /***/
+    function srcAppServicesBlockingActionBlockingActionServiceTs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "BlockingActionService", function () {
+        return BlockingActionService;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "./node_modules/tslib/tslib.es6.js");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @angular/core */
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+      /* harmony import */
+
+
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! @ionic/angular */
+      "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+      /* harmony import */
+
+
+      var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! rxjs */
+      "./node_modules/rxjs/_esm2015/index.js");
+      /* harmony import */
+
+
+      var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! rxjs/operators */
+      "./node_modules/rxjs/_esm2015/operators/index.js");
+
+      var BlockingActionService = /*#__PURE__*/function () {
+        function BlockingActionService(loadingController) {
+          _classCallCheck(this, BlockingActionService);
+
+          this.loadingController = loadingController;
+        }
+
+        _createClass(BlockingActionService, [{
+          key: "run$",
+          value: function run$(action$, opts) {
+            var _this6 = this;
+
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["defer"])(function () {
+              return _this6.loadingController.create(opts);
+            }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (loading) {
+              return _this6._run$(action$, loading);
+            }));
+          }
+        }, {
+          key: "_run$",
+          value: function _run$(action$, loading) {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["defer"])(function () {
+              return loading.present();
+            }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(action$), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
+              loading.dismiss();
+              throw err;
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (result) {
+              return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["zip"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["defer"])(function () {
+                return loading.dismiss();
+              }), Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(result));
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (_ref) {
+              var _ref2 = _slicedToArray(_ref, 2),
+                  _ = _ref2[0],
+                  result = _ref2[1];
+
+              return result;
+            }));
+          }
+        }]);
+
+        return BlockingActionService;
+      }();
+
+      BlockingActionService.ctorParameters = function () {
+        return [{
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"]
+        }];
+      };
+
+      BlockingActionService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+      })], BlockingActionService);
       /***/
     },
 
@@ -541,17 +671,17 @@
         _createClass(ConfirmAlert, [{
           key: "present$",
           value: function present$(onConfirm) {
-            var _this6 = this;
+            var _this7 = this;
 
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["defer"])(function () {
-              return _this6.alertController.create({
-                header: _this6.translocoService.translate('areYouSure'),
-                message: _this6.translocoService.translate('message.areYouSure'),
+              return _this7.alertController.create({
+                header: _this7.translocoService.translate('areYouSure'),
+                message: _this7.translocoService.translate('message.areYouSure'),
                 buttons: [{
-                  text: _this6.translocoService.translate('cancel'),
+                  text: _this7.translocoService.translate('cancel'),
                   role: 'cancel'
                 }, {
-                  text: _this6.translocoService.translate('ok'),
+                  text: _this7.translocoService.translate('ok'),
                   handler: onConfirm
                 }]
               });
@@ -576,43 +706,6 @@
         providedIn: 'root'
       })], ConfirmAlert);
       /***/
-    },
-
-    /***/
-    "./src/app/utils/type.ts":
-    /*!*******************************!*\
-      !*** ./src/app/utils/type.ts ***!
-      \*******************************/
-
-    /*! exports provided: isNonNullable */
-
-    /***/
-    function srcAppUtilsTypeTs(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "isNonNullable", function () {
-        return isNonNullable;
-      });
-      /* harmony import */
-
-
-      var rxjs_operators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! rxjs/operators */
-      "./node_modules/rxjs/_esm2015/operators/index.js");
-
-      function isNonNullable() {
-        return function (source$) {
-          return source$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["filter"])(function (v) {
-            return v !== null && v !== undefined;
-          }));
-        };
-      }
-      /***/
-
     }
   }]);
 })();

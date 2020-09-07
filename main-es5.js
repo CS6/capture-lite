@@ -289,6 +289,17 @@
             return m.ProofPageModule;
           });
         }
+      }, {
+        path: 'information',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | pages-information-information-module */
+          "pages-information-information-module").then(__webpack_require__.bind(null,
+          /*! ./pages/information/information.module */
+          "./src/app/pages/information/information.module.ts")).then(function (m) {
+            return m.InformationPageModule;
+          });
+        }
       }];
 
       var AppRoutingModule = function AppRoutingModule() {
@@ -297,7 +308,8 @@
 
       AppRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
         imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(routes, {
-          preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_2__["PreloadAllModules"]
+          preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_2__["PreloadAllModules"],
+          relativeLinkResolution: 'corrected'
         })],
         exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
       })], AppRoutingModule);
@@ -573,53 +585,41 @@
       /* harmony import */
 
 
-      var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-      /*! @ionic-native/splash-screen/ngx */
-      "./node_modules/@ionic-native/splash-screen/__ivy_ngcc__/ngx/index.js");
-      /* harmony import */
-
-
-      var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
-      /*! @ionic-native/status-bar/ngx */
-      "./node_modules/@ionic-native/status-bar/__ivy_ngcc__/ngx/index.js");
-      /* harmony import */
-
-
-      var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
       /*! @ionic/angular */
       "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
       /* harmony import */
 
 
-      var _app_routing_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      var _app_routing_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! ./app-routing.module */
       "./src/app/app-routing.module.ts");
       /* harmony import */
 
 
-      var _app_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! ./app.component */
       "./src/app/app.component.ts");
       /* harmony import */
 
 
-      var _transloco_root_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
-      /*! ./transloco-root.module */
-      "./src/app/transloco-root.module.ts");
+      var _transloco_transloco_root_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! ./transloco/transloco-root.module */
+      "./src/app/transloco/transloco-root.module.ts");
 
       var AppModule = function AppModule() {
         _classCallCheck(this, AppModule);
       };
 
       AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]],
+        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]],
         entryComponents: [],
-        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClientModule"], _transloco_root_module__WEBPACK_IMPORTED_MODULE_10__["TranslocoRootModule"]],
-        providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], {
+        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_6__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClientModule"], _transloco_transloco_root_module__WEBPACK_IMPORTED_MODULE_8__["TranslocoRootModule"]],
+        providers: [{
           provide: _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouteReuseStrategy"],
-          useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["IonicRouteStrategy"]
+          useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonicRouteStrategy"]
         }],
-        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]]
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
       })], AppModule);
       /***/
     },
@@ -688,13 +688,19 @@
       /* harmony import */
 
 
-      var _data_proof_proof_repository_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      var src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! src/app/utils/rx-operators */
+      "./src/app/utils/rx-operators.ts");
+      /* harmony import */
+
+
+      var _data_proof_proof_repository_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
       /*! ../data/proof/proof-repository.service */
       "./src/app/services/data/proof/proof-repository.service.ts");
       /* harmony import */
 
 
-      var _notification_notification_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      var _notification_notification_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
       /*! ../notification/notification.service */
       "./src/app/services/notification/notification.service.ts");
 
@@ -735,9 +741,7 @@
                 mimeType: mimeType,
                 timestamp: Date.now()
               });
-            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (proofs) {
-              return proofs[0];
-            }));
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["pluck"])(0));
           }
         }, {
           key: "collectAndSign$",
@@ -746,14 +750,18 @@
 
             var notificationId = this.notificationService.createNotificationId();
             this.notificationService.notify(notificationId, this.translocoService.translate('collectingProof'), this.translocoService.translate('collectingInformation'));
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["forkJoin"])(_toConsumableArray(this.informationProviders).map(function (provider) {
+            return Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["forkJoinWithDefault"])(_toConsumableArray(this.informationProviders).map(function (provider) {
               return provider.collectAndStore$(proof);
-            })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["defaultIfEmpty"])([]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (_) {
+            })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (_) {
               return _this3.notificationService.notify(notificationId, _this3.translocoService.translate('collectingProof'), _this3.translocoService.translate('signingProof'));
-            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["forkJoin"])(_toConsumableArray(this.signatureProviders).map(function (provider) {
-              return provider.collectAndStore$(proof);
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["forkJoinWithDefault"])(_toConsumableArray(this.signatureProviders).map(function (provider) {
+              return provider.signAndStore$(proof);
             }))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (_) {
               return _this3.notificationService.cancel(notificationId);
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
+              _this3.notificationService.notifyError(notificationId, error);
+
+              return rxjs__WEBPACK_IMPORTED_MODULE_3__["EMPTY"];
             }));
           }
         }, {
@@ -815,9 +823,9 @@
 
       CollectorService.ctorParameters = function () {
         return [{
-          type: _data_proof_proof_repository_service__WEBPACK_IMPORTED_MODULE_7__["ProofRepository"]
+          type: _data_proof_proof_repository_service__WEBPACK_IMPORTED_MODULE_8__["ProofRepository"]
         }, {
-          type: _notification_notification_service__WEBPACK_IMPORTED_MODULE_8__["NotificationService"]
+          type: _notification_notification_service__WEBPACK_IMPORTED_MODULE_9__["NotificationService"]
         }, {
           type: _ngneat_transloco__WEBPACK_IMPORTED_MODULE_2__["TranslocoService"]
         }];
@@ -869,13 +877,20 @@
       /* harmony import */
 
 
-      var _information_provider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var src_app_utils_preferences_preference_manager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! src/app/utils/preferences/preference-manager */
+      "./src/app/utils/preferences/preference-manager.ts");
+      /* harmony import */
+
+
+      var _information_provider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! ../information-provider */
       "./src/app/services/collector/information/information-provider.ts");
 
       var _capacitor_core__WEBP = _capacitor_core__WEBPACK_IMPORTED_MODULE_0__["Plugins"],
           Device = _capacitor_core__WEBP.Device,
           Geolocation = _capacitor_core__WEBP.Geolocation;
+      var preferences = src_app_utils_preferences_preference_manager__WEBPACK_IMPORTED_MODULE_3__["PreferenceManager"].DEFAULT_INFORMATION_PROVIDER_PREF;
 
       var CapacitorProvider = /*#__PURE__*/function (_information_provider) {
         _inherits(CapacitorProvider, _information_provider);
@@ -898,117 +913,271 @@
           value: function provide$(proof) {
             var _this9 = this;
 
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["zip"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
-              return Device.getInfo();
-            }), Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
-              return Device.getBatteryInfo();
-            }), Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
-              return Device.getLanguageCode();
-            }), Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
-              return Geolocation.getCurrentPosition({
-                enableHighAccuracy: true,
-                maximumAge: 10 * 60 * 1000,
-                timeout: 10 * 1000
-              });
-            })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (_ref) {
-              var _ref2 = _slicedToArray(_ref, 4),
-                  deviceInfo = _ref2[0],
-                  batteryInfo = _ref2[1],
-                  languageCode = _ref2[2],
-                  geolocationPosition = _ref2[3];
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["zip"])(CapacitorProvider.isDeviceInfoCollectionEnabled$(), CapacitorProvider.isLocationInfoCollectionEnabled$()).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(function (_ref) {
+              var _ref2 = _slicedToArray(_ref, 2),
+                  isDeviceInfoCollectionEnabled = _ref2[0],
+                  isLocationInfoCollectionEnabled = _ref2[1];
 
-              return [{
-                proofHash: proof.hash,
-                provider: _this9.name,
-                name: _this9.translocoService.translate('deviceName'),
-                value: String(deviceInfo.name)
-              }, {
-                proofHash: proof.hash,
-                provider: _this9.name,
-                name: _this9.translocoService.translate('deviceModel'),
-                value: String(deviceInfo.model)
-              }, {
-                proofHash: proof.hash,
-                provider: _this9.name,
-                name: _this9.translocoService.translate('devicePlatform'),
-                value: String(deviceInfo.platform)
-              }, {
-                proofHash: proof.hash,
-                provider: _this9.name,
-                name: _this9.translocoService.translate('uuid'),
-                value: String(deviceInfo.uuid)
-              }, {
-                proofHash: proof.hash,
-                provider: _this9.name,
-                name: _this9.translocoService.translate('appVersion'),
-                value: String(deviceInfo.appVersion)
-              }, {
-                proofHash: proof.hash,
-                provider: _this9.name,
-                name: _this9.translocoService.translate('appVersionCode'),
-                value: String(deviceInfo.appBuild)
-              }, {
-                proofHash: proof.hash,
-                provider: _this9.name,
-                name: _this9.translocoService.translate('operatingSystem'),
-                value: String(deviceInfo.operatingSystem)
-              }, {
-                proofHash: proof.hash,
-                provider: _this9.name,
-                name: _this9.translocoService.translate('osVersion'),
-                value: String(deviceInfo.osVersion)
-              }, {
-                proofHash: proof.hash,
-                provider: _this9.name,
-                name: _this9.translocoService.translate('deviceManufacturer'),
-                value: String(deviceInfo.manufacturer)
-              }, {
-                proofHash: proof.hash,
-                provider: _this9.name,
-                name: _this9.translocoService.translate('runningOnVm'),
-                value: String(deviceInfo.isVirtual)
-              }, {
-                proofHash: proof.hash,
-                provider: _this9.name,
-                name: _this9.translocoService.translate('usedMemory'),
-                value: String(deviceInfo.memUsed)
-              }, {
-                proofHash: proof.hash,
-                provider: _this9.name,
-                name: _this9.translocoService.translate('freeDiskSpace'),
-                value: String(deviceInfo.diskFree)
-              }, {
-                proofHash: proof.hash,
-                provider: _this9.name,
-                name: _this9.translocoService.translate('totalDiskSpace'),
-                value: String(deviceInfo.diskTotal)
-              }, {
-                proofHash: proof.hash,
-                provider: _this9.name,
-                name: _this9.translocoService.translate('batteryLevel'),
-                value: String(batteryInfo.batteryLevel)
-              }, {
-                proofHash: proof.hash,
-                provider: _this9.name,
-                name: _this9.translocoService.translate('batteryCharging'),
-                value: String(batteryInfo.isCharging)
-              }, {
-                proofHash: proof.hash,
-                provider: _this9.name,
-                name: _this9.translocoService.translate('deviceLanguageCode'),
-                value: String(languageCode.value)
-              }, {
-                proofHash: proof.hash,
-                provider: _this9.name,
-                name: _this9.translocoService.translate('location'),
-                value: "(".concat(geolocationPosition.coords.latitude, ", ").concat(geolocationPosition.coords.longitude, ")")
-              }];
+              return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["zip"])(isDeviceInfoCollectionEnabled ? Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
+                return Device.getInfo();
+              }) : Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(undefined), isDeviceInfoCollectionEnabled ? Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
+                return Device.getBatteryInfo();
+              }) : Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(undefined), isDeviceInfoCollectionEnabled ? Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
+                return Device.getLanguageCode();
+              }) : Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(undefined), isLocationInfoCollectionEnabled ? Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
+                return Geolocation.getCurrentPosition({
+                  enableHighAccuracy: true,
+                  maximumAge: 10 * 60 * 1000,
+                  timeout: 10 * 1000
+                });
+              }) : Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(undefined));
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (_ref3) {
+              var _ref4 = _slicedToArray(_ref3, 4),
+                  deviceInfo = _ref4[0],
+                  batteryInfo = _ref4[1],
+                  languageCode = _ref4[2],
+                  geolocationPosition = _ref4[3];
+
+              var informationList = [];
+
+              if (deviceInfo !== undefined) {
+                informationList.push({
+                  proofHash: proof.hash,
+                  provider: _this9.name,
+                  name: _this9.translocoService.translate('uuid'),
+                  value: String(deviceInfo.uuid),
+                  importance: "high"
+                  /* High */
+                  ,
+                  type: "other"
+                  /* Other */
+
+                }, {
+                  proofHash: proof.hash,
+                  provider: _this9.name,
+                  name: _this9.translocoService.translate('deviceName'),
+                  value: String(deviceInfo.name),
+                  importance: "low"
+                  /* Low */
+                  ,
+                  type: "device"
+                  /* Device */
+
+                }, {
+                  proofHash: proof.hash,
+                  provider: _this9.name,
+                  name: _this9.translocoService.translate('deviceModel'),
+                  value: String(deviceInfo.model),
+                  importance: "low"
+                  /* Low */
+                  ,
+                  type: "device"
+                  /* Device */
+
+                }, {
+                  proofHash: proof.hash,
+                  provider: _this9.name,
+                  name: _this9.translocoService.translate('devicePlatform'),
+                  value: String(deviceInfo.platform),
+                  importance: "low"
+                  /* Low */
+                  ,
+                  type: "device"
+                  /* Device */
+
+                }, {
+                  proofHash: proof.hash,
+                  provider: _this9.name,
+                  name: _this9.translocoService.translate('appVersion'),
+                  value: String(deviceInfo.appVersion),
+                  importance: "low"
+                  /* Low */
+                  ,
+                  type: "device"
+                  /* Device */
+
+                }, {
+                  proofHash: proof.hash,
+                  provider: _this9.name,
+                  name: _this9.translocoService.translate('appVersionCode'),
+                  value: String(deviceInfo.appBuild),
+                  importance: "low"
+                  /* Low */
+                  ,
+                  type: "device"
+                  /* Device */
+
+                }, {
+                  proofHash: proof.hash,
+                  provider: _this9.name,
+                  name: _this9.translocoService.translate('operatingSystem'),
+                  value: String(deviceInfo.operatingSystem),
+                  importance: "low"
+                  /* Low */
+                  ,
+                  type: "device"
+                  /* Device */
+
+                }, {
+                  proofHash: proof.hash,
+                  provider: _this9.name,
+                  name: _this9.translocoService.translate('osVersion'),
+                  value: String(deviceInfo.osVersion),
+                  importance: "low"
+                  /* Low */
+                  ,
+                  type: "device"
+                  /* Device */
+
+                }, {
+                  proofHash: proof.hash,
+                  provider: _this9.name,
+                  name: _this9.translocoService.translate('deviceManufacturer'),
+                  value: String(deviceInfo.manufacturer),
+                  importance: "low"
+                  /* Low */
+                  ,
+                  type: "device"
+                  /* Device */
+
+                }, {
+                  proofHash: proof.hash,
+                  provider: _this9.name,
+                  name: _this9.translocoService.translate('runningOnVm'),
+                  value: String(deviceInfo.isVirtual),
+                  importance: "low"
+                  /* Low */
+                  ,
+                  type: "device"
+                  /* Device */
+
+                }, {
+                  proofHash: proof.hash,
+                  provider: _this9.name,
+                  name: _this9.translocoService.translate('usedMemory'),
+                  value: String(deviceInfo.memUsed),
+                  importance: "low"
+                  /* Low */
+                  ,
+                  type: "device"
+                  /* Device */
+
+                }, {
+                  proofHash: proof.hash,
+                  provider: _this9.name,
+                  name: _this9.translocoService.translate('freeDiskSpace'),
+                  value: String(deviceInfo.diskFree),
+                  importance: "low"
+                  /* Low */
+                  ,
+                  type: "device"
+                  /* Device */
+
+                }, {
+                  proofHash: proof.hash,
+                  provider: _this9.name,
+                  name: _this9.translocoService.translate('totalDiskSpace'),
+                  value: String(deviceInfo.diskTotal),
+                  importance: "low"
+                  /* Low */
+                  ,
+                  type: "device"
+                  /* Device */
+
+                });
+              }
+
+              if (batteryInfo !== undefined) {
+                informationList.push({
+                  proofHash: proof.hash,
+                  provider: _this9.name,
+                  name: _this9.translocoService.translate('batteryLevel'),
+                  value: String(batteryInfo.batteryLevel),
+                  importance: "low"
+                  /* Low */
+                  ,
+                  type: "device"
+                  /* Device */
+
+                }, {
+                  proofHash: proof.hash,
+                  provider: _this9.name,
+                  name: _this9.translocoService.translate('batteryCharging'),
+                  value: String(batteryInfo.isCharging),
+                  importance: "low"
+                  /* Low */
+                  ,
+                  type: "device"
+                  /* Device */
+
+                });
+              }
+
+              if (languageCode !== undefined) {
+                informationList.push({
+                  proofHash: proof.hash,
+                  provider: _this9.name,
+                  name: _this9.translocoService.translate('deviceLanguageCode'),
+                  value: String(languageCode.value),
+                  importance: "low"
+                  /* Low */
+                  ,
+                  type: "device"
+                  /* Device */
+
+                });
+              }
+
+              if (geolocationPosition !== undefined) {
+                informationList.push({
+                  proofHash: proof.hash,
+                  provider: _this9.name,
+                  name: _this9.translocoService.translate('location'),
+                  value: "(".concat(geolocationPosition.coords.latitude, ", ").concat(geolocationPosition.coords.longitude, ")"),
+                  importance: "high"
+                  /* High */
+                  ,
+                  type: "location"
+                  /* Location */
+
+                });
+              }
+
+              return informationList;
             }));
+          }
+        }], [{
+          key: "isDeviceInfoCollectionEnabled$",
+          value: function isDeviceInfoCollectionEnabled$() {
+            return preferences.getBoolean$("collectDeviceInfo"
+            /* CollectDeviceInfo */
+            , true);
+          }
+        }, {
+          key: "setDeviceInfoCollection$",
+          value: function setDeviceInfoCollection$(enable) {
+            return preferences.setBoolean$("collectDeviceInfo"
+            /* CollectDeviceInfo */
+            , enable);
+          }
+        }, {
+          key: "isLocationInfoCollectionEnabled$",
+          value: function isLocationInfoCollectionEnabled$() {
+            return preferences.getBoolean$("collectLocationInfo"
+            /* CollectLocationInfo */
+            , true);
+          }
+        }, {
+          key: "setLocationInfoCollection$",
+          value: function setLocationInfoCollection$(enable) {
+            return preferences.setBoolean$("collectLocationInfo"
+            /* CollectLocationInfo */
+            , enable);
           }
         }]);
 
         return CapacitorProvider;
-      }(_information_provider__WEBPACK_IMPORTED_MODULE_3__["InformationProvider"]);
+      }(_information_provider__WEBPACK_IMPORTED_MODULE_4__["InformationProvider"]);
       /***/
 
     },
@@ -1137,16 +1306,14 @@
           value: function provide$(proof, serialized) {
             var _this12 = this;
 
-            return preferences.getString$("privateKey"
-            /* PrivateKey */
-            ).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(function (privateKeyHex) {
+            return DefaultSignatureProvider.getPrivateKey$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(function (privateKeyHex) {
               return Object(src_app_utils_crypto_crypto__WEBPACK_IMPORTED_MODULE_2__["signWithSha256AndEcdsa$"])(serialized, privateKeyHex);
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(function (signatureHex) {
               return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["zip"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["of"])(signatureHex), DefaultSignatureProvider.getPublicKey$());
-            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (_ref3) {
-              var _ref4 = _slicedToArray(_ref3, 2),
-                  signatureHex = _ref4[0],
-                  publicKeyHex = _ref4[1];
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (_ref5) {
+              var _ref6 = _slicedToArray(_ref5, 2),
+                  signatureHex = _ref6[0],
+                  publicKeyHex = _ref6[1];
 
               return {
                 proofHash: proof.hash,
@@ -1159,15 +1326,15 @@
         }], [{
           key: "initialize$",
           value: function initialize$() {
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["zip"])(this.getPublicKey$(), this.getPrivateKey$()).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["filter"])(function (_ref5) {
-              var _ref6 = _slicedToArray(_ref5, 2),
-                  publicKey = _ref6[0],
-                  privateKey = _ref6[1];
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["zip"])(this.getPublicKey$(), this.getPrivateKey$()).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["filter"])(function (_ref7) {
+              var _ref8 = _slicedToArray(_ref7, 2),
+                  publicKey = _ref8[0],
+                  privateKey = _ref8[1];
 
               return publicKey.length === 0 || privateKey.length === 0;
-            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMapTo"])(Object(src_app_utils_crypto_crypto__WEBPACK_IMPORTED_MODULE_2__["createEcKeyPair$"])()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(function (_ref7) {
-              var publicKey = _ref7.publicKey,
-                  privateKey = _ref7.privateKey;
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMapTo"])(Object(src_app_utils_crypto_crypto__WEBPACK_IMPORTED_MODULE_2__["createEcKeyPair$"])()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(function (_ref9) {
+              var publicKey = _ref9.publicKey,
+                  privateKey = _ref9.privateKey;
               return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["zip"])(preferences.setString$("publicKey"
               /* PublicKey */
               , publicKey), preferences.setString$("privateKey"
@@ -1232,17 +1399,15 @@
         }
 
         _createClass(SignatureProvider, [{
-          key: "collectAndStore$",
-          value: function collectAndStore$(proof) {
+          key: "signAndStore$",
+          value: function signAndStore$(proof) {
             var _this13 = this;
 
             return this.serializationService.stringify$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["switchMap"])(function (serialized) {
               return _this13.provide$(proof, serialized);
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["switchMap"])(function (signature) {
               return _this13.signatureRepository.add$(signature);
-            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (signatures) {
-              return signatures[0];
-            }));
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["pluck"])(0));
           }
         }]);
 
@@ -1298,7 +1463,13 @@
       /* harmony import */
 
 
-      var src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      var src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! src/app/utils/rx-operators */
+      "./src/app/utils/rx-operators.ts");
+      /* harmony import */
+
+
+      var src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
       /*! src/app/utils/storage/storage */
       "./src/app/utils/storage/storage.ts");
 
@@ -1306,7 +1477,7 @@
         function CaptionRepository() {
           _classCallCheck(this, CaptionRepository);
 
-          this.captionStorage = new src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_4__["Storage"]('caption');
+          this.captionStorage = new src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_5__["Storage"]('caption');
         }
 
         _createClass(CaptionRepository, [{
@@ -1318,7 +1489,7 @@
           key: "getByProof$",
           value: function getByProof$(proof) {
             return this.captionStorage.getAll$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (captions) {
-              return captions.filter(function (caption) {
+              return captions.find(function (caption) {
                 return caption.proofHash === proof.hash;
               });
             }));
@@ -1345,8 +1516,8 @@
           value: function removeByProof$(proof) {
             var _this15 = this;
 
-            return this.getByProof$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(function (captions) {
-              return _this15.remove$.apply(_this15, _toConsumableArray(captions));
+            return this.getByProof$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["first"])(), Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(function (caption) {
+              return _this15.remove$(caption);
             }));
           }
         }, {
@@ -1444,7 +1615,7 @@
           value: function removeByProof$(proof) {
             var _this16 = this;
 
-            return this.getByProof$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(function (informationList) {
+            return this.getByProof$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(function (informationList) {
               return _this16.remove$.apply(_this16, _toConsumableArray(informationList));
             }));
           }
@@ -1524,25 +1695,37 @@
       /* harmony import */
 
 
-      var src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      var src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! src/app/utils/mime-type */
+      "./src/app/utils/mime-type.ts");
+      /* harmony import */
+
+
+      var src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! src/app/utils/rx-operators */
+      "./src/app/utils/rx-operators.ts");
+      /* harmony import */
+
+
+      var src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
       /*! src/app/utils/storage/storage */
       "./src/app/utils/storage/storage.ts");
       /* harmony import */
 
 
-      var _caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      var _caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
       /*! ../caption/caption-repository.service */
       "./src/app/services/data/caption/caption-repository.service.ts");
       /* harmony import */
 
 
-      var _information_information_repository_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      var _information_information_repository_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
       /*! ../information/information-repository.service */
       "./src/app/services/data/information/information-repository.service.ts");
       /* harmony import */
 
 
-      var _signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      var _signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
       /*! ../signature/signature-repository.service */
       "./src/app/services/data/signature/signature-repository.service.ts");
 
@@ -1555,7 +1738,7 @@
           this.captionRepository = captionRepository;
           this.informationRepository = informationRepository;
           this.signatureRepository = signatureRepository;
-          this.proofStorage = new src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_6__["Storage"]('proof');
+          this.proofStorage = new src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_8__["Storage"]('proof');
           this.rawFileDir = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["FilesystemDirectory"].Data;
           this.rawFileFolderName = 'raw';
         }
@@ -1598,15 +1781,15 @@
               proofs[_key5] = arguments[_key5];
             }
 
-            return (_this$proofStorage2 = this.proofStorage).remove$.apply(_this$proofStorage2, proofs).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["forkJoin"])(proofs.map(function (proof) {
+            return (_this$proofStorage2 = this.proofStorage).remove$.apply(_this$proofStorage2, proofs).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["forkJoinWithDefault"])(proofs.map(function (proof) {
               return _this17.deleteRawFile$(proof);
-            })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["defaultIfEmpty"])([]))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["forkJoin"])(proofs.map(function (proof) {
+            }))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["forkJoinWithDefault"])(proofs.map(function (proof) {
               return _this17.captionRepository.removeByProof$(proof);
-            })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["defaultIfEmpty"])([]))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["forkJoin"])(proofs.map(function (proof) {
+            }))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["forkJoinWithDefault"])(proofs.map(function (proof) {
               return _this17.informationRepository.removeByProof$(proof);
-            })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["defaultIfEmpty"])([]))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["forkJoin"])(proofs.map(function (proof) {
+            }))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["forkJoinWithDefault"])(proofs.map(function (proof) {
               return _this17.signatureRepository.removeByProof$(proof);
-            })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["defaultIfEmpty"])([]))));
+            }))));
           }
         }, {
           key: "getRawFile$",
@@ -1615,12 +1798,10 @@
 
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["defer"])(function () {
               return Filesystem.readFile({
-                path: "".concat(_this18.rawFileFolderName, "/").concat(proof.hash, ".").concat(proof.mimeType.extension),
+                path: "".concat(_this18.rawFileFolderName, "/").concat(proof.hash, ".").concat(Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_6__["getExtension"])(proof.mimeType)),
                 directory: _this18.rawFileDir
               });
-            }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) {
-              return result.data;
-            }));
+            }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["pluck"])('data'));
           }
           /**
            * Copy [rawBase64] to add raw file to internal storage.
@@ -1635,14 +1816,12 @@
 
             return Object(src_app_utils_crypto_crypto__WEBPACK_IMPORTED_MODULE_5__["sha256WithBase64$"])(rawBase64).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (hash) {
               return Filesystem.writeFile({
-                path: "".concat(_this19.rawFileFolderName, "/").concat(hash, ".").concat(mimeType.extension),
+                path: "".concat(_this19.rawFileFolderName, "/").concat(hash, ".").concat(Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_6__["getExtension"])(mimeType)),
                 data: rawBase64,
                 directory: _this19.rawFileDir,
                 recursive: true
               });
-            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (result) {
-              return result.uri;
-            }));
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["pluck"])('uri'));
           }
         }, {
           key: "deleteRawFile$",
@@ -1651,7 +1830,7 @@
 
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["defer"])(function () {
               return Filesystem.deleteFile({
-                path: "".concat(_this20.rawFileFolderName, "/").concat(proof.hash, ".").concat(proof.mimeType.extension),
+                path: "".concat(_this20.rawFileFolderName, "/").concat(proof.hash, ".").concat(Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_6__["getExtension"])(proof.mimeType)),
                 directory: _this20.rawFileDir
               });
             });
@@ -1663,11 +1842,11 @@
 
       ProofRepository.ctorParameters = function () {
         return [{
-          type: _caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_7__["CaptionRepository"]
+          type: _caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_9__["CaptionRepository"]
         }, {
-          type: _information_information_repository_service__WEBPACK_IMPORTED_MODULE_8__["InformationRepository"]
+          type: _information_information_repository_service__WEBPACK_IMPORTED_MODULE_10__["InformationRepository"]
         }, {
-          type: _signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_9__["SignatureRepository"]
+          type: _signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_11__["SignatureRepository"]
         }];
       };
 
@@ -1754,7 +1933,7 @@
           value: function removeByProof$(proof) {
             var _this21 = this;
 
-            return this.getByProof$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(function (signatures) {
+            return this.getByProof$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(function (signatures) {
               return _this21.remove$.apply(_this21, _toConsumableArray(signatures));
             }));
           }
@@ -1822,9 +2001,9 @@
       /* harmony import */
 
 
-      var src_app_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-      /*! src/app/transloco-root.module */
-      "./src/app/transloco-root.module.ts");
+      var src_app_transloco_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! src/app/transloco/transloco-root.module */
+      "./src/app/transloco/transloco-root.module.ts");
       /* harmony import */
 
 
@@ -1832,18 +2011,18 @@
       /*! ../../utils/preferences/preference-manager */
       "./src/app/utils/preferences/preference-manager.ts");
 
+      var preferences = _utils_preferences_preference_manager__WEBPACK_IMPORTED_MODULE_5__["PreferenceManager"].LANGUAGE_PREF;
+
       var LanguageService = /*#__PURE__*/function () {
         function LanguageService(translocoService) {
           _classCallCheck(this, LanguageService);
 
           this.translocoService = translocoService;
-          this.preferences = _utils_preferences_preference_manager__WEBPACK_IMPORTED_MODULE_5__["PreferenceManager"].LANGUAGE_PREF;
-          this.prefKeys = {
-            langauge: 'langauge'
-          };
-          this.languages = src_app_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__["languages"];
-          this.defaultLanguage = src_app_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__["defaultLanguage"];
-          this.currentLanguageKey$ = this.preferences.get$(this.prefKeys.langauge, src_app_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__["defaultLanguage"][0]);
+          this.languages = src_app_transloco_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__["languages"];
+          this.defaultLanguage = src_app_transloco_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__["defaultLanguage"];
+          this.currentLanguageKey$ = preferences.getString$("language"
+          /* Language */
+          , src_app_transloco_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__["defaultLanguage"][0]);
         }
 
         _createClass(LanguageService, [{
@@ -1851,15 +2030,17 @@
           value: function initialize$() {
             var _this22 = this;
 
-            this.translocoService.setDefaultLang(src_app_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__["defaultLanguage"][0]);
-            return this.currentLanguageKey$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(function (key) {
+            this.translocoService.setDefaultLang(src_app_transloco_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__["defaultLanguage"][0]);
+            return this.currentLanguageKey$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(function (key) {
               return _this22.setCurrentLanguage$(key);
             }));
           }
         }, {
           key: "setCurrentLanguage$",
           value: function setCurrentLanguage$(key) {
-            return this.preferences.set$(this.prefKeys.langauge, key).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["mapTo"])(this.translocoService.setActiveLang(key)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["mapTo"])(key));
+            return preferences.setString$("language"
+            /* Language */
+            , key).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["mapTo"])(this.translocoService.setActiveLang(key)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["mapTo"])(key));
           }
         }]);
 
@@ -1918,22 +2099,29 @@
       /* harmony import */
 
 
-      var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var _ngneat_transloco__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @ngneat/transloco */
+      "./node_modules/@ngneat/transloco/__ivy_ngcc__/fesm2015/ngneat-transloco.js");
+      /* harmony import */
+
+
+      var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! rxjs */
       "./node_modules/rxjs/_esm2015/index.js");
       /* harmony import */
 
 
-      var src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      var src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
       /*! src/app/utils/background-task/background-task */
       "./src/app/utils/background-task/background-task.ts");
 
       var LocalNotifications = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"].LocalNotifications;
 
       var NotificationService = /*#__PURE__*/function () {
-        function NotificationService() {
+        function NotificationService(translocoService) {
           _classCallCheck(this, NotificationService);
 
+          this.translocoService = translocoService;
           this.currentId = 1;
           LocalNotifications.requestPermission().then(function (result) {
             return console.log("Notification permission request result: ".concat(result.granted));
@@ -1951,7 +2139,8 @@
         }, {
           key: "notify",
           value: function notify(id, title, body) {
-            Object(src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_4__["subscribeInBackground"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["defer"])(function () {
+            console.log("".concat(title, ": ").concat(body));
+            Object(src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_5__["subscribeInBackground"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["defer"])(function () {
               return LocalNotifications.schedule({
                 notifications: [{
                   title: title,
@@ -1962,9 +2151,14 @@
             }));
           }
         }, {
+          key: "notifyError",
+          value: function notifyError(id, error) {
+            this.notify(id, this.translocoService.translate('unknownError'), JSON.stringify(error));
+          }
+        }, {
           key: "cancel",
           value: function cancel(id) {
-            Object(src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_4__["subscribeInBackground"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["defer"])(function () {
+            Object(src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_5__["subscribeInBackground"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["defer"])(function () {
               return LocalNotifications.cancel({
                 notifications: [{
                   id: String(id)
@@ -1978,7 +2172,9 @@
       }();
 
       NotificationService.ctorParameters = function () {
-        return [];
+        return [{
+          type: _ngneat_transloco__WEBPACK_IMPORTED_MODULE_3__["TranslocoService"]
+        }];
       };
 
       NotificationService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -2042,7 +2238,9 @@
                 hash: proof.hash,
                 publisherName: _this23.name
               }));
-            })));
+            })), function (error) {
+              return _this23.notificationService.notifyError(notificationId, error);
+            });
           }
         }]);
 
@@ -2127,10 +2325,10 @@
           value: function present$(proof) {
             var _this24 = this;
 
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["defer"])(function () {
+            return this.getEnabledPublishers$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMap"])(function (publishers) {
               return _this24.alertController.create({
                 header: _this24.translocoService.translate('selectAPublisher'),
-                inputs: _this24.publishers.map(function (publisher, index) {
+                inputs: publishers.map(function (publisher, index) {
                   return {
                     name: publisher.name,
                     type: 'radio',
@@ -2151,9 +2349,22 @@
                   }
                 }]
               });
-            }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMap"])(function (alertElement) {
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMap"])(function (alertElement) {
               return alertElement.present();
             }));
+          }
+        }, {
+          key: "getEnabledPublishers$",
+          value: function getEnabledPublishers$() {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["from"])(this.publishers).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMap"])(function (publisher) {
+              return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["zip"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["of"])(publisher), publisher.isEnabled$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["first"])()));
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["filter"])(function (_ref10) {
+              var _ref11 = _slicedToArray(_ref10, 2),
+                  _ = _ref11[0],
+                  isEnabled = _ref11[1];
+
+              return isEnabled;
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["pluck"])(0), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["toArray"])());
           }
         }, {
           key: "getPublisherByName",
@@ -2237,13 +2448,12 @@
         _createClass(SamplePublisher, [{
           key: "run$",
           value: function run$(proof) {
-            var _this26 = this;
-
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["of"])(void 0).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])(function (_) {
-              return console.log("Start publishing ".concat(proof.hash, " from ").concat(_this26.name, "."));
-            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["delay"])(3000), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])(function (_) {
-              return console.log("Finish publishing ".concat(proof.hash, " from ").concat(_this26.name, "."));
-            }));
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["of"])(void 0).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["delay"])(3000));
+          }
+        }, {
+          key: "isEnabled$",
+          value: function isEnabled$() {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["of"])(true);
           }
         }]);
 
@@ -2316,14 +2526,9 @@
           value: function createSortedProofInformation$(proof) {
             return this.informationRepository.getByProof$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (informationList) {
               var sortedInformation = informationList.sort(function (a, b) {
-                var proofHashCompared = a.proofHash.localeCompare(b.proofHash);
                 var providerCompared = a.provider.localeCompare(b.provider);
                 var nameCompared = a.name.localeCompare(b.name);
                 var valueCompared = a.value.localeCompare(b.value);
-
-                if (proofHashCompared !== 0) {
-                  return proofHashCompared;
-                }
 
                 if (providerCompared !== 0) {
                   return providerCompared;
@@ -2334,10 +2539,19 @@
                 }
 
                 return valueCompared;
+              }).map(function (_ref12) {
+                var provider = _ref12.provider,
+                    name = _ref12.name,
+                    value = _ref12.value;
+                return {
+                  provider: provider,
+                  name: name,
+                  value: value
+                };
               });
               return {
                 proof: proof,
-                sortedInformation: sortedInformation
+                information: sortedInformation
               };
             }));
           }
@@ -2359,15 +2573,15 @@
     },
 
     /***/
-    "./src/app/transloco-root.module.ts":
-    /*!******************************************!*\
-      !*** ./src/app/transloco-root.module.ts ***!
-      \******************************************/
+    "./src/app/transloco/transloco-root.module.ts":
+    /*!****************************************************!*\
+      !*** ./src/app/transloco/transloco-root.module.ts ***!
+      \****************************************************/
 
     /*! exports provided: languages, defaultLanguage, TranslocoHttpLoader, TranslocoRootModule */
 
     /***/
-    function srcAppTranslocoRootModuleTs(module, __webpack_exports__, __webpack_require__) {
+    function srcAppTranslocoTranslocoRootModuleTs(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
@@ -2423,7 +2637,7 @@
 
 
       var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-      /*! ../environments/environment */
+      /*! ../../environments/environment */
       "./src/environments/environment.ts");
 
       var languages = {
@@ -2514,17 +2728,19 @@
 
       var BackgroundTask = _capacitor_core__WEBPACK_IMPORTED_MODULE_0__["Plugins"].BackgroundTask;
 
-      function subscribeInBackground(work$) {
+      function subscribeInBackground(work$, error, complete) {
         if (_capacitor_core__WEBPACK_IMPORTED_MODULE_0__["Capacitor"].isPluginAvailable('BackgroundTask')) {
           var taskId = BackgroundTask.beforeExit(function () {
             work$.subscribe(function (_) {
               return BackgroundTask.finish({
                 taskId: taskId
               });
-            });
+            }, error, complete);
           });
         } else {
-          work$.subscribe();
+          work$.subscribe(function (_) {
+            return _;
+          }, error, complete);
         }
       }
       /***/
@@ -2636,14 +2852,14 @@
           , "verify"
           /* Verify */
           ]);
-        }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(function (_ref8) {
-          var publicKey = _ref8.publicKey,
-              privateKey = _ref8.privateKey;
+        }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(function (_ref13) {
+          var publicKey = _ref13.publicKey,
+              privateKey = _ref13.privateKey;
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["zip"])(exportEcdsaPublicKey$(publicKey), exportEcdsaPrivateKey$(privateKey));
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (_ref9) {
-          var _ref10 = _slicedToArray(_ref9, 2),
-              publicKey = _ref10[0],
-              privateKey = _ref10[1];
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (_ref14) {
+          var _ref15 = _slicedToArray(_ref14, 2),
+              publicKey = _ref15[0],
+              privateKey = _ref15[1];
 
           return {
             publicKey: publicKey,
@@ -2844,6 +3060,59 @@
     },
 
     /***/
+    "./src/app/utils/mime-type.ts":
+    /*!************************************!*\
+      !*** ./src/app/utils/mime-type.ts ***!
+      \************************************/
+
+    /*! exports provided: getExtension, fromExtension */
+
+    /***/
+    function srcAppUtilsMimeTypeTs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "getExtension", function () {
+        return getExtension;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "fromExtension", function () {
+        return fromExtension;
+      });
+
+      function getExtension(mimeType) {
+        switch (mimeType) {
+          case 'image/jpeg':
+            return 'jpg';
+
+          case 'image/png':
+            return 'png';
+        }
+      }
+
+      function fromExtension(extension) {
+        switch (extension) {
+          case 'jpg':
+          case 'jpeg':
+            return 'image/jpeg';
+
+          case 'png':
+            return 'image/png';
+
+          default:
+            throw TypeError("Unknown extension: ".concat(extension));
+        }
+      }
+      /***/
+
+    },
+
+    /***/
     "./src/app/utils/preferences/preference-manager.ts":
     /*!*********************************************************!*\
       !*** ./src/app/utils/preferences/preference-manager.ts ***!
@@ -2875,6 +3144,9 @@
 
       PreferenceManager.LANGUAGE_PREF = new _preferences__WEBPACK_IMPORTED_MODULE_0__["Preferences"]("language"
       /* Language */
+      );
+      PreferenceManager.DEFAULT_INFORMATION_PROVIDER_PREF = new _preferences__WEBPACK_IMPORTED_MODULE_0__["Preferences"]("defaultInformationProvider"
+      /* DefaultInformationProvider */
       );
       PreferenceManager.DEFAULT_SIGNATURE_PROVIDER_PREF = new _preferences__WEBPACK_IMPORTED_MODULE_0__["Preferences"]("defaultSignatureProvider"
       /* DefaultSignatureProvider */
@@ -2927,21 +3199,50 @@
           _classCallCheck(this, Preferences);
 
           this.name = name;
+          this.subjects = new Map();
         }
 
         _createClass(Preferences, [{
           key: "get$",
           value: function get$(key, defaultValue) {
+            var _this26 = this;
+
             var converter = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : JSON.parse;
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
+              return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(_this26.subjects.has(key));
+            }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(function (existed) {
+              if (!existed) {
+                return _this26._get$(key, defaultValue, converter);
+              }
+
+              return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(existed);
+            }), // tslint:disable-next-line: no-non-null-assertion
+            Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
+              return _this26.subjects.get(key).asObservable();
+            })));
+          }
+        }, {
+          key: "_get$",
+          value: function _get$(key, defaultValue, converter) {
+            var _this27 = this;
+
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
               return Storage.get({
-                key: "".concat(name, "_").concat(key)
+                key: "".concat(_this27.name, "_").concat(key)
               });
-            }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (ret) {
-              return ret.value;
-            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (value) {
+            }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["pluck"])('value'), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (value) {
               return value && value !== '[null]' ? converter(value) : defaultValue;
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (converted) {
+              return _this27.updateSubjects(key, converted);
             }));
+          }
+        }, {
+          key: "getBoolean$",
+          value: function getBoolean$(key) {
+            var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+            return this.get$(key, defaultValue, function (v) {
+              return v === 'true';
+            });
           }
         }, {
           key: "getNumber$",
@@ -2960,13 +3261,20 @@
         }, {
           key: "set$",
           value: function set$(key, value) {
+            var _this28 = this;
+
             var converter = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : JSON.stringify;
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
               return Storage.set({
-                key: "".concat(name, "_").concat(key),
+                key: "".concat(_this28.name, "_").concat(key),
                 value: converter(value)
               });
-            }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(value));
+            }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(this.updateSubjects(key, value)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(value));
+          }
+        }, {
+          key: "setBoolean$",
+          value: function setBoolean$(key, value) {
+            return this.set$(key, value, String);
           }
         }, {
           key: "setNumber$",
@@ -2980,10 +3288,75 @@
               return v;
             });
           }
+        }, {
+          key: "updateSubjects",
+          value: function updateSubjects(key, value) {
+            var _a;
+
+            if (this.subjects.has(key)) {
+              (_a = this.subjects.get(key)) === null || _a === void 0 ? void 0 : _a.next(value);
+            } else {
+              this.subjects.set(key, new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](value));
+            }
+          }
         }]);
 
         return Preferences;
       }();
+      /***/
+
+    },
+
+    /***/
+    "./src/app/utils/rx-operators.ts":
+    /*!***************************************!*\
+      !*** ./src/app/utils/rx-operators.ts ***!
+      \***************************************/
+
+    /*! exports provided: isNonNullable, forkJoinWithDefault */
+
+    /***/
+    function srcAppUtilsRxOperatorsTs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "isNonNullable", function () {
+        return isNonNullable;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "forkJoinWithDefault", function () {
+        return forkJoinWithDefault;
+      });
+      /* harmony import */
+
+
+      var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! rxjs */
+      "./node_modules/rxjs/_esm2015/index.js");
+      /* harmony import */
+
+
+      var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! rxjs/operators */
+      "./node_modules/rxjs/_esm2015/operators/index.js");
+
+      function isNonNullable() {
+        return function (source$) {
+          return source$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["filter"])(function (v) {
+            return v !== null && v !== undefined;
+          }));
+        };
+      }
+
+      function forkJoinWithDefault(sources) {
+        var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["forkJoin"])(sources).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["defaultIfEmpty"])(defaultValue));
+      }
       /***/
 
     },
@@ -3031,6 +3404,12 @@
       var _crypto_crypto__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! ../crypto/crypto */
       "./src/app/utils/crypto/crypto.ts");
+      /* harmony import */
+
+
+      var _rx_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! ../rx-operators */
+      "./src/app/utils/rx-operators.ts");
 
       var Filesystem = _capacitor_core__WEBPACK_IMPORTED_MODULE_0__["Plugins"].Filesystem;
 
@@ -3048,60 +3427,55 @@
         _createClass(Storage, [{
           key: "refresh$",
           value: function refresh$() {
-            var _this27 = this;
+            var _this29 = this;
 
-            console.log("Storege refreshing: ".concat(this.name));
-            return this.makeNameDir$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMapTo"])(this.readNameDir$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (result) {
-              return result.files;
-            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(function (fileNames) {
-              return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["forkJoin"])(fileNames.map(function (fileName) {
-                return _this27.readFile$(fileName);
-              })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["defaultIfEmpty"])([]));
-            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (results) {
-              return results.map(function (result) {
-                return JSON.parse(result.data);
-              });
-            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (tuples) {
-              return _this27.tuples$.next(tuples);
+            return this.makeNameDir$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMapTo"])(this.readNameDir$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["pluck"])('files'), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(function (fileNames) {
+              return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["from"])(fileNames);
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])(function (fileName) {
+              return _this29.readFile$(fileName);
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (result) {
+              return JSON.parse(result.data);
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["toArray"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (tuples) {
+              return _this29.tuples$.next(tuples);
             }));
           }
         }, {
           key: "makeNameDir$",
           value: function makeNameDir$() {
-            var _this28 = this;
+            var _this30 = this;
 
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
               return Filesystem.mkdir({
-                path: _this28.name,
-                directory: _this28.directory,
+                path: _this30.name,
+                directory: _this30.directory,
                 recursive: true
               });
             }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(void 0), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(function (err) {
-              console.log("".concat(err.message, " (").concat(_this28.directory, "/").concat(_this28.name, ")"));
+              console.log("".concat(_this30.directory, "/").concat(_this30.name, ": ").concat(err.message));
               return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(void 0);
             }));
           }
         }, {
           key: "readNameDir$",
           value: function readNameDir$() {
-            var _this29 = this;
+            var _this31 = this;
 
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
               return Filesystem.readdir({
-                path: _this29.name,
-                directory: _this29.directory
+                path: _this31.name,
+                directory: _this31.directory
               });
             });
           }
         }, {
           key: "readFile$",
           value: function readFile$(fileName) {
-            var _this30 = this;
+            var _this32 = this;
 
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
               return Filesystem.readFile({
-                path: "".concat(_this30.name, "/").concat(fileName),
-                directory: _this30.directory,
+                path: "".concat(_this32.name, "/").concat(fileName),
+                directory: _this32.directory,
                 encoding: _capacitor_core__WEBPACK_IMPORTED_MODULE_0__["FilesystemEncoding"].UTF8
               });
             });
@@ -3114,26 +3488,26 @@
         }, {
           key: "add$",
           value: function add$() {
-            var _this31 = this;
+            var _this33 = this;
 
             for (var _len6 = arguments.length, tuples = new Array(_len6), _key6 = 0; _key6 < _len6; _key6++) {
               tuples[_key6] = arguments[_key6];
             }
 
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["forkJoin"])(tuples.map(function (tuple) {
-              return _this31.saveFile$(tuple);
+            return Object(_rx_operators__WEBPACK_IMPORTED_MODULE_4__["forkJoinWithDefault"])(tuples.map(function (tuple) {
+              return _this33.saveFile$(tuple);
             })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMapTo"])(this.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(tuples));
           }
         }, {
           key: "saveFile$",
           value: function saveFile$(tuple) {
-            var _this32 = this;
+            var _this34 = this;
 
             return Object(_crypto_crypto__WEBPACK_IMPORTED_MODULE_3__["sha256$"])(tuple).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(function (hash) {
               return Filesystem.writeFile({
-                path: "".concat(_this32.name, "/").concat(hash, ".json"),
+                path: "".concat(_this34.name, "/").concat(hash, ".json"),
                 data: JSON.stringify(tuple),
-                directory: _this32.directory,
+                directory: _this34.directory,
                 encoding: _capacitor_core__WEBPACK_IMPORTED_MODULE_0__["FilesystemEncoding"].UTF8,
                 recursive: true
               });
@@ -3142,25 +3516,25 @@
         }, {
           key: "remove$",
           value: function remove$() {
-            var _this33 = this;
+            var _this35 = this;
 
             for (var _len7 = arguments.length, tuples = new Array(_len7), _key7 = 0; _key7 < _len7; _key7++) {
               tuples[_key7] = arguments[_key7];
             }
 
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["forkJoin"])(tuples.map(function (tuple) {
-              return _this33.deleteFile$(tuple);
+            return Object(_rx_operators__WEBPACK_IMPORTED_MODULE_4__["forkJoinWithDefault"])(tuples.map(function (tuple) {
+              return _this35.deleteFile$(tuple);
             })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMapTo"])(this.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(tuples));
           }
         }, {
           key: "deleteFile$",
           value: function deleteFile$(tuple) {
-            var _this34 = this;
+            var _this36 = this;
 
             return Object(_crypto_crypto__WEBPACK_IMPORTED_MODULE_3__["sha256$"])(tuple).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(function (hash) {
               return Filesystem.deleteFile({
-                path: "".concat(_this34.name, "/").concat(hash, ".json"),
-                directory: _this34.directory
+                path: "".concat(_this36.name, "/").concat(hash, ".json"),
+                directory: _this36.directory
               });
             }));
           }

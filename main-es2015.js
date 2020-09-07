@@ -354,13 +354,19 @@ const routes = [{
     }, {
         path: 'proof',
         loadChildren: () => __webpack_require__.e(/*! import() | pages-proof-proof-module */ "pages-proof-proof-module").then(__webpack_require__.bind(null, /*! ./pages/proof/proof.module */ "./src/app/pages/proof/proof.module.ts")).then(m => m.ProofPageModule)
+    }, {
+        path: 'information',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-information-information-module */ "pages-information-information-module").then(__webpack_require__.bind(null, /*! ./pages/information/information.module */ "./src/app/pages/information/information.module.ts")).then(m => m.InformationPageModule)
     }];
 let AppRoutingModule = class AppRoutingModule {
 };
 AppRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
         imports: [
-            _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(routes, { preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_2__["PreloadAllModules"] })
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(routes, {
+                preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_2__["PreloadAllModules"],
+                relativeLinkResolution: 'corrected'
+            })
         ],
         exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
     })
@@ -494,14 +500,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm2015/platform-browser.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-/* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/__ivy_ngcc__/ngx/index.js");
-/* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/__ivy_ngcc__/ngx/index.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _transloco_root_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./transloco-root.module */ "./src/app/transloco-root.module.ts");
-
-
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _transloco_transloco_root_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./transloco/transloco-root.module */ "./src/app/transloco/transloco-root.module.ts");
 
 
 
@@ -515,21 +517,17 @@ let AppModule = class AppModule {
 };
 AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]],
+        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]],
         entryComponents: [],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["BrowserModule"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["IonicModule"].forRoot(),
-            _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonicModule"].forRoot(),
+            _app_routing_module__WEBPACK_IMPORTED_MODULE_6__["AppRoutingModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClientModule"],
-            _transloco_root_module__WEBPACK_IMPORTED_MODULE_10__["TranslocoRootModule"]
+            _transloco_transloco_root_module__WEBPACK_IMPORTED_MODULE_8__["TranslocoRootModule"]
         ],
-        providers: [
-            _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
-            _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
-            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["IonicRouteStrategy"] }
-        ],
-        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]]
+        providers: [{ provide: _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonicRouteStrategy"] }],
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
     })
 ], AppModule);
 
@@ -554,8 +552,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
 /* harmony import */ var src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/utils/background-task/background-task */ "./src/app/utils/background-task/background-task.ts");
 /* harmony import */ var src_app_utils_file_file__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/utils/file/file */ "./src/app/utils/file/file.ts");
-/* harmony import */ var _data_proof_proof_repository_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../data/proof/proof-repository.service */ "./src/app/services/data/proof/proof-repository.service.ts");
-/* harmony import */ var _notification_notification_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../notification/notification.service */ "./src/app/services/notification/notification.service.ts");
+/* harmony import */ var src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/utils/rx-operators */ "./src/app/utils/rx-operators.ts");
+/* harmony import */ var _data_proof_proof_repository_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../data/proof/proof-repository.service */ "./src/app/services/data/proof/proof-repository.service.ts");
+/* harmony import */ var _notification_notification_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../notification/notification.service */ "./src/app/services/notification/notification.service.ts");
+
 
 
 
@@ -585,12 +585,15 @@ let CollectorService = class CollectorService {
         // Get the proof hash from the uri.
         Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(uri => Object(src_app_utils_file_file__WEBPACK_IMPORTED_MODULE_6__["fileNameWithoutExtension"])(uri)), 
         // Store the media file.
-        Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(hash => this.proofRepository.add$({ hash, mimeType, timestamp: Date.now() })), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(proofs => proofs[0]));
+        Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(hash => this.proofRepository.add$({ hash, mimeType, timestamp: Date.now() })), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["pluck"])(0));
     }
     collectAndSign$(proof) {
         const notificationId = this.notificationService.createNotificationId();
         this.notificationService.notify(notificationId, this.translocoService.translate('collectingProof'), this.translocoService.translate('collectingInformation'));
-        return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["forkJoin"])([...this.informationProviders].map(provider => provider.collectAndStore$(proof))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["defaultIfEmpty"])([]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(_ => this.notificationService.notify(notificationId, this.translocoService.translate('collectingProof'), this.translocoService.translate('signingProof'))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["forkJoin"])([...this.signatureProviders].map(provider => provider.collectAndStore$(proof)))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(_ => this.notificationService.cancel(notificationId)));
+        return Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["forkJoinWithDefault"])([...this.informationProviders].map(provider => provider.collectAndStore$(proof))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(_ => this.notificationService.notify(notificationId, this.translocoService.translate('collectingProof'), this.translocoService.translate('signingProof'))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["forkJoinWithDefault"])([...this.signatureProviders].map(provider => provider.signAndStore$(proof)))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(_ => this.notificationService.cancel(notificationId)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(error => {
+            this.notificationService.notifyError(notificationId, error);
+            return rxjs__WEBPACK_IMPORTED_MODULE_3__["EMPTY"];
+        }));
     }
     addInformationProvider(...providers) {
         providers.forEach(provider => this.informationProviders.add(provider));
@@ -606,8 +609,8 @@ let CollectorService = class CollectorService {
     }
 };
 CollectorService.ctorParameters = () => [
-    { type: _data_proof_proof_repository_service__WEBPACK_IMPORTED_MODULE_7__["ProofRepository"] },
-    { type: _notification_notification_service__WEBPACK_IMPORTED_MODULE_8__["NotificationService"] },
+    { type: _data_proof_proof_repository_service__WEBPACK_IMPORTED_MODULE_8__["ProofRepository"] },
+    { type: _notification_notification_service__WEBPACK_IMPORTED_MODULE_9__["NotificationService"] },
     { type: _ngneat_transloco__WEBPACK_IMPORTED_MODULE_2__["TranslocoService"] }
 ];
 CollectorService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
@@ -633,110 +636,172 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
-/* harmony import */ var _information_provider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../information-provider */ "./src/app/services/collector/information/information-provider.ts");
+/* harmony import */ var src_app_utils_preferences_preference_manager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/utils/preferences/preference-manager */ "./src/app/utils/preferences/preference-manager.ts");
+/* harmony import */ var _information_provider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../information-provider */ "./src/app/services/collector/information/information-provider.ts");
+
 
 
 
 
 const { Device, Geolocation } = _capacitor_core__WEBPACK_IMPORTED_MODULE_0__["Plugins"];
-class CapacitorProvider extends _information_provider__WEBPACK_IMPORTED_MODULE_3__["InformationProvider"] {
+const preferences = src_app_utils_preferences_preference_manager__WEBPACK_IMPORTED_MODULE_3__["PreferenceManager"].DEFAULT_INFORMATION_PROVIDER_PREF;
+class CapacitorProvider extends _information_provider__WEBPACK_IMPORTED_MODULE_4__["InformationProvider"] {
     constructor(informationRepository, translocoService) {
         super(informationRepository);
         this.translocoService = translocoService;
         this.name = 'Capacitor';
     }
+    static isDeviceInfoCollectionEnabled$() {
+        return preferences.getBoolean$("collectDeviceInfo" /* CollectDeviceInfo */, true);
+    }
+    static setDeviceInfoCollection$(enable) {
+        return preferences.setBoolean$("collectDeviceInfo" /* CollectDeviceInfo */, enable);
+    }
+    static isLocationInfoCollectionEnabled$() {
+        return preferences.getBoolean$("collectLocationInfo" /* CollectLocationInfo */, true);
+    }
+    static setLocationInfoCollection$(enable) {
+        return preferences.setBoolean$("collectLocationInfo" /* CollectLocationInfo */, enable);
+    }
     provide$(proof) {
-        return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["zip"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Device.getInfo()), Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Device.getBatteryInfo()), Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Device.getLanguageCode()), Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Geolocation.getCurrentPosition({
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["zip"])(CapacitorProvider.isDeviceInfoCollectionEnabled$(), CapacitorProvider.isLocationInfoCollectionEnabled$()).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(([isDeviceInfoCollectionEnabled, isLocationInfoCollectionEnabled]) => Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["zip"])(isDeviceInfoCollectionEnabled ? Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Device.getInfo()) : Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(undefined), isDeviceInfoCollectionEnabled ? Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Device.getBatteryInfo()) : Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(undefined), isDeviceInfoCollectionEnabled ? Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Device.getLanguageCode()) : Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(undefined), isLocationInfoCollectionEnabled ? Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Geolocation.getCurrentPosition({
             enableHighAccuracy: true,
             maximumAge: 10 * 60 * 1000,
             timeout: 10 * 1000
-        }))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(([deviceInfo, batteryInfo, languageCode, geolocationPosition]) => {
-            return [{
+        })) : Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(undefined))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(([deviceInfo, batteryInfo, languageCode, geolocationPosition]) => {
+            const informationList = [];
+            if (deviceInfo !== undefined) {
+                informationList.push({
+                    proofHash: proof.hash,
+                    provider: this.name,
+                    name: this.translocoService.translate('uuid'),
+                    value: String(deviceInfo.uuid),
+                    importance: "high" /* High */,
+                    type: "other" /* Other */
+                }, {
                     proofHash: proof.hash,
                     provider: this.name,
                     name: this.translocoService.translate('deviceName'),
-                    value: String(deviceInfo.name)
+                    value: String(deviceInfo.name),
+                    importance: "low" /* Low */,
+                    type: "device" /* Device */
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
                     name: this.translocoService.translate('deviceModel'),
-                    value: String(deviceInfo.model)
+                    value: String(deviceInfo.model),
+                    importance: "low" /* Low */,
+                    type: "device" /* Device */
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
                     name: this.translocoService.translate('devicePlatform'),
-                    value: String(deviceInfo.platform)
-                }, {
-                    proofHash: proof.hash,
-                    provider: this.name,
-                    name: this.translocoService.translate('uuid'),
-                    value: String(deviceInfo.uuid)
+                    value: String(deviceInfo.platform),
+                    importance: "low" /* Low */,
+                    type: "device" /* Device */
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
                     name: this.translocoService.translate('appVersion'),
-                    value: String(deviceInfo.appVersion)
+                    value: String(deviceInfo.appVersion),
+                    importance: "low" /* Low */,
+                    type: "device" /* Device */
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
                     name: this.translocoService.translate('appVersionCode'),
-                    value: String(deviceInfo.appBuild)
+                    value: String(deviceInfo.appBuild),
+                    importance: "low" /* Low */,
+                    type: "device" /* Device */
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
                     name: this.translocoService.translate('operatingSystem'),
-                    value: String(deviceInfo.operatingSystem)
+                    value: String(deviceInfo.operatingSystem),
+                    importance: "low" /* Low */,
+                    type: "device" /* Device */
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
                     name: this.translocoService.translate('osVersion'),
-                    value: String(deviceInfo.osVersion)
+                    value: String(deviceInfo.osVersion),
+                    importance: "low" /* Low */,
+                    type: "device" /* Device */
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
                     name: this.translocoService.translate('deviceManufacturer'),
-                    value: String(deviceInfo.manufacturer)
+                    value: String(deviceInfo.manufacturer),
+                    importance: "low" /* Low */,
+                    type: "device" /* Device */
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
                     name: this.translocoService.translate('runningOnVm'),
-                    value: String(deviceInfo.isVirtual)
+                    value: String(deviceInfo.isVirtual),
+                    importance: "low" /* Low */,
+                    type: "device" /* Device */
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
                     name: this.translocoService.translate('usedMemory'),
-                    value: String(deviceInfo.memUsed)
+                    value: String(deviceInfo.memUsed),
+                    importance: "low" /* Low */,
+                    type: "device" /* Device */
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
                     name: this.translocoService.translate('freeDiskSpace'),
-                    value: String(deviceInfo.diskFree)
+                    value: String(deviceInfo.diskFree),
+                    importance: "low" /* Low */,
+                    type: "device" /* Device */
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
                     name: this.translocoService.translate('totalDiskSpace'),
-                    value: String(deviceInfo.diskTotal)
-                }, {
+                    value: String(deviceInfo.diskTotal),
+                    importance: "low" /* Low */,
+                    type: "device" /* Device */
+                });
+            }
+            if (batteryInfo !== undefined) {
+                informationList.push({
                     proofHash: proof.hash,
                     provider: this.name,
                     name: this.translocoService.translate('batteryLevel'),
-                    value: String(batteryInfo.batteryLevel)
+                    value: String(batteryInfo.batteryLevel),
+                    importance: "low" /* Low */,
+                    type: "device" /* Device */
                 }, {
                     proofHash: proof.hash,
                     provider: this.name,
                     name: this.translocoService.translate('batteryCharging'),
-                    value: String(batteryInfo.isCharging)
-                }, {
+                    value: String(batteryInfo.isCharging),
+                    importance: "low" /* Low */,
+                    type: "device" /* Device */
+                });
+            }
+            if (languageCode !== undefined) {
+                informationList.push({
                     proofHash: proof.hash,
                     provider: this.name,
                     name: this.translocoService.translate('deviceLanguageCode'),
-                    value: String(languageCode.value)
-                }, {
+                    value: String(languageCode.value),
+                    importance: "low" /* Low */,
+                    type: "device" /* Device */
+                });
+            }
+            if (geolocationPosition !== undefined) {
+                informationList.push({
                     proofHash: proof.hash,
                     provider: this.name,
                     name: this.translocoService.translate('location'),
-                    value: `(${geolocationPosition.coords.latitude}, ${geolocationPosition.coords.longitude})`
-                }];
+                    value: `(${geolocationPosition.coords.latitude}, ${geolocationPosition.coords.longitude})`,
+                    importance: "high" /* High */,
+                    type: "location" /* Location */
+                });
+            }
+            return informationList;
         }));
     }
 }
@@ -795,7 +860,7 @@ class DefaultSignatureProvider extends _signature_provider__WEBPACK_IMPORTED_MOD
         this.name = 'Web Crypto API';
     }
     static initialize$() {
-        return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["zip"])(this.getPublicKey$(), this.getPrivateKey$()).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["filter"])(([publicKey, privateKey]) => publicKey.length === 0 || privateKey.length === 0), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMapTo"])(Object(src_app_utils_crypto_crypto__WEBPACK_IMPORTED_MODULE_2__["createEcKeyPair$"])()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(({ publicKey, privateKey }) => Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["zip"])(preferences.setString$("publicKey" /* PublicKey */, publicKey), preferences.setString$("privateKey" /* PrivateKey */, privateKey))));
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["zip"])(this.getPublicKey$(), this.getPrivateKey$()).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["filter"])(([publicKey, privateKey]) => publicKey.length === 0 || privateKey.length === 0), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMapTo"])(Object(src_app_utils_crypto_crypto__WEBPACK_IMPORTED_MODULE_2__["createEcKeyPair$"])()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(({ publicKey, privateKey }) => Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["zip"])(preferences.setString$("publicKey" /* PublicKey */, publicKey), preferences.setString$("privateKey" /* PrivateKey */, privateKey))));
     }
     static getPublicKey$() {
         return preferences.getString$("publicKey" /* PublicKey */);
@@ -804,7 +869,7 @@ class DefaultSignatureProvider extends _signature_provider__WEBPACK_IMPORTED_MOD
         return preferences.getString$("privateKey" /* PrivateKey */);
     }
     provide$(proof, serialized) {
-        return preferences.getString$("privateKey" /* PrivateKey */).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(privateKeyHex => Object(src_app_utils_crypto_crypto__WEBPACK_IMPORTED_MODULE_2__["signWithSha256AndEcdsa$"])(serialized, privateKeyHex)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(signatureHex => Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["zip"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["of"])(signatureHex), DefaultSignatureProvider.getPublicKey$())), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(([signatureHex, publicKeyHex]) => ({
+        return DefaultSignatureProvider.getPrivateKey$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(privateKeyHex => Object(src_app_utils_crypto_crypto__WEBPACK_IMPORTED_MODULE_2__["signWithSha256AndEcdsa$"])(serialized, privateKeyHex)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["switchMap"])(signatureHex => Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["zip"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["of"])(signatureHex), DefaultSignatureProvider.getPublicKey$())), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(([signatureHex, publicKeyHex]) => ({
             proofHash: proof.hash,
             provider: this.name,
             signature: signatureHex,
@@ -833,8 +898,8 @@ class SignatureProvider {
         this.signatureRepository = signatureRepository;
         this.serializationService = serializationService;
     }
-    collectAndStore$(proof) {
-        return this.serializationService.stringify$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["switchMap"])(serialized => this.provide$(proof, serialized)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["switchMap"])(signature => this.signatureRepository.add$(signature)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(signatures => signatures[0]));
+    signAndStore$(proof) {
+        return this.serializationService.stringify$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["switchMap"])(serialized => this.provide$(proof, serialized)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["switchMap"])(signature => this.signatureRepository.add$(signature)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["pluck"])(0));
     }
 }
 
@@ -855,7 +920,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
-/* harmony import */ var src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/utils/storage/storage */ "./src/app/utils/storage/storage.ts");
+/* harmony import */ var src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/utils/rx-operators */ "./src/app/utils/rx-operators.ts");
+/* harmony import */ var src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/utils/storage/storage */ "./src/app/utils/storage/storage.ts");
+
 
 
 
@@ -863,11 +930,11 @@ __webpack_require__.r(__webpack_exports__);
 
 let CaptionRepository = class CaptionRepository {
     constructor() {
-        this.captionStorage = new src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_4__["Storage"]('caption');
+        this.captionStorage = new src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_5__["Storage"]('caption');
     }
     refresh$() { return this.captionStorage.refresh$(); }
     getByProof$(proof) {
-        return this.captionStorage.getAll$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(captions => captions.filter(caption => caption.proofHash === proof.hash)));
+        return this.captionStorage.getAll$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(captions => captions.find(caption => caption.proofHash === proof.hash)));
     }
     addOrEdit$(value) {
         return this.captionStorage.getAll$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(captions => captions.find(caption => caption.proofHash === value.proofHash)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["concatMap"])(found => {
@@ -878,7 +945,7 @@ let CaptionRepository = class CaptionRepository {
         }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["concatMapTo"])(this.captionStorage.add$(value)));
     }
     removeByProof$(proof) {
-        return this.getByProof$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(captions => this.remove$(...captions)));
+        return this.getByProof$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["first"])(), Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(caption => this.remove$(caption)));
     }
     remove$(...captions) {
         return this.captionStorage.remove$(...captions);
@@ -922,7 +989,7 @@ let InformationRepository = class InformationRepository {
     }
     add$(...information) { return this.informationStorage.add$(...information); }
     removeByProof$(proof) {
-        return this.getByProof$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(informationList => this.remove$(...informationList)));
+        return this.getByProof$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(informationList => this.remove$(...informationList)));
     }
     remove$(...information) {
         return this.informationStorage.remove$(...information);
@@ -954,10 +1021,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
 /* harmony import */ var src_app_utils_crypto_crypto__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/utils/crypto/crypto */ "./src/app/utils/crypto/crypto.ts");
-/* harmony import */ var src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/utils/storage/storage */ "./src/app/utils/storage/storage.ts");
-/* harmony import */ var _caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../caption/caption-repository.service */ "./src/app/services/data/caption/caption-repository.service.ts");
-/* harmony import */ var _information_information_repository_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../information/information-repository.service */ "./src/app/services/data/information/information-repository.service.ts");
-/* harmony import */ var _signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../signature/signature-repository.service */ "./src/app/services/data/signature/signature-repository.service.ts");
+/* harmony import */ var src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/utils/mime-type */ "./src/app/utils/mime-type.ts");
+/* harmony import */ var src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/utils/rx-operators */ "./src/app/utils/rx-operators.ts");
+/* harmony import */ var src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/utils/storage/storage */ "./src/app/utils/storage/storage.ts");
+/* harmony import */ var _caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../caption/caption-repository.service */ "./src/app/services/data/caption/caption-repository.service.ts");
+/* harmony import */ var _information_information_repository_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../information/information-repository.service */ "./src/app/services/data/information/information-repository.service.ts");
+/* harmony import */ var _signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../signature/signature-repository.service */ "./src/app/services/data/signature/signature-repository.service.ts");
+
+
 
 
 
@@ -974,7 +1045,7 @@ let ProofRepository = class ProofRepository {
         this.captionRepository = captionRepository;
         this.informationRepository = informationRepository;
         this.signatureRepository = signatureRepository;
-        this.proofStorage = new src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_6__["Storage"]('proof');
+        this.proofStorage = new src_app_utils_storage_storage__WEBPACK_IMPORTED_MODULE_8__["Storage"]('proof');
         this.rawFileDir = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["FilesystemDirectory"].Data;
         this.rawFileFolderName = 'raw';
     }
@@ -985,13 +1056,13 @@ let ProofRepository = class ProofRepository {
     }
     add$(...proofs) { return this.proofStorage.add$(...proofs); }
     remove$(...proofs) {
-        return this.proofStorage.remove$(...proofs).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["forkJoin"])(proofs.map(proof => this.deleteRawFile$(proof))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["defaultIfEmpty"])([]))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["forkJoin"])(proofs.map(proof => this.captionRepository.removeByProof$(proof))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["defaultIfEmpty"])([]))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["forkJoin"])(proofs.map(proof => this.informationRepository.removeByProof$(proof))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["defaultIfEmpty"])([]))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["forkJoin"])(proofs.map(proof => this.signatureRepository.removeByProof$(proof))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["defaultIfEmpty"])([]))));
+        return this.proofStorage.remove$(...proofs).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["forkJoinWithDefault"])(proofs.map(proof => this.deleteRawFile$(proof)))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["forkJoinWithDefault"])(proofs.map(proof => this.captionRepository.removeByProof$(proof)))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["forkJoinWithDefault"])(proofs.map(proof => this.informationRepository.removeByProof$(proof)))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMapTo"])(Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_7__["forkJoinWithDefault"])(proofs.map(proof => this.signatureRepository.removeByProof$(proof)))));
     }
     getRawFile$(proof) {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["defer"])(() => Filesystem.readFile({
-            path: `${this.rawFileFolderName}/${proof.hash}.${proof.mimeType.extension}`,
+            path: `${this.rawFileFolderName}/${proof.hash}.${Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_6__["getExtension"])(proof.mimeType)}`,
             directory: this.rawFileDir
-        })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(result => result.data));
+        })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["pluck"])('data'));
     }
     /**
      * Copy [rawBase64] to add raw file to internal storage.
@@ -1000,23 +1071,23 @@ let ProofRepository = class ProofRepository {
      */
     saveRawFile$(rawBase64, mimeType) {
         return Object(src_app_utils_crypto_crypto__WEBPACK_IMPORTED_MODULE_5__["sha256WithBase64$"])(rawBase64).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(hash => Filesystem.writeFile({
-            path: `${this.rawFileFolderName}/${hash}.${mimeType.extension}`,
+            path: `${this.rawFileFolderName}/${hash}.${Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_6__["getExtension"])(mimeType)}`,
             data: rawBase64,
             directory: this.rawFileDir,
             recursive: true
-        })), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(result => result.uri));
+        })), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["pluck"])('uri'));
     }
     deleteRawFile$(proof) {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["defer"])(() => Filesystem.deleteFile({
-            path: `${this.rawFileFolderName}/${proof.hash}.${proof.mimeType.extension}`,
+            path: `${this.rawFileFolderName}/${proof.hash}.${Object(src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_6__["getExtension"])(proof.mimeType)}`,
             directory: this.rawFileDir
         }));
     }
 };
 ProofRepository.ctorParameters = () => [
-    { type: _caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_7__["CaptionRepository"] },
-    { type: _information_information_repository_service__WEBPACK_IMPORTED_MODULE_8__["InformationRepository"] },
-    { type: _signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_9__["SignatureRepository"] }
+    { type: _caption_caption_repository_service__WEBPACK_IMPORTED_MODULE_9__["CaptionRepository"] },
+    { type: _information_information_repository_service__WEBPACK_IMPORTED_MODULE_10__["InformationRepository"] },
+    { type: _signature_signature_repository_service__WEBPACK_IMPORTED_MODULE_11__["SignatureRepository"] }
 ];
 ProofRepository = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -1058,7 +1129,7 @@ let SignatureRepository = class SignatureRepository {
         return this.signatureStorage.add$(...signatures);
     }
     removeByProof$(proof) {
-        return this.getByProof$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(signatures => this.remove$(...signatures)));
+        return this.getByProof$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(signatures => this.remove$(...signatures)));
     }
     remove$(...signatures) {
         return this.signatureStorage.remove$(...signatures);
@@ -1088,7 +1159,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _ngneat_transloco__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngneat/transloco */ "./node_modules/@ngneat/transloco/__ivy_ngcc__/fesm2015/ngneat-transloco.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
-/* harmony import */ var src_app_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/transloco-root.module */ "./src/app/transloco-root.module.ts");
+/* harmony import */ var src_app_transloco_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/transloco/transloco-root.module */ "./src/app/transloco/transloco-root.module.ts");
 /* harmony import */ var _utils_preferences_preference_manager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/preferences/preference-manager */ "./src/app/utils/preferences/preference-manager.ts");
 
 
@@ -1096,23 +1167,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+const preferences = _utils_preferences_preference_manager__WEBPACK_IMPORTED_MODULE_5__["PreferenceManager"].LANGUAGE_PREF;
 let LanguageService = class LanguageService {
     constructor(translocoService) {
         this.translocoService = translocoService;
-        this.preferences = _utils_preferences_preference_manager__WEBPACK_IMPORTED_MODULE_5__["PreferenceManager"].LANGUAGE_PREF;
-        this.prefKeys = {
-            langauge: 'langauge'
-        };
-        this.languages = src_app_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__["languages"];
-        this.defaultLanguage = src_app_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__["defaultLanguage"];
-        this.currentLanguageKey$ = this.preferences.get$(this.prefKeys.langauge, src_app_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__["defaultLanguage"][0]);
+        this.languages = src_app_transloco_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__["languages"];
+        this.defaultLanguage = src_app_transloco_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__["defaultLanguage"];
+        this.currentLanguageKey$ = preferences.getString$("language" /* Language */, src_app_transloco_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__["defaultLanguage"][0]);
     }
     initialize$() {
-        this.translocoService.setDefaultLang(src_app_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__["defaultLanguage"][0]);
-        return this.currentLanguageKey$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(key => this.setCurrentLanguage$(key)));
+        this.translocoService.setDefaultLang(src_app_transloco_transloco_root_module__WEBPACK_IMPORTED_MODULE_4__["defaultLanguage"][0]);
+        return this.currentLanguageKey$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(key => this.setCurrentLanguage$(key)));
     }
     setCurrentLanguage$(key) {
-        return this.preferences.set$(this.prefKeys.langauge, key).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["mapTo"])(this.translocoService.setActiveLang(key)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["mapTo"])(key));
+        return preferences.setString$("language" /* Language */, key).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["mapTo"])(this.translocoService.setActiveLang(key)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["mapTo"])(key));
     }
 };
 LanguageService.ctorParameters = () => [
@@ -1141,8 +1209,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
-/* harmony import */ var src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/utils/background-task/background-task */ "./src/app/utils/background-task/background-task.ts");
+/* harmony import */ var _ngneat_transloco__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngneat/transloco */ "./node_modules/@ngneat/transloco/__ivy_ngcc__/fesm2015/ngneat-transloco.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/utils/background-task/background-task */ "./src/app/utils/background-task/background-task.ts");
+
 
 
 
@@ -1150,7 +1220,8 @@ __webpack_require__.r(__webpack_exports__);
 
 const { LocalNotifications } = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"];
 let NotificationService = class NotificationService {
-    constructor() {
+    constructor(translocoService) {
+        this.translocoService = translocoService;
         this.currentId = 1;
         LocalNotifications.requestPermission()
             .then(result => console.log(`Notification permission request result: ${result.granted}`));
@@ -1162,15 +1233,21 @@ let NotificationService = class NotificationService {
     // TODO: Add on-going configurations when this PR got merged and released:
     //       https://github.com/ionic-team/capacitor/pull/3165
     notify(id, title, body) {
-        Object(src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_4__["subscribeInBackground"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["defer"])(() => LocalNotifications.schedule({
+        console.log(`${title}: ${body}`);
+        Object(src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_5__["subscribeInBackground"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["defer"])(() => LocalNotifications.schedule({
             notifications: [{ title, body, id }]
         })));
     }
+    notifyError(id, error) {
+        this.notify(id, this.translocoService.translate('unknownError'), JSON.stringify(error));
+    }
     cancel(id) {
-        Object(src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_4__["subscribeInBackground"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["defer"])(() => LocalNotifications.cancel({ notifications: [{ id: String(id) }] })));
+        Object(src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_5__["subscribeInBackground"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["defer"])(() => LocalNotifications.cancel({ notifications: [{ id: String(id) }] })));
     }
 };
-NotificationService.ctorParameters = () => [];
+NotificationService.ctorParameters = () => [
+    { type: _ngneat_transloco__WEBPACK_IMPORTED_MODULE_3__["TranslocoService"] }
+];
 NotificationService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
         providedIn: 'root'
@@ -1203,7 +1280,7 @@ class Publisher {
     publish(proof) {
         const notificationId = this.notificationService.createNotificationId();
         this.notificationService.notify(notificationId, this.translocoService.translate('publishingProof'), this.translocoService.translate('message.publishingProof', { hash: proof.hash, publisherName: this.name }));
-        Object(src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_1__["subscribeInBackground"])(this.run$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["tap"])(_ => this.notificationService.notify(notificationId, this.translocoService.translate('proofPublished'), this.translocoService.translate('message.proofPublished', { hash: proof.hash, publisherName: this.name })))));
+        Object(src_app_utils_background_task_background_task__WEBPACK_IMPORTED_MODULE_1__["subscribeInBackground"])(this.run$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["tap"])(_ => this.notificationService.notify(notificationId, this.translocoService.translate('proofPublished'), this.translocoService.translate('message.proofPublished', { hash: proof.hash, publisherName: this.name })))), error => this.notificationService.notifyError(notificationId, error));
     }
 }
 
@@ -1242,9 +1319,9 @@ let PublishersAlert = class PublishersAlert {
         this.publishers.push(publisher);
     }
     present$(proof) {
-        return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["defer"])(() => this.alertController.create({
+        return this.getEnabledPublishers$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMap"])(publishers => this.alertController.create({
             header: this.translocoService.translate('selectAPublisher'),
-            inputs: this.publishers.map((publisher, index) => ({
+            inputs: publishers.map((publisher, index) => ({
                 name: publisher.name,
                 type: 'radio',
                 label: publisher.name,
@@ -1258,7 +1335,10 @@ let PublishersAlert = class PublishersAlert {
                     text: this.translocoService.translate('ok'),
                     handler: (name) => { var _a; return (_a = this.getPublisherByName(name)) === null || _a === void 0 ? void 0 : _a.publish(proof); }
                 }]
-        })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMap"])(alertElement => alertElement.present()));
+        })), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMap"])(alertElement => alertElement.present()));
+    }
+    getEnabledPublishers$() {
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["from"])(this.publishers).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["switchMap"])(publisher => Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["zip"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["of"])(publisher), publisher.isEnabled$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["first"])()))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["filter"])(([_, isEnabled]) => isEnabled), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["pluck"])(0), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["toArray"])());
     }
     getPublisherByName(name) {
         return this.publishers.find(publisher => publisher.name === name);
@@ -1300,7 +1380,10 @@ class SamplePublisher extends _publisher__WEBPACK_IMPORTED_MODULE_2__["Publisher
         this.name = 'Sample Publisher';
     }
     run$(proof) {
-        return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["of"])(void 0).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])(_ => console.log(`Start publishing ${proof.hash} from ${this.name}.`)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["delay"])(3000), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])(_ => console.log(`Finish publishing ${proof.hash} from ${this.name}.`)));
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["of"])(void 0).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["delay"])(3000));
+    }
+    isEnabled$() {
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["of"])(true);
     }
 }
 
@@ -1335,13 +1418,9 @@ let SerializationService = class SerializationService {
     createSortedProofInformation$(proof) {
         return this.informationRepository.getByProof$(proof).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(informationList => {
             const sortedInformation = informationList.sort((a, b) => {
-                const proofHashCompared = a.proofHash.localeCompare(b.proofHash);
                 const providerCompared = a.provider.localeCompare(b.provider);
                 const nameCompared = a.name.localeCompare(b.name);
                 const valueCompared = a.value.localeCompare(b.value);
-                if (proofHashCompared !== 0) {
-                    return proofHashCompared;
-                }
                 if (providerCompared !== 0) {
                     return providerCompared;
                 }
@@ -1349,8 +1428,8 @@ let SerializationService = class SerializationService {
                     return nameCompared;
                 }
                 return valueCompared;
-            });
-            return { proof, sortedInformation };
+            }).map(({ provider, name, value }) => ({ provider, name, value }));
+            return { proof, information: sortedInformation };
         }));
     }
 };
@@ -1367,10 +1446,10 @@ SerializationService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])(
 
 /***/ }),
 
-/***/ "./src/app/transloco-root.module.ts":
-/*!******************************************!*\
-  !*** ./src/app/transloco-root.module.ts ***!
-  \******************************************/
+/***/ "./src/app/transloco/transloco-root.module.ts":
+/*!****************************************************!*\
+  !*** ./src/app/transloco/transloco-root.module.ts ***!
+  \****************************************************/
 /*! exports provided: languages, defaultLanguage, TranslocoHttpLoader, TranslocoRootModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1384,7 +1463,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _ngneat_transloco__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngneat/transloco */ "./node_modules/@ngneat/transloco/__ivy_ngcc__/fesm2015/ngneat-transloco.js");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
 
 
 
@@ -1450,14 +1529,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
 
 const { BackgroundTask } = _capacitor_core__WEBPACK_IMPORTED_MODULE_0__["Plugins"];
-function subscribeInBackground(work$) {
+function subscribeInBackground(work$, error, complete) {
     if (_capacitor_core__WEBPACK_IMPORTED_MODULE_0__["Capacitor"].isPluginAvailable('BackgroundTask')) {
         const taskId = BackgroundTask.beforeExit(() => {
-            work$.subscribe(_ => BackgroundTask.finish({ taskId }));
+            work$.subscribe(_ => BackgroundTask.finish({ taskId }), error, complete);
         });
     }
     else {
-        work$.subscribe();
+        work$.subscribe(_ => _, error, complete);
     }
 }
 
@@ -1599,6 +1678,40 @@ function fileNameWithoutExtension(uri) {
 
 /***/ }),
 
+/***/ "./src/app/utils/mime-type.ts":
+/*!************************************!*\
+  !*** ./src/app/utils/mime-type.ts ***!
+  \************************************/
+/*! exports provided: getExtension, fromExtension */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getExtension", function() { return getExtension; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromExtension", function() { return fromExtension; });
+function getExtension(mimeType) {
+    switch (mimeType) {
+        case 'image/jpeg':
+            return 'jpg';
+        case 'image/png':
+            return 'png';
+    }
+}
+function fromExtension(extension) {
+    switch (extension) {
+        case 'jpg':
+        case 'jpeg':
+            return 'image/jpeg';
+        case 'png':
+            return 'image/png';
+        default:
+            throw TypeError(`Unknown extension: ${extension}`);
+    }
+}
+
+
+/***/ }),
+
 /***/ "./src/app/utils/preferences/preference-manager.ts":
 /*!*********************************************************!*\
   !*** ./src/app/utils/preferences/preference-manager.ts ***!
@@ -1614,6 +1727,7 @@ __webpack_require__.r(__webpack_exports__);
 class PreferenceManager {
 }
 PreferenceManager.LANGUAGE_PREF = new _preferences__WEBPACK_IMPORTED_MODULE_0__["Preferences"]("language" /* Language */);
+PreferenceManager.DEFAULT_INFORMATION_PROVIDER_PREF = new _preferences__WEBPACK_IMPORTED_MODULE_0__["Preferences"]("defaultInformationProvider" /* DefaultInformationProvider */);
 PreferenceManager.DEFAULT_SIGNATURE_PROVIDER_PREF = new _preferences__WEBPACK_IMPORTED_MODULE_0__["Preferences"]("defaultSignatureProvider" /* DefaultSignatureProvider */);
 
 
@@ -1639,9 +1753,23 @@ const { Storage } = _capacitor_core__WEBPACK_IMPORTED_MODULE_0__["Plugins"];
 class Preferences {
     constructor(name) {
         this.name = name;
+        this.subjects = new Map();
     }
     get$(key, defaultValue, converter = JSON.parse) {
-        return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Storage.get({ key: `${name}_${key}` })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(ret => ret.value), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(value => (value && value !== '[null]') ? converter(value) : defaultValue));
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(this.subjects.has(key))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(existed => {
+            if (!existed) {
+                return this._get$(key, defaultValue, converter);
+            }
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(existed);
+        }), 
+        // tslint:disable-next-line: no-non-null-assertion
+        Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => this.subjects.get(key).asObservable())));
+    }
+    _get$(key, defaultValue, converter) {
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Storage.get({ key: `${this.name}_${key}` })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["pluck"])('value'), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(value => (value && value !== '[null]') ? converter(value) : defaultValue), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(converted => this.updateSubjects(key, converted)));
+    }
+    getBoolean$(key, defaultValue = false) {
+        return this.get$(key, defaultValue, (v) => v === 'true');
     }
     getNumber$(key, defaultValue = 0) {
         return this.get$(key, defaultValue, Number);
@@ -1650,7 +1778,10 @@ class Preferences {
         return this.get$(key, defaultValue, (v) => v);
     }
     set$(key, value, converter = JSON.stringify) {
-        return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Storage.set({ key: `${name}_${key}`, value: converter(value) })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(value));
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Storage.set({ key: `${this.name}_${key}`, value: converter(value) })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(this.updateSubjects(key, value)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(value));
+    }
+    setBoolean$(key, value) {
+        return this.set$(key, value, String);
     }
     setNumber$(key, value) {
         return this.set$(key, value, String);
@@ -1658,6 +1789,40 @@ class Preferences {
     setString$(key, value) {
         return this.set$(key, value, (v) => v);
     }
+    updateSubjects(key, value) {
+        var _a;
+        if (this.subjects.has(key)) {
+            (_a = this.subjects.get(key)) === null || _a === void 0 ? void 0 : _a.next(value);
+        }
+        else {
+            this.subjects.set(key, new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](value));
+        }
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/app/utils/rx-operators.ts":
+/*!***************************************!*\
+  !*** ./src/app/utils/rx-operators.ts ***!
+  \***************************************/
+/*! exports provided: isNonNullable, forkJoinWithDefault */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isNonNullable", function() { return isNonNullable; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "forkJoinWithDefault", function() { return forkJoinWithDefault; });
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+
+
+function isNonNullable() {
+    return (source$) => source$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["filter"])((v) => v !== null && v !== undefined));
+}
+function forkJoinWithDefault(sources, defaultValue = []) {
+    return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["forkJoin"])(sources).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["defaultIfEmpty"])(defaultValue));
 }
 
 
@@ -1677,6 +1842,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
 /* harmony import */ var _crypto_crypto__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../crypto/crypto */ "./src/app/utils/crypto/crypto.ts");
+/* harmony import */ var _rx_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../rx-operators */ "./src/app/utils/rx-operators.ts");
+
 
 
 
@@ -1689,8 +1856,7 @@ class Storage {
         this.tuples$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"]([]);
     }
     refresh$() {
-        console.log(`Storege refreshing: ${this.name}`);
-        return this.makeNameDir$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMapTo"])(this.readNameDir$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(result => result.files), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(fileNames => Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["forkJoin"])(fileNames.map(fileName => this.readFile$(fileName))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["defaultIfEmpty"])([]))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(results => results.map(result => JSON.parse(result.data))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(tuples => this.tuples$.next(tuples)));
+        return this.makeNameDir$().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMapTo"])(this.readNameDir$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["pluck"])('files'), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(fileNames => Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["from"])(fileNames)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])(fileName => this.readFile$(fileName)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(result => JSON.parse(result.data)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["toArray"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(tuples => this.tuples$.next(tuples)));
     }
     makeNameDir$() {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Filesystem.mkdir({
@@ -1698,7 +1864,7 @@ class Storage {
             directory: this.directory,
             recursive: true
         })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(void 0), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])((err) => {
-            console.log(`${err.message} (${this.directory}/${this.name})`);
+            console.log(`${this.directory}/${this.name}: ${err.message}`);
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(void 0);
         }));
     }
@@ -1717,7 +1883,7 @@ class Storage {
     }
     getAll$() { return this.tuples$.asObservable(); }
     add$(...tuples) {
-        return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["forkJoin"])(tuples.map(tuple => this.saveFile$(tuple))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMapTo"])(this.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(tuples));
+        return Object(_rx_operators__WEBPACK_IMPORTED_MODULE_4__["forkJoinWithDefault"])(tuples.map(tuple => this.saveFile$(tuple))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMapTo"])(this.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(tuples));
     }
     saveFile$(tuple) {
         return Object(_crypto_crypto__WEBPACK_IMPORTED_MODULE_3__["sha256$"])(tuple).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(hash => Filesystem.writeFile({
@@ -1729,7 +1895,7 @@ class Storage {
         })));
     }
     remove$(...tuples) {
-        return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["forkJoin"])(tuples.map(tuple => this.deleteFile$(tuple))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMapTo"])(this.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(tuples));
+        return Object(_rx_operators__WEBPACK_IMPORTED_MODULE_4__["forkJoinWithDefault"])(tuples.map(tuple => this.deleteFile$(tuple))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMapTo"])(this.refresh$()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(tuples));
     }
     deleteFile$(tuple) {
         return Object(_crypto_crypto__WEBPACK_IMPORTED_MODULE_3__["sha256$"])(tuple).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(hash => Filesystem.deleteFile({

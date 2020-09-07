@@ -125,6 +125,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_services_collector_collector_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/services/collector/collector.service */ "./src/app/services/collector/collector.service.ts");
 /* harmony import */ var src_app_services_data_proof_proof_repository_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/services/data/proof/proof-repository.service */ "./src/app/services/data/proof/proof-repository.service.ts");
 /* harmony import */ var src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/utils/mime-type */ "./src/app/utils/mime-type.ts");
+/* harmony import */ var src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/utils/rx-operators */ "./src/app/utils/rx-operators.ts");
+
 
 
 
@@ -140,7 +142,7 @@ let StoragePage = class StoragePage {
         this.cameraService = cameraService;
         this.collectorService = collectorService;
         this.proofs$ = this.proofRepository.getAll$();
-        this.proofsWithRaw$ = this.proofs$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["concatMap"])(proofs => Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["forkJoin"])(proofs.map(proof => this.proofRepository.getRawFile$(proof))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["defaultIfEmpty"])([]))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(base64Strings => Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["zip"])(this.proofs$, Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(base64Strings))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(([proofs, base64Strings]) => proofs.map((proof, index) => ({
+        this.proofsWithRaw$ = this.proofs$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["concatMap"])(proofs => Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_9__["forkJoinWithDefault"])(proofs.map(proof => this.proofRepository.getRawFile$(proof)))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["concatMap"])(base64Strings => Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["zip"])(this.proofs$, Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(base64Strings))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(([proofs, base64Strings]) => proofs.map((proof, index) => ({
             proof,
             rawBase64: base64Strings[index]
         }))));
@@ -214,41 +216,6 @@ CameraService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     })
 ], CameraService);
 
-
-
-/***/ }),
-
-/***/ "./src/app/utils/mime-type.ts":
-/*!************************************!*\
-  !*** ./src/app/utils/mime-type.ts ***!
-  \************************************/
-/*! exports provided: fromExtension, JPEG, PNG */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromExtension", function() { return fromExtension; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JPEG", function() { return JPEG; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PNG", function() { return PNG; });
-function fromExtension(extension) {
-    switch (extension) {
-        case 'jpeg':
-        case 'jpg':
-            return JPEG;
-        case 'png':
-            return PNG;
-        default:
-            throw new Error('Unknown extension.');
-    }
-}
-const JPEG = {
-    type: 'image/jpeg',
-    extension: 'jpg'
-};
-const PNG = {
-    type: 'image/png',
-    extension: 'png'
-};
 
 
 /***/ })

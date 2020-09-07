@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header *transloco=\"let t\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button routerLink=\"..\" routerDirection=\"back\">\n        <ion-icon slot=\"icon-only\" name=\"arrow-back\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>{{ t('settings') }}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content *transloco=\"let t\">\n  <ion-list>\n    <ion-list-header>{{ t('general') }}</ion-list-header>\n    <ion-item>\n      <ion-icon name=\"language\" slot=\"start\"></ion-icon>\n      <ion-label>{{ t('languages') }}</ion-label>\n      <ion-select [ngModel]=\"currentLanguageKey$ | async\" (ngModelChange)=\"setCurrentLanguage($event)\">\n        <ion-select-option *ngFor=\"let language of langauges | keyvalue\" [value]=\"language.key\">{{ language.value }}\n        </ion-select-option>\n      </ion-select>\n    </ion-item>\n    <ion-list-header>{{ t('defaultSignature') }}</ion-list-header>\n    <ion-item>\n      <ion-icon name=\"key\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ t('publicKey') }}</h2>\n        <p>{{ publicKey$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-icon name=\"key\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ t('privateKey') }}</h2>\n        <p>{{ privateKey$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-list-header>{{ t('about') }}</ion-list-header>\n    <ion-item>\n      <ion-icon name=\"information\" slot=\"start\"></ion-icon>\n      <ion-label>\n        <h2>{{ t('version') }}</h2>\n        <p>{{ version$ | async }}</p>\n      </ion-label>\n    </ion-item>\n  </ion-list>\n</ion-content>";
+      __webpack_exports__["default"] = "<ion-header *transloco=\"let t\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-button routerLink=\"..\" routerDirection=\"back\">\n        <ion-icon slot=\"icon-only\" name=\"arrow-back\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>{{ t('settings') }}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content *transloco=\"let t\">\n  <ion-list>\n    <ion-list-header>{{ t('general') }}</ion-list-header>\n    <ion-item>\n      <ion-icon name=\"language\" slot=\"start\"></ion-icon>\n      <ion-label>{{ t('languages') }}</ion-label>\n      <ion-select [ngModel]=\"currentLanguageKey$ | async\" (ngModelChange)=\"setCurrentLanguage($event)\">\n        <ion-select-option *ngFor=\"let language of langauges | keyvalue\" [value]=\"language.key\">{{ language.value }}\n        </ion-select-option>\n      </ion-select>\n    </ion-item>\n    <ion-list-header>{{ t('defaultInformationProvider') + ' (Capacitor)' }}</ion-list-header>\n    <ion-item lines=\"none\">\n      <ion-icon name=\"phone-portrait\" slot=\"start\"></ion-icon>\n      <ion-label>{{ t('collectDeviceInfo') }}</ion-label>\n      <ion-toggle [checked]=\"isDeviceInfoCollectionEnabled$ | async\"\n        (ionChange)=\"setDeviceInfoCollection($event.detail.checked)\" slot=\"end\"></ion-toggle>\n    </ion-item>\n    <ion-item lines=\"full\">\n      <ion-icon name=\"locate\" slot=\"start\"></ion-icon>\n      <ion-label>{{ t('collectLocationInfo') }}</ion-label>\n      <ion-toggle [checked]=\"isLocationInfoCollectionEnabled$ | async\"\n        (ionChange)=\"setLocationInfoCollection($event.detail.checked)\" slot=\"end\"></ion-toggle>\n    </ion-item>\n    <ion-list-header>{{ t('defaultSignature') + ' (Web Crypto API)' }}</ion-list-header>\n    <ion-item lines=\"none\">\n      <ion-icon name=\"key\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ t('publicKey') }}</h2>\n        <p>{{ publicKey$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-item lines=\"full\">\n      <ion-icon name=\"key\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{ t('privateKey') }}</h2>\n        <p>{{ privateKey$ | async }}</p>\n      </ion-label>\n    </ion-item>\n    <ion-list-header>{{ t('about') }}</ion-list-header>\n    <ion-item lines=\"none\">\n      <ion-icon name=\"information\" slot=\"start\"></ion-icon>\n      <ion-label>\n        <h2>{{ t('version') }}</h2>\n        <p>{{ version$ | async }}</p>\n      </ion-label>\n    </ion-item>\n  </ion-list>\n</ion-content>";
       /***/
     },
 
@@ -243,13 +243,19 @@
       /* harmony import */
 
 
-      var src_app_services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      var src_app_services_collector_information_capacitor_provider_capacitor_provider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! src/app/services/collector/information/capacitor-provider/capacitor-provider */
+      "./src/app/services/collector/information/capacitor-provider/capacitor-provider.ts");
+      /* harmony import */
+
+
+      var src_app_services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! src/app/services/collector/signature/default-provider/default-provider */
       "./src/app/services/collector/signature/default-provider/default-provider.ts");
       /* harmony import */
 
 
-      var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      var src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
       /*! src/app/services/language/language.service */
       "./src/app/services/language/language.service.ts");
 
@@ -262,19 +268,29 @@
           this.languageService = languageService;
           this.langauges = this.languageService.languages;
           this.currentLanguageKey$ = this.languageService.currentLanguageKey$;
-          this.publicKey$ = src_app_services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_6__["DefaultSignatureProvider"].getPublicKey$();
-          this.privateKey$ = src_app_services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_6__["DefaultSignatureProvider"].getPrivateKey$();
+          this.isDeviceInfoCollectionEnabled$ = src_app_services_collector_information_capacitor_provider_capacitor_provider__WEBPACK_IMPORTED_MODULE_6__["CapacitorProvider"].isDeviceInfoCollectionEnabled$();
+          this.isLocationInfoCollectionEnabled$ = src_app_services_collector_information_capacitor_provider_capacitor_provider__WEBPACK_IMPORTED_MODULE_6__["CapacitorProvider"].isLocationInfoCollectionEnabled$();
+          this.publicKey$ = src_app_services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_7__["DefaultSignatureProvider"].getPublicKey$();
+          this.privateKey$ = src_app_services_collector_signature_default_provider_default_provider__WEBPACK_IMPORTED_MODULE_7__["DefaultSignatureProvider"].getPrivateKey$();
           this.version$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["defer"])(function () {
             return Device.getInfo();
-          }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (deviceInfo) {
-            return deviceInfo.appVersion;
-          }));
+          }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["pluck"])('appVersion'));
         }
 
         _createClass(SettingsPage, [{
           key: "setCurrentLanguage",
           value: function setCurrentLanguage(languageKey) {
             this.languageService.setCurrentLanguage$(languageKey).pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_3__["untilDestroyed"])(this)).subscribe();
+          }
+        }, {
+          key: "setDeviceInfoCollection",
+          value: function setDeviceInfoCollection(enable) {
+            src_app_services_collector_information_capacitor_provider_capacitor_provider__WEBPACK_IMPORTED_MODULE_6__["CapacitorProvider"].setDeviceInfoCollection$(enable).pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_3__["untilDestroyed"])(this)).subscribe();
+          }
+        }, {
+          key: "setLocationInfoCollection",
+          value: function setLocationInfoCollection(enable) {
+            src_app_services_collector_information_capacitor_provider_capacitor_provider__WEBPACK_IMPORTED_MODULE_6__["CapacitorProvider"].setLocationInfoCollection$(enable).pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_3__["untilDestroyed"])(this)).subscribe();
           }
         }]);
 
@@ -283,7 +299,7 @@
 
       SettingsPage.ctorParameters = function () {
         return [{
-          type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_7__["LanguageService"]
+          type: src_app_services_language_language_service__WEBPACK_IMPORTED_MODULE_8__["LanguageService"]
         }];
       };
 

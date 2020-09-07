@@ -270,6 +270,12 @@
       var src_app_utils_mime_type__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
       /*! src/app/utils/mime-type */
       "./src/app/utils/mime-type.ts");
+      /* harmony import */
+
+
+      var src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      /*! src/app/utils/rx-operators */
+      "./src/app/utils/rx-operators.ts");
 
       var StoragePage = /*#__PURE__*/function () {
         function StoragePage(proofRepository, cameraService, collectorService) {
@@ -282,10 +288,10 @@
           this.collectorService = collectorService;
           this.proofs$ = this.proofRepository.getAll$();
           this.proofsWithRaw$ = this.proofs$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["concatMap"])(function (proofs) {
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["forkJoin"])(proofs.map(function (proof) {
+            return Object(src_app_utils_rx_operators__WEBPACK_IMPORTED_MODULE_9__["forkJoinWithDefault"])(proofs.map(function (proof) {
               return _this.proofRepository.getRawFile$(proof);
-            })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["defaultIfEmpty"])([]));
-          }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (base64Strings) {
+            }));
+          }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["concatMap"])(function (base64Strings) {
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["zip"])(_this.proofs$, Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(base64Strings));
           }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (_ref) {
             var _ref2 = _slicedToArray(_ref, 2),
@@ -432,63 +438,6 @@
       CameraService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
         providedIn: 'root'
       })], CameraService);
-      /***/
-    },
-
-    /***/
-    "./src/app/utils/mime-type.ts":
-    /*!************************************!*\
-      !*** ./src/app/utils/mime-type.ts ***!
-      \************************************/
-
-    /*! exports provided: fromExtension, JPEG, PNG */
-
-    /***/
-    function srcAppUtilsMimeTypeTs(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "fromExtension", function () {
-        return fromExtension;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "JPEG", function () {
-        return JPEG;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "PNG", function () {
-        return PNG;
-      });
-
-      function fromExtension(extension) {
-        switch (extension) {
-          case 'jpeg':
-          case 'jpg':
-            return JPEG;
-
-          case 'png':
-            return PNG;
-
-          default:
-            throw new Error('Unknown extension.');
-        }
-      }
-
-      var JPEG = {
-        type: 'image/jpeg',
-        extension: 'jpg'
-      };
-      var PNG = {
-        type: 'image/png',
-        extension: 'png'
-      };
       /***/
     }
   }]);
