@@ -1,6 +1,6 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["shadow-css-d7d058ec-d59cb009-js"],{
 
-/***/ "./node_modules/@ionic/pwa-elements/dist/esm/shadow-css-d7d058ec-d59cb009.js":
+/***/ "GvPW":
 /*!***********************************************************************************!*\
   !*** ./node_modules/@ionic/pwa-elements/dist/esm/shadow-css-d7d058ec-d59cb009.js ***!
   \***********************************************************************************/

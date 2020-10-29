@@ -1,7 +1,7 @@
 (function () {
   (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["stencil-polyfills-css-shim"], {
     /***/
-    "./node_modules/@ionic/pwa-elements/dist/esm/css-shim-8775d9ad-556f0cc2.js":
+    "qVyR":
     /*!*********************************************************************************!*\
       !*** ./node_modules/@ionic/pwa-elements/dist/esm/css-shim-8775d9ad-556f0cc2.js ***!
       \*********************************************************************************/
@@ -9,7 +9,7 @@
     /*! no static exports found */
 
     /***/
-    function node_modulesIonicPwaElementsDistEsmCssShim8775d9ad556f0cc2Js(module, exports) {
+    function qVyR(module, exports) {
       /*
       Extremely simple css parser. Intended to be not more than what we need
       and definitely not necessarily correct =).

@@ -1,7 +1,7 @@
 (function () {
   (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["dom-js"], {
     /***/
-    "./node_modules/@ionic/pwa-elements/dist/esm/polyfills/dom.js":
+    "u+kQ":
     /*!********************************************************************!*\
       !*** ./node_modules/@ionic/pwa-elements/dist/esm/polyfills/dom.js ***!
       \********************************************************************/
@@ -9,7 +9,7 @@
     /*! no static exports found */
 
     /***/
-    function node_modulesIonicPwaElementsDistEsmPolyfillsDomJs(module, exports) {
+    function uKQ(module, exports) {
       (function () {
         /*
           Copyright (c) 2016 The Polymer Project Authors. All rights reserved.

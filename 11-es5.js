@@ -27,7 +27,7 @@
 
   (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[11], {
     /***/
-    "./node_modules/@ionic/core/dist/esm/ion-datetime_3.entry.js":
+    "WgF3":
     /*!*******************************************************************!*\
       !*** ./node_modules/@ionic/core/dist/esm/ion-datetime_3.entry.js ***!
       \*******************************************************************/
@@ -35,7 +35,7 @@
     /*! exports provided: ion_datetime, ion_picker, ion_picker_column */
 
     /***/
-    function node_modulesIonicCoreDistEsmIonDatetime_3EntryJs(module, __webpack_exports__, __webpack_require__) {
+    function WgF3(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
@@ -62,49 +62,49 @@
 
       var _index_92848855_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
       /*! ./index-92848855.js */
-      "./node_modules/@ionic/core/dist/esm/index-92848855.js");
+      "sxy2");
       /* harmony import */
 
 
       var _ionic_global_23e7365a_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
       /*! ./ionic-global-23e7365a.js */
-      "./node_modules/@ionic/core/dist/esm/ionic-global-23e7365a.js");
+      "N4tN");
       /* harmony import */
 
 
-      var _helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! ./helpers-5c745fbd.js */
-      "./node_modules/@ionic/core/dist/esm/helpers-5c745fbd.js");
+      var _helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ./helpers-47d562d2.js */
+      "9t5z");
       /* harmony import */
 
 
-      var _animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-      /*! ./animation-a635a2fc.js */
-      "./node_modules/@ionic/core/dist/esm/animation-a635a2fc.js");
+      var _animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! ./animation-239bd3e5.js */
+      "L1bk");
       /* harmony import */
 
 
       var _hardware_back_button_7b6ede21_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! ./hardware-back-button-7b6ede21.js */
-      "./node_modules/@ionic/core/dist/esm/hardware-back-button-7b6ede21.js");
+      "x/Nk");
       /* harmony import */
 
 
-      var _overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-      /*! ./overlays-2cc140a1.js */
-      "./node_modules/@ionic/core/dist/esm/overlays-2cc140a1.js");
+      var _overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! ./overlays-d577c227.js */
+      "xG4I");
       /* harmony import */
 
 
       var _haptic_7b8ba70a_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! ./haptic-7b8ba70a.js */
-      "./node_modules/@ionic/core/dist/esm/haptic-7b8ba70a.js");
+      "2c9M");
       /* harmony import */
 
 
       var _theme_5641d27f_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! ./theme-5641d27f.js */
-      "./node_modules/@ionic/core/dist/esm/theme-5641d27f.js");
+      "sPtc");
       /**
        * Gets a date value given a format
        * Defaults to the current date if
@@ -116,6 +116,10 @@
         var getValue = getValueFromFormat(date, format);
 
         if (getValue !== undefined) {
+          if (format === FORMAT_A || format === FORMAT_a) {
+            date.ampm = getValue;
+          }
+
           return getValue;
         }
 
@@ -415,10 +419,15 @@
               return true;
             }
           } else if (newData.year || newData.hour || newData.month || newData.day || newData.minute || newData.second) {
-            // newData is from of a datetime picker's selected values
-            // update the existing DatetimeData data with the new values
-            // do some magic for 12-hour values
-            if (newData.ampm && newData.hour) {
+            // newData is from the datetime picker's selected values
+            // update the existing datetimeValue with the new values
+            if (newData.ampm !== undefined && newData.hour !== undefined) {
+              // change the value of the hour based on whether or not it is am or pm
+              // if the meridiem is pm and equal to 12, it remains 12
+              // otherwise we add 12 to the hour value
+              // if the meridiem is am and equal to 12, we change it to 0
+              // otherwise we use its current hour value
+              // for example: 8 pm becomes 20, 12 am becomes 0, 4 am becomes 4
               newData.hour.value = newData.ampm.value === 'pm' ? newData.hour.value === 12 ? 12 : newData.hour.value + 12 : newData.hour.value === 12 ? 0 : newData.hour.value;
             } // merge new values from the picker's selection
             // to the existing DatetimeData values
@@ -438,6 +447,7 @@
               value: newData.hour ? newData.hour.value : newData.ampm.value === 'pm' ? existingData.hour < 12 ? existingData.hour + 12 : existingData.hour : existingData.hour >= 12 ? existingData.hour - 12 : existingData.hour
             };
             existingData['hour'] = newData['hour'].value;
+            existingData['ampm'] = newData['ampm'].value;
             return true;
           } // eww, invalid data
 
@@ -851,7 +861,7 @@
                     case 2:
                       pickerOptions = this.generatePickerOptions();
                       _context2.next = 5;
-                      return _overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_5__["p"].create(pickerOptions);
+                      return _overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_5__["p"].create(pickerOptions);
 
                     case 5:
                       picker = _context2.sent;
@@ -861,7 +871,7 @@
 
                         _this2.setFocus();
                       });
-                      picker.addEventListener('ionPickerColChange', /*#__PURE__*/function () {
+                      Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["a"])(picker, 'ionPickerColChange', /*#__PURE__*/function () {
                         var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
                           var data, colSelectedIndex, colOptions, changeData;
                           return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -876,11 +886,17 @@
                                     value: colOptions[colSelectedIndex].value
                                   };
 
+                                  if (data.name !== 'ampm' && _this2.datetimeValue.ampm !== undefined) {
+                                    changeData['ampm'] = {
+                                      value: _this2.datetimeValue.ampm
+                                    };
+                                  }
+
                                   _this2.updateDatetimeValue(changeData);
 
                                   picker.columns = _this2.generateColumns();
 
-                                case 7:
+                                case 8:
                                 case "end":
                                   return _context.stop();
                               }
@@ -1171,7 +1187,7 @@
               }
             }
 
-            var selectedIndex = column.selectedIndex = Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["c"])(indexMin, column.selectedIndex, indexMax);
+            var selectedIndex = column.selectedIndex = Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["e"])(indexMin, column.selectedIndex, indexMax);
             var opt = column.options[selectedIndex];
 
             if (opt) {
@@ -1207,7 +1223,7 @@
                 placeholder = this.placeholder;
             var mode = Object(_ionic_global_23e7365a_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
             var labelId = inputId + '-lbl';
-            var label = Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["f"])(el);
+            var label = Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["f"])(el);
             var addPlaceholderClass = text === undefined && placeholder != null ? true : false; // If selected text has been passed in, use that first
             // otherwise use the placeholder
 
@@ -1218,7 +1234,7 @@
               label.id = labelId;
             }
 
-            Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["a"])(true, el, this.name, this.value, this.disabled);
+            Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["c"])(true, el, this.name, this.value, this.disabled);
             return Object(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
               onClick: this.onClick,
               "aria-disabled": disabled ? 'true' : null,
@@ -1324,9 +1340,9 @@
        */
 
       var iosEnterAnimation = function iosEnterAnimation(baseEl) {
-        var baseAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-        var backdropAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-        var wrapperAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+        var baseAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+        var backdropAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+        var wrapperAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
         backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 0.01, 'var(--backdrop-opacity)').beforeStyles({
           'pointer-events': 'none'
         }).afterClearStyles(['pointer-events']);
@@ -1339,9 +1355,9 @@
 
 
       var iosLeaveAnimation = function iosLeaveAnimation(baseEl) {
-        var baseAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-        var backdropAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-        var wrapperAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+        var baseAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+        var backdropAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+        var wrapperAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
         backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 'var(--backdrop-opacity)', 0.01);
         wrapperAnimation.addElement(baseEl.querySelector('.picker-wrapper')).fromTo('transform', 'translateY(0%)', 'translateY(100%)');
         return baseAnimation.addElement(baseEl).easing('cubic-bezier(.36,.66,.04,1)').duration(400).addAnimation([backdropAnimation, wrapperAnimation]);
@@ -1399,13 +1415,13 @@
           this.animated = true;
 
           this.onBackdropTap = function () {
-            _this6.dismiss(undefined, _overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_5__["B"]);
+            _this6.dismiss(undefined, _overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_5__["B"]);
           };
 
           this.dispatchCancelHandler = function (ev) {
             var role = ev.detail.role;
 
-            if (Object(_overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_5__["i"])(role)) {
+            if (Object(_overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_5__["i"])(role)) {
               var cancelButton = _this6.buttons.find(function (b) {
                 return b.role === 'cancel';
               });
@@ -1418,7 +1434,7 @@
         _createClass(Picker, [{
           key: "connectedCallback",
           value: function connectedCallback() {
-            Object(_overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_5__["e"])(this.el);
+            Object(_overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_5__["e"])(this.el);
           }
           /**
            * Present the picker overlay after it has been created.
@@ -1435,7 +1451,7 @@
                   switch (_context3.prev = _context3.next) {
                     case 0:
                       _context3.next = 2;
-                      return Object(_overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_5__["d"])(this, 'pickerEnter', iosEnterAnimation, iosEnterAnimation, undefined);
+                      return Object(_overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_5__["d"])(this, 'pickerEnter', iosEnterAnimation, iosEnterAnimation, undefined);
 
                     case 2:
                       if (this.duration > 0) {
@@ -1475,7 +1491,7 @@
               clearTimeout(this.durationTimeout);
             }
 
-            return Object(_overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_5__["f"])(this, data, role, 'pickerLeave', iosLeaveAnimation, iosLeaveAnimation);
+            return Object(_overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_5__["f"])(this, data, role, 'pickerLeave', iosLeaveAnimation, iosLeaveAnimation);
           }
           /**
            * Returns a promise that resolves when the picker did dismiss.
@@ -1484,7 +1500,7 @@
         }, {
           key: "onDidDismiss",
           value: function onDidDismiss() {
-            return Object(_overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionPickerDidDismiss');
+            return Object(_overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionPickerDidDismiss');
           }
           /**
            * Returns a promise that resolves when the picker will dismiss.
@@ -1493,7 +1509,7 @@
         }, {
           key: "onWillDismiss",
           value: function onWillDismiss() {
-            return Object(_overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionPickerWillDismiss');
+            return Object(_overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionPickerWillDismiss');
           }
           /**
            * Get the column that matches the specified name.
@@ -1519,7 +1535,7 @@
                     case 0:
                       role = button.role;
 
-                      if (!Object(_overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_5__["i"])(role)) {
+                      if (!Object(_overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_5__["i"])(role)) {
                         _context4.next = 3;
                         break;
                       }
@@ -1572,7 +1588,7 @@
                       }
 
                       _context5.next = 3;
-                      return Object(_overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_5__["s"])(button.handler, this.getSelected());
+                      return Object(_overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_5__["s"])(button.handler, this.getSelected());
 
                     case 3:
                       rtn = _context5.sent;
@@ -1739,7 +1755,7 @@
                       _context6.next = 8;
                       return Promise.resolve().then(__webpack_require__.bind(null,
                       /*! ./index-eea61379.js */
-                      "./node_modules/@ionic/core/dist/esm/index-eea61379.js"));
+                      "ItpF"));
 
                     case 8:
                       this.gesture = _context6.sent.createGesture({
@@ -1959,7 +1975,10 @@
             // We have to prevent default in order to block scrolling under the picker
             // but we DO NOT have to stop propagation, since we still want
             // some "click" events to capture
-            detail.event.preventDefault();
+            if (detail.event.cancelable) {
+              detail.event.preventDefault();
+            }
+
             detail.event.stopPropagation();
             Object(_haptic_7b8ba70a_js__WEBPACK_IMPORTED_MODULE_6__["a"])(); // reset everything
 
@@ -1981,7 +2000,10 @@
         }, {
           key: "onMove",
           value: function onMove(detail) {
-            detail.event.preventDefault();
+            if (detail.event.cancelable) {
+              detail.event.preventDefault();
+            }
+
             detail.event.stopPropagation(); // update the scroll position relative to pointer start position
 
             var y = this.y + detail.deltaY;
@@ -2015,7 +2037,7 @@
               return;
             }
 
-            this.velocity = Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["c"])(-MAX_PICKER_SPEED, detail.velocityY * 23, MAX_PICKER_SPEED);
+            this.velocity = Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["e"])(-MAX_PICKER_SPEED, detail.velocityY * 23, MAX_PICKER_SPEED);
 
             if (this.velocity === 0 && detail.deltaY === 0) {
               var opt = detail.event.target.closest('.picker-opt');
@@ -2066,7 +2088,7 @@
               return;
             }
 
-            var selectedIndex = Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["c"])(min, this.col.selectedIndex || 0, max);
+            var selectedIndex = Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["e"])(min, this.col.selectedIndex || 0, max);
 
             if (this.col.prevSelected !== selectedIndex || forceRefresh) {
               var y = selectedIndex * this.optHeight * -1;

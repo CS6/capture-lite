@@ -1,7 +1,7 @@
 (function () {
   (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["stencil-polyfills-dom"], {
     /***/
-    "./node_modules/@ionic/pwa-elements/dist/esm/dom-76cc7c7d-0a082895.js":
+    "gL/J":
     /*!****************************************************************************!*\
       !*** ./node_modules/@ionic/pwa-elements/dist/esm/dom-76cc7c7d-0a082895.js ***!
       \****************************************************************************/
@@ -9,7 +9,7 @@
     /*! no static exports found */
 
     /***/
-    function node_modulesIonicPwaElementsDistEsmDom76cc7c7d0a082895Js(module, exports) {
+    function gLJ(module, exports) {
       (function () {
         var aa = new Set("annotation-xml color-profile font-face font-face-src font-face-uri font-face-format font-face-name missing-glyph".split(" "));
 

@@ -1,6 +1,6 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[39],{
 
-/***/ "./node_modules/@ionic/core/dist/esm/ion-textarea.entry.js":
+/***/ "U7LX":
 /*!*****************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/ion-textarea.entry.js ***!
   \*****************************************************************/
@@ -10,10 +10,10 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_textarea", function() { return Textarea; });
-/* harmony import */ var _index_92848855_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-92848855.js */ "./node_modules/@ionic/core/dist/esm/index-92848855.js");
-/* harmony import */ var _ionic_global_23e7365a_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ionic-global-23e7365a.js */ "./node_modules/@ionic/core/dist/esm/ionic-global-23e7365a.js");
-/* harmony import */ var _helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-5c745fbd.js */ "./node_modules/@ionic/core/dist/esm/helpers-5c745fbd.js");
-/* harmony import */ var _theme_5641d27f_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./theme-5641d27f.js */ "./node_modules/@ionic/core/dist/esm/theme-5641d27f.js");
+/* harmony import */ var _index_92848855_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-92848855.js */ "sxy2");
+/* harmony import */ var _ionic_global_23e7365a_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ionic-global-23e7365a.js */ "N4tN");
+/* harmony import */ var _helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-47d562d2.js */ "9t5z");
+/* harmony import */ var _theme_5641d27f_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./theme-5641d27f.js */ "sPtc");
 
 
 
@@ -31,8 +31,17 @@ const Textarea = class {
         this.ionStyle = Object(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this, "ionStyle", 7);
         this.ionBlur = Object(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this, "ionBlur", 7);
         this.ionFocus = Object(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this, "ionFocus", 7);
-        this.inputId = `ion-input-${textareaIds++}`;
+        this.inputId = `ion-textarea-${textareaIds++}`;
         this.didBlurAfterEdit = false;
+        /**
+         * This is required for a WebKit bug which requires us to
+         * blur and focus an input to properly focus the input in
+         * an item with delegatesFocus. It will no longer be needed
+         * with iOS 14.
+         *
+         * @internal
+         */
+        this.fireFocusEvents = true;
         this.hasFocus = false;
         /**
          * Indicates whether and how the text value should be automatically capitalized as it is entered/edited by the user.
@@ -88,19 +97,23 @@ const Textarea = class {
         this.onFocus = (ev) => {
             this.hasFocus = true;
             this.focusChange();
-            this.ionFocus.emit(ev);
+            if (this.fireFocusEvents) {
+                this.ionFocus.emit(ev);
+            }
         };
         this.onBlur = (ev) => {
             this.hasFocus = false;
             this.focusChange();
-            this.ionBlur.emit(ev);
+            if (this.fireFocusEvents) {
+                this.ionBlur.emit(ev);
+            }
         };
         this.onKeyDown = () => {
             this.checkClearOnEdit();
         };
     }
     debounceChanged() {
-        this.ionChange = Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["d"])(this.ionChange, this.debounce);
+        this.ionChange = Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["d"])(this.ionChange, this.debounce);
     }
     disabledChanged() {
         this.emitStyle();
@@ -135,7 +148,7 @@ const Textarea = class {
         }
     }
     componentDidLoad() {
-        Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["r"])(() => this.runAutoGrow());
+        Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["r"])(() => this.runAutoGrow());
     }
     runAutoGrow() {
         const nativeInput = this.nativeInput;
@@ -150,12 +163,22 @@ const Textarea = class {
         }
     }
     /**
-     * Sets focus on the specified `ion-textarea`. Use this method instead of the global
-     * `input.focus()`.
+     * Sets focus on the native `textarea` in `ion-textarea`. Use this method instead of the global
+     * `textarea.focus()`.
      */
     async setFocus() {
         if (this.nativeInput) {
             this.nativeInput.focus();
+        }
+    }
+    /**
+     * Sets blur on the native `textarea` in `ion-textarea`. Use this method instead of the global
+     * `textarea.blur()`.
+     * @internal
+     */
+    async setBlur() {
+        if (this.nativeInput) {
+            this.nativeInput.blur();
         }
     }
     /**
@@ -207,7 +230,7 @@ const Textarea = class {
         const mode = Object(_ionic_global_23e7365a_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
         const value = this.getValue();
         const labelId = this.inputId + '-lbl';
-        const label = Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["f"])(this.el);
+        const label = Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["f"])(this.el);
         if (label) {
             label.id = labelId;
         }

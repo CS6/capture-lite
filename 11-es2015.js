@@ -1,6 +1,6 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[11],{
 
-/***/ "./node_modules/@ionic/core/dist/esm/ion-datetime_3.entry.js":
+/***/ "WgF3":
 /*!*******************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/ion-datetime_3.entry.js ***!
   \*******************************************************************/
@@ -12,14 +12,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_datetime", function() { return Datetime; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_picker", function() { return Picker; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_picker_column", function() { return PickerColumnCmp; });
-/* harmony import */ var _index_92848855_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-92848855.js */ "./node_modules/@ionic/core/dist/esm/index-92848855.js");
-/* harmony import */ var _ionic_global_23e7365a_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ionic-global-23e7365a.js */ "./node_modules/@ionic/core/dist/esm/ionic-global-23e7365a.js");
-/* harmony import */ var _helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-5c745fbd.js */ "./node_modules/@ionic/core/dist/esm/helpers-5c745fbd.js");
-/* harmony import */ var _animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./animation-a635a2fc.js */ "./node_modules/@ionic/core/dist/esm/animation-a635a2fc.js");
-/* harmony import */ var _hardware_back_button_7b6ede21_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./hardware-back-button-7b6ede21.js */ "./node_modules/@ionic/core/dist/esm/hardware-back-button-7b6ede21.js");
-/* harmony import */ var _overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./overlays-2cc140a1.js */ "./node_modules/@ionic/core/dist/esm/overlays-2cc140a1.js");
-/* harmony import */ var _haptic_7b8ba70a_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./haptic-7b8ba70a.js */ "./node_modules/@ionic/core/dist/esm/haptic-7b8ba70a.js");
-/* harmony import */ var _theme_5641d27f_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./theme-5641d27f.js */ "./node_modules/@ionic/core/dist/esm/theme-5641d27f.js");
+/* harmony import */ var _index_92848855_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-92848855.js */ "sxy2");
+/* harmony import */ var _ionic_global_23e7365a_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ionic-global-23e7365a.js */ "N4tN");
+/* harmony import */ var _helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-47d562d2.js */ "9t5z");
+/* harmony import */ var _animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./animation-239bd3e5.js */ "L1bk");
+/* harmony import */ var _hardware_back_button_7b6ede21_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./hardware-back-button-7b6ede21.js */ "x/Nk");
+/* harmony import */ var _overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./overlays-d577c227.js */ "xG4I");
+/* harmony import */ var _haptic_7b8ba70a_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./haptic-7b8ba70a.js */ "2c9M");
+/* harmony import */ var _theme_5641d27f_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./theme-5641d27f.js */ "sPtc");
 
 
 
@@ -37,6 +37,9 @@ __webpack_require__.r(__webpack_exports__);
 const getDateValue = (date, format) => {
     const getValue = getValueFromFormat(date, format);
     if (getValue !== undefined) {
+        if (format === FORMAT_A || format === FORMAT_a) {
+            date.ampm = getValue;
+        }
         return getValue;
     }
     const defaultDate = parseDate(new Date().toISOString());
@@ -294,10 +297,15 @@ const updateDate = (existingData, newData, displayTimezone) => {
             }
         }
         else if ((newData.year || newData.hour || newData.month || newData.day || newData.minute || newData.second)) {
-            // newData is from of a datetime picker's selected values
-            // update the existing DatetimeData data with the new values
-            // do some magic for 12-hour values
-            if (newData.ampm && newData.hour) {
+            // newData is from the datetime picker's selected values
+            // update the existing datetimeValue with the new values
+            if (newData.ampm !== undefined && newData.hour !== undefined) {
+                // change the value of the hour based on whether or not it is am or pm
+                // if the meridiem is pm and equal to 12, it remains 12
+                // otherwise we add 12 to the hour value
+                // if the meridiem is am and equal to 12, we change it to 0
+                // otherwise we use its current hour value
+                // for example: 8 pm becomes 20, 12 am becomes 0, 4 am becomes 4
                 newData.hour.value = (newData.ampm.value === 'pm')
                     ? (newData.hour.value === 12 ? 12 : newData.hour.value + 12)
                     : (newData.hour.value === 12 ? 0 : newData.hour.value);
@@ -321,6 +329,7 @@ const updateDate = (existingData, newData, displayTimezone) => {
                         : (existingData.hour >= 12 ? existingData.hour - 12 : existingData.hour))
             };
             existingData['hour'] = newData['hour'].value;
+            existingData['ampm'] = newData['ampm'].value;
             return true;
         }
         // eww, invalid data
@@ -667,13 +676,13 @@ const Datetime = class {
             return;
         }
         const pickerOptions = this.generatePickerOptions();
-        const picker = await _overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_5__["p"].create(pickerOptions);
+        const picker = await _overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_5__["p"].create(pickerOptions);
         this.isExpanded = true;
         picker.onDidDismiss().then(() => {
             this.isExpanded = false;
             this.setFocus();
         });
-        picker.addEventListener('ionPickerColChange', async (event) => {
+        Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["a"])(picker, 'ionPickerColChange', async (event) => {
             const data = event.detail;
             const colSelectedIndex = data.selectedIndex;
             const colOptions = data.options;
@@ -681,6 +690,11 @@ const Datetime = class {
             changeData[data.name] = {
                 value: colOptions[colSelectedIndex].value
             };
+            if (data.name !== 'ampm' && this.datetimeValue.ampm !== undefined) {
+                changeData['ampm'] = {
+                    value: this.datetimeValue.ampm
+                };
+            }
             this.updateDatetimeValue(changeData);
             picker.columns = this.generateColumns();
         });
@@ -903,7 +917,7 @@ const Datetime = class {
                 indexMax = Math.max(indexMax, i);
             }
         }
-        const selectedIndex = column.selectedIndex = Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["c"])(indexMin, column.selectedIndex, indexMax);
+        const selectedIndex = column.selectedIndex = Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["e"])(indexMin, column.selectedIndex, indexMax);
         const opt = column.options[selectedIndex];
         if (opt) {
             return opt.value;
@@ -932,7 +946,7 @@ const Datetime = class {
         const { inputId, text, disabled, readonly, isExpanded, el, placeholder } = this;
         const mode = Object(_ionic_global_23e7365a_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
         const labelId = inputId + '-lbl';
-        const label = Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["f"])(el);
+        const label = Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["f"])(el);
         const addPlaceholderClass = (text === undefined && placeholder != null) ? true : false;
         // If selected text has been passed in, use that first
         // otherwise use the placeholder
@@ -945,7 +959,7 @@ const Datetime = class {
         if (label) {
             label.id = labelId;
         }
-        Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["a"])(true, el, this.name, this.value, this.disabled);
+        Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["c"])(true, el, this.name, this.value, this.disabled);
         return (Object(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["H"], { onClick: this.onClick, "aria-disabled": disabled ? 'true' : null, "aria-expanded": `${isExpanded}`, "aria-haspopup": "true", "aria-labelledby": labelId, class: {
                 [mode]: true,
                 'datetime-disabled': disabled,
@@ -1000,9 +1014,9 @@ Datetime.style = {
  * iOS Picker Enter Animation
  */
 const iosEnterAnimation = (baseEl) => {
-    const baseAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-    const backdropAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-    const wrapperAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    const baseAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    const backdropAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    const wrapperAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
     backdropAnimation
         .addElement(baseEl.querySelector('ion-backdrop'))
         .fromTo('opacity', 0.01, 'var(--backdrop-opacity)')
@@ -1024,9 +1038,9 @@ const iosEnterAnimation = (baseEl) => {
  * iOS Picker Leave Animation
  */
 const iosLeaveAnimation = (baseEl) => {
-    const baseAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-    const backdropAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-    const wrapperAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    const baseAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    const backdropAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    const wrapperAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
     backdropAnimation
         .addElement(baseEl.querySelector('ion-backdrop'))
         .fromTo('opacity', 'var(--backdrop-opacity)', 0.01);
@@ -1081,24 +1095,24 @@ const Picker = class {
          */
         this.animated = true;
         this.onBackdropTap = () => {
-            this.dismiss(undefined, _overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_5__["B"]);
+            this.dismiss(undefined, _overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_5__["B"]);
         };
         this.dispatchCancelHandler = (ev) => {
             const role = ev.detail.role;
-            if (Object(_overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_5__["i"])(role)) {
+            if (Object(_overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_5__["i"])(role)) {
                 const cancelButton = this.buttons.find(b => b.role === 'cancel');
                 this.callButtonHandler(cancelButton);
             }
         };
     }
     connectedCallback() {
-        Object(_overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_5__["e"])(this.el);
+        Object(_overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_5__["e"])(this.el);
     }
     /**
      * Present the picker overlay after it has been created.
      */
     async present() {
-        await Object(_overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_5__["d"])(this, 'pickerEnter', iosEnterAnimation, iosEnterAnimation, undefined);
+        await Object(_overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_5__["d"])(this, 'pickerEnter', iosEnterAnimation, iosEnterAnimation, undefined);
         if (this.duration > 0) {
             this.durationTimeout = setTimeout(() => this.dismiss(), this.duration);
         }
@@ -1116,19 +1130,19 @@ const Picker = class {
         if (this.durationTimeout) {
             clearTimeout(this.durationTimeout);
         }
-        return Object(_overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_5__["f"])(this, data, role, 'pickerLeave', iosLeaveAnimation, iosLeaveAnimation);
+        return Object(_overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_5__["f"])(this, data, role, 'pickerLeave', iosLeaveAnimation, iosLeaveAnimation);
     }
     /**
      * Returns a promise that resolves when the picker did dismiss.
      */
     onDidDismiss() {
-        return Object(_overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionPickerDidDismiss');
+        return Object(_overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionPickerDidDismiss');
     }
     /**
      * Returns a promise that resolves when the picker will dismiss.
      */
     onWillDismiss() {
-        return Object(_overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionPickerWillDismiss');
+        return Object(_overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionPickerWillDismiss');
     }
     /**
      * Get the column that matches the specified name.
@@ -1140,7 +1154,7 @@ const Picker = class {
     }
     async buttonClick(button) {
         const role = button.role;
-        if (Object(_overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_5__["i"])(role)) {
+        if (Object(_overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_5__["i"])(role)) {
             return this.dismiss(undefined, role);
         }
         const shouldDismiss = await this.callButtonHandler(button);
@@ -1153,7 +1167,7 @@ const Picker = class {
         if (button) {
             // a handler has been provided, execute it
             // pass the handler the values from the inputs
-            const rtn = await Object(_overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_5__["s"])(button.handler, this.getSelected());
+            const rtn = await Object(_overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_5__["s"])(button.handler, this.getSelected());
             if (rtn === false) {
                 // if the return value of the handler is false then do not dismiss
                 return false;
@@ -1227,7 +1241,7 @@ const PickerColumnCmp = class {
         }
         this.rotateFactor = pickerRotateFactor;
         this.scaleFactor = pickerScaleFactor;
-        this.gesture = (await Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./index-eea61379.js */ "./node_modules/@ionic/core/dist/esm/index-eea61379.js"))).createGesture({
+        this.gesture = (await Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./index-eea61379.js */ "ItpF"))).createGesture({
             el: this.el,
             gestureName: 'picker-swipe',
             gesturePriority: 100,
@@ -1392,7 +1406,9 @@ const PickerColumnCmp = class {
         // We have to prevent default in order to block scrolling under the picker
         // but we DO NOT have to stop propagation, since we still want
         // some "click" events to capture
-        detail.event.preventDefault();
+        if (detail.event.cancelable) {
+            detail.event.preventDefault();
+        }
         detail.event.stopPropagation();
         Object(_haptic_7b8ba70a_js__WEBPACK_IMPORTED_MODULE_6__["a"])();
         // reset everything
@@ -1410,7 +1426,9 @@ const PickerColumnCmp = class {
         this.maxY = -(maxY * this.optHeight);
     }
     onMove(detail) {
-        detail.event.preventDefault();
+        if (detail.event.cancelable) {
+            detail.event.preventDefault();
+        }
         detail.event.stopPropagation();
         // update the scroll position relative to pointer start position
         let y = this.y + detail.deltaY;
@@ -1442,7 +1460,7 @@ const PickerColumnCmp = class {
             this.emitColChange();
             return;
         }
-        this.velocity = Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["c"])(-MAX_PICKER_SPEED, detail.velocityY * 23, MAX_PICKER_SPEED);
+        this.velocity = Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["e"])(-MAX_PICKER_SPEED, detail.velocityY * 23, MAX_PICKER_SPEED);
         if (this.velocity === 0 && detail.deltaY === 0) {
             const opt = detail.event.target.closest('.picker-opt');
             if (opt && opt.hasAttribute('opt-index')) {
@@ -1484,7 +1502,7 @@ const PickerColumnCmp = class {
         if (this.velocity !== 0) {
             return;
         }
-        const selectedIndex = Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["c"])(min, this.col.selectedIndex || 0, max);
+        const selectedIndex = Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["e"])(min, this.col.selectedIndex || 0, max);
         if (this.col.prevSelected !== selectedIndex || forceRefresh) {
             const y = (selectedIndex * this.optHeight) * -1;
             this.velocity = 0;

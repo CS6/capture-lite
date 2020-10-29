@@ -1,7 +1,7 @@
 (function () {
   (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["core-js-js"], {
     /***/
-    "./node_modules/@ionic/pwa-elements/dist/esm/polyfills/core-js.js":
+    "GbUP":
     /*!************************************************************************!*\
       !*** ./node_modules/@ionic/pwa-elements/dist/esm/polyfills/core-js.js ***!
       \************************************************************************/
@@ -9,7 +9,7 @@
     /*! no static exports found */
 
     /***/
-    function node_modulesIonicPwaElementsDistEsmPolyfillsCoreJsJs(module, exports, __webpack_require__) {
+    function GbUP(module, exports, __webpack_require__) {
       /**
        * core-js 3.2.0
        * https://github.com/zloirock/core-js

@@ -1,6 +1,6 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["core-js-js"],{
 
-/***/ "./node_modules/@ionic/pwa-elements/dist/esm/polyfills/core-js.js":
+/***/ "GbUP":
 /*!************************************************************************!*\
   !*** ./node_modules/@ionic/pwa-elements/dist/esm/polyfills/core-js.js ***!
   \************************************************************************/

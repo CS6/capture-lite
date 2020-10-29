@@ -1,6 +1,6 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["stencil-polyfills-css-shim"],{
 
-/***/ "./node_modules/@ionic/pwa-elements/dist/esm/css-shim-8775d9ad-556f0cc2.js":
+/***/ "qVyR":
 /*!*********************************************************************************!*\
   !*** ./node_modules/@ionic/pwa-elements/dist/esm/css-shim-8775d9ad-556f0cc2.js ***!
   \*********************************************************************************/

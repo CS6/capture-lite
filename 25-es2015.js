@@ -1,6 +1,6 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[25],{
 
-/***/ "./node_modules/@ionic/core/dist/esm/ion-range.entry.js":
+/***/ "XGij":
 /*!**************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/ion-range.entry.js ***!
   \**************************************************************/
@@ -10,10 +10,10 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_range", function() { return Range; });
-/* harmony import */ var _index_92848855_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-92848855.js */ "./node_modules/@ionic/core/dist/esm/index-92848855.js");
-/* harmony import */ var _ionic_global_23e7365a_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ionic-global-23e7365a.js */ "./node_modules/@ionic/core/dist/esm/ionic-global-23e7365a.js");
-/* harmony import */ var _helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-5c745fbd.js */ "./node_modules/@ionic/core/dist/esm/helpers-5c745fbd.js");
-/* harmony import */ var _theme_5641d27f_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./theme-5641d27f.js */ "./node_modules/@ionic/core/dist/esm/theme-5641d27f.js");
+/* harmony import */ var _index_92848855_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-92848855.js */ "sxy2");
+/* harmony import */ var _ionic_global_23e7365a_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ionic-global-23e7365a.js */ "N4tN");
+/* harmony import */ var _helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-47d562d2.js */ "9t5z");
+/* harmony import */ var _theme_5641d27f_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./theme-5641d27f.js */ "sPtc");
 
 
 
@@ -83,7 +83,7 @@ const Range = class {
          */
         this.value = 0;
         this.clampBounds = (value) => {
-            return Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["c"])(this.min, value, this.max);
+            return Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["e"])(this.min, value, this.max);
         };
         this.ensureValueInBounds = (value) => {
             if (this.dualKnobs) {
@@ -104,10 +104,10 @@ const Range = class {
                 step *= -1;
             }
             if (knob === 'A') {
-                this.ratioA = Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["c"])(0, this.ratioA + step, 1);
+                this.ratioA = Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["e"])(0, this.ratioA + step, 1);
             }
             else {
-                this.ratioB = Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["c"])(0, this.ratioB + step, 1);
+                this.ratioB = Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["e"])(0, this.ratioB + step, 1);
             }
             this.updateValue();
         };
@@ -127,7 +127,7 @@ const Range = class {
         };
     }
     debounceChanged() {
-        this.ionChange = Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["d"])(this.ionChange, this.debounce);
+        this.ionChange = Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["d"])(this.ionChange, this.debounce);
     }
     minChanged() {
         if (!this.noUpdate) {
@@ -166,7 +166,7 @@ const Range = class {
     async componentDidLoad() {
         const rangeSlider = this.rangeSlider;
         if (rangeSlider) {
-            this.gesture = (await Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./index-eea61379.js */ "./node_modules/@ionic/core/dist/esm/index-eea61379.js"))).createGesture({
+            this.gesture = (await Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./index-eea61379.js */ "ItpF"))).createGesture({
                 el: rangeSlider,
                 gestureName: 'range',
                 gesturePriority: 100,
@@ -206,7 +206,7 @@ const Range = class {
         const rect = this.rect = this.rangeSlider.getBoundingClientRect();
         const currentX = detail.currentX;
         // figure out which knob they started closer to
-        let ratio = Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["c"])(0, (currentX - rect.left) / rect.width, 1);
+        let ratio = Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["e"])(0, (currentX - rect.left) / rect.width, 1);
         if (document.dir === 'rtl') {
             ratio = 1 - ratio;
         }
@@ -230,7 +230,7 @@ const Range = class {
         // figure out where the pointer is currently at
         // update the knob being interacted with
         const rect = this.rect;
-        let ratio = Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["c"])(0, (currentX - rect.left) / rect.width, 1);
+        let ratio = Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["e"])(0, (currentX - rect.left) / rect.width, 1);
         if (document.dir === 'rtl') {
             ratio = 1 - ratio;
         }
@@ -326,7 +326,7 @@ const Range = class {
                 ticks.push(tick);
             }
         }
-        Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["a"])(true, el, this.name, JSON.stringify(this.getValue()), disabled);
+        Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["c"])(true, el, this.name, JSON.stringify(this.getValue()), disabled);
         return (Object(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["H"], { onFocusin: this.onFocus, onFocusout: this.onBlur, class: Object(_theme_5641d27f_js__WEBPACK_IMPORTED_MODULE_3__["c"])(this.color, {
                 [mode]: true,
                 'in-item': Object(_theme_5641d27f_js__WEBPACK_IMPORTED_MODULE_3__["h"])('ion-item', el),
@@ -400,10 +400,10 @@ const ratioToValue = (ratio, min, max, step) => {
     if (step > 0) {
         value = Math.round(value / step) * step + min;
     }
-    return Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["c"])(min, value, max);
+    return Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["e"])(min, value, max);
 };
 const valueToRatio = (value, min, max) => {
-    return Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["c"])(0, (value - min) / (max - min), 1);
+    return Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["e"])(0, (value - min) / (max - min), 1);
 };
 Range.style = {
     ios: rangeIosCss,

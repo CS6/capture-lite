@@ -1,6 +1,6 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[24],{
 
-/***/ "./node_modules/@ionic/core/dist/esm/ion-radio_2.entry.js":
+/***/ "h11V":
 /*!****************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/ion-radio_2.entry.js ***!
   \****************************************************************/
@@ -11,10 +11,10 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_radio", function() { return Radio; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_radio_group", function() { return RadioGroup; });
-/* harmony import */ var _index_92848855_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-92848855.js */ "./node_modules/@ionic/core/dist/esm/index-92848855.js");
-/* harmony import */ var _ionic_global_23e7365a_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ionic-global-23e7365a.js */ "./node_modules/@ionic/core/dist/esm/ionic-global-23e7365a.js");
-/* harmony import */ var _helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-5c745fbd.js */ "./node_modules/@ionic/core/dist/esm/helpers-5c745fbd.js");
-/* harmony import */ var _theme_5641d27f_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./theme-5641d27f.js */ "./node_modules/@ionic/core/dist/esm/theme-5641d27f.js");
+/* harmony import */ var _index_92848855_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-92848855.js */ "sxy2");
+/* harmony import */ var _ionic_global_23e7365a_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ionic-global-23e7365a.js */ "N4tN");
+/* harmony import */ var _helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-47d562d2.js */ "9t5z");
+/* harmony import */ var _theme_5641d27f_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./theme-5641d27f.js */ "sPtc");
 
 
 
@@ -37,6 +37,11 @@ const Radio = class {
          */
         this.checked = false;
         /**
+         * The tabindex of the radio button.
+         * @internal
+         */
+        this.buttonTabindex = -1;
+        /**
          * The name of the control, which is submitted with the form data.
          */
         this.name = this.inputId;
@@ -56,6 +61,16 @@ const Radio = class {
             this.ionBlur.emit();
         };
     }
+    /** @internal */
+    async setFocus() {
+        if (this.buttonEl) {
+            this.buttonEl.focus();
+        }
+    }
+    /** @internal */
+    async setButtonTabindex(value) {
+        this.buttonTabindex = value;
+    }
     connectedCallback() {
         if (this.value === undefined) {
             this.value = this.inputId;
@@ -63,13 +78,13 @@ const Radio = class {
         const radioGroup = this.radioGroup = this.el.closest('ion-radio-group');
         if (radioGroup) {
             this.updateState();
-            radioGroup.addEventListener('ionChange', this.updateState);
+            Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["a"])(radioGroup, 'ionChange', this.updateState);
         }
     }
     disconnectedCallback() {
         const radioGroup = this.radioGroup;
         if (radioGroup) {
-            radioGroup.removeEventListener('ionChange', this.updateState);
+            Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["b"])(radioGroup, 'ionChange', this.updateState);
             this.radioGroup = null;
         }
     }
@@ -83,10 +98,10 @@ const Radio = class {
         });
     }
     render() {
-        const { inputId, disabled, checked, color, el } = this;
+        const { inputId, disabled, checked, color, el, buttonTabindex } = this;
         const mode = Object(_ionic_global_23e7365a_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
         const labelId = inputId + '-lbl';
-        const label = Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["f"])(el);
+        const label = Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["f"])(el);
         if (label) {
             label.id = labelId;
         }
@@ -96,7 +111,7 @@ const Radio = class {
                 'interactive': true,
                 'radio-checked': checked,
                 'radio-disabled': disabled,
-            }) }, Object(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "radio-icon", part: "container" }, Object(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "radio-inner", part: "mark" })), Object(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", { type: "button", onFocus: this.onFocus, onBlur: this.onBlur, disabled: disabled })));
+            }) }, Object(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "radio-icon", part: "container" }, Object(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "radio-inner", part: "mark" })), Object(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", { ref: btnEl => this.buttonEl = btnEl, type: "button", onFocus: this.onFocus, onBlur: this.onBlur, disabled: disabled, tabindex: buttonTabindex })));
     }
     get el() { return Object(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["i"])(this); }
     static get watchers() { return {
@@ -125,6 +140,22 @@ const RadioGroup = class {
          * The name of the control, which is submitted with the form data.
          */
         this.name = this.inputId;
+        this.setRadioTabindex = (value) => {
+            const radios = this.getRadios();
+            // Get the first radio that is not disabled and the checked one
+            const first = radios.find(radio => !radio.disabled);
+            const checked = radios.find(radio => (radio.value === value && !radio.disabled));
+            if (!first && !checked) {
+                return;
+            }
+            // If an enabled checked radio exists, set it to be the focusable radio
+            // otherwise we default to focus the first radio
+            const focusable = checked || first;
+            for (const radio of radios) {
+                const tabindex = radio === focusable ? 0 : -1;
+                radio.setButtonTabindex(tabindex);
+            }
+        };
         this.onClick = (ev) => {
             const selectedRadio = ev.target && ev.target.closest('ion-radio');
             if (selectedRadio) {
@@ -140,7 +171,11 @@ const RadioGroup = class {
         };
     }
     valueChanged(value) {
+        this.setRadioTabindex(value);
         this.ionChange.emit({ value });
+    }
+    componentDidLoad() {
+        this.setRadioTabindex(this.value);
     }
     async connectedCallback() {
         // Get the list header if it exists and set the id
@@ -151,6 +186,43 @@ const RadioGroup = class {
             const label = header.querySelector('ion-label');
             if (label) {
                 this.labelId = label.id = this.name + '-lbl';
+            }
+        }
+    }
+    getRadios() {
+        return Array.from(this.el.querySelectorAll('ion-radio'));
+    }
+    onKeydown(ev) {
+        const inSelectPopover = !!this.el.closest('ion-select-popover');
+        if (ev.target && !this.el.contains(ev.target)) {
+            return;
+        }
+        // Get all radios inside of the radio group and then
+        // filter out disabled radios since we need to skip those
+        const radios = Array.from(this.el.querySelectorAll('ion-radio')).filter(radio => !radio.disabled);
+        // Only move the radio if the current focus is in the radio group
+        if (ev.target && radios.includes(ev.target)) {
+            const index = radios.findIndex(radio => radio === ev.target);
+            let next;
+            // If hitting arrow down or arrow right, move to the next radio
+            // If we're on the last radio, move to the first radio
+            if (['ArrowDown', 'ArrowRight'].includes(ev.key)) {
+                next = (index === radios.length - 1)
+                    ? radios[0]
+                    : radios[index + 1];
+            }
+            // If hitting arrow up or arrow left, move to the previous radio
+            // If we're on the first radio, move to the last radio
+            if (['ArrowUp', 'ArrowLeft'].includes(ev.key)) {
+                next = (index === 0)
+                    ? radios[radios.length - 1]
+                    : radios[index - 1];
+            }
+            if (next && radios.includes(next)) {
+                next.setFocus();
+                if (!inSelectPopover) {
+                    this.value = next.value;
+                }
             }
         }
     }

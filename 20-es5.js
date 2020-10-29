@@ -13,7 +13,7 @@
 
   (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[20], {
     /***/
-    "./node_modules/@ionic/core/dist/esm/ion-modal.entry.js":
+    "TvZU":
     /*!**************************************************************!*\
       !*** ./node_modules/@ionic/core/dist/esm/ion-modal.entry.js ***!
       \**************************************************************/
@@ -21,7 +21,7 @@
     /*! exports provided: ion_modal */
 
     /***/
-    function node_modulesIonicCoreDistEsmIonModalEntryJs(module, __webpack_exports__, __webpack_require__) {
+    function TvZU(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
@@ -36,73 +36,73 @@
 
       var _index_92848855_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
       /*! ./index-92848855.js */
-      "./node_modules/@ionic/core/dist/esm/index-92848855.js");
+      "sxy2");
       /* harmony import */
 
 
       var _ionic_global_23e7365a_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
       /*! ./ionic-global-23e7365a.js */
-      "./node_modules/@ionic/core/dist/esm/ionic-global-23e7365a.js");
+      "N4tN");
       /* harmony import */
 
 
-      var _helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! ./helpers-5c745fbd.js */
-      "./node_modules/@ionic/core/dist/esm/helpers-5c745fbd.js");
+      var _helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ./helpers-47d562d2.js */
+      "9t5z");
       /* harmony import */
 
 
-      var _animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-      /*! ./animation-a635a2fc.js */
-      "./node_modules/@ionic/core/dist/esm/animation-a635a2fc.js");
+      var _animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! ./animation-239bd3e5.js */
+      "L1bk");
       /* harmony import */
 
 
-      var _index_9b2fc761_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-      /*! ./index-9b2fc761.js */
-      "./node_modules/@ionic/core/dist/esm/index-9b2fc761.js");
+      var _index_96111fa9_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! ./index-96111fa9.js */
+      "gN1R");
       /* harmony import */
 
 
       var _cubic_bezier_685f606a_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
       /*! ./cubic-bezier-685f606a.js */
-      "./node_modules/@ionic/core/dist/esm/cubic-bezier-685f606a.js");
+      "PLvT");
       /* harmony import */
 
 
       var _gesture_controller_89173521_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! ./gesture-controller-89173521.js */
-      "./node_modules/@ionic/core/dist/esm/gesture-controller-89173521.js");
+      "rxGk");
       /* harmony import */
 
 
       var _index_eea61379_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! ./index-eea61379.js */
-      "./node_modules/@ionic/core/dist/esm/index-eea61379.js");
+      "ItpF");
       /* harmony import */
 
 
       var _hardware_back_button_7b6ede21_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
       /*! ./hardware-back-button-7b6ede21.js */
-      "./node_modules/@ionic/core/dist/esm/hardware-back-button-7b6ede21.js");
+      "x/Nk");
       /* harmony import */
 
 
-      var _overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
-      /*! ./overlays-2cc140a1.js */
-      "./node_modules/@ionic/core/dist/esm/overlays-2cc140a1.js");
+      var _overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      /*! ./overlays-d577c227.js */
+      "xG4I");
       /* harmony import */
 
 
       var _theme_5641d27f_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
       /*! ./theme-5641d27f.js */
-      "./node_modules/@ionic/core/dist/esm/theme-5641d27f.js");
+      "sPtc");
       /* harmony import */
 
 
       var _framework_delegate_d1eb6504_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
       /*! ./framework-delegate-d1eb6504.js */
-      "./node_modules/@ionic/core/dist/esm/framework-delegate-d1eb6504.js"); // Defaults for the card swipe animation
+      "NqGI"); // Defaults for the card swipe animation
 
 
       var SwipeToCloseDefaults = {
@@ -137,13 +137,13 @@
         };
 
         var onMove = function onMove(detail) {
-          var step = Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["c"])(0.0001, detail.deltaY / height, 0.9999);
+          var step = Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["e"])(0.0001, detail.deltaY / height, 0.9999);
           animation.progressStep(step);
         };
 
         var onEnd = function onEnd(detail) {
           var velocity = detail.velocityY;
-          var step = Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["c"])(0.0001, detail.deltaY / height, 0.9999);
+          var step = Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["e"])(0.0001, detail.deltaY / height, 0.9999);
           var threshold = (detail.deltaY + velocity * 1000) / height;
           var shouldComplete = threshold >= 0.5;
           var newStepValue = shouldComplete ? -0.001 : 0.001;
@@ -185,7 +185,7 @@
       };
 
       var computeDuration = function computeDuration(remaining, velocity) {
-        return Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["c"])(400, remaining / Math.abs(velocity * 1.1), 500);
+        return Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["e"])(400, remaining / Math.abs(velocity * 1.1), 500);
       };
       /**
        * iOS Modal Enter Animation for the Card presentation style
@@ -193,18 +193,18 @@
 
 
       var iosEnterAnimation = function iosEnterAnimation(baseEl, presentingEl) {
-        var backdropAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])().addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 0.01, 'var(--backdrop-opacity)').beforeStyles({
+        var backdropAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])().addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 0.01, 'var(--backdrop-opacity)').beforeStyles({
           'pointer-events': 'none'
         }).afterClearStyles(['pointer-events']);
-        var wrapperAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])().addElement(baseEl.querySelectorAll('.modal-wrapper, .modal-shadow')).beforeStyles({
+        var wrapperAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])().addElement(baseEl.querySelectorAll('.modal-wrapper, .modal-shadow')).beforeStyles({
           'opacity': 1
         }).fromTo('transform', 'translateY(100vh)', 'translateY(0vh)');
-        var baseAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])().addElement(baseEl).easing('cubic-bezier(0.32,0.72,0,1)').duration(500).addAnimation(wrapperAnimation);
+        var baseAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])().addElement(baseEl).easing('cubic-bezier(0.32,0.72,0,1)').duration(500).addAnimation(wrapperAnimation);
 
         if (presentingEl) {
           var isMobile = window.innerWidth < 768;
           var hasCardModal = presentingEl.tagName === 'ION-MODAL' && presentingEl.presentingElement !== undefined;
-          var presentingAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])().beforeStyles({
+          var presentingAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])().beforeStyles({
             'transform': 'translateY(0)',
             'transform-origin': 'top center',
             'overflow': 'hidden'
@@ -258,7 +258,7 @@
                 filter: 'contrast(0.85)',
                 transform: _finalTransform
               }]);
-              var shadowAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])().afterStyles({
+              var shadowAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])().afterStyles({
                 'transform': _finalTransform
               }).addElement(presentingEl.querySelector('.modal-shadow')).keyframes([{
                 offset: 0,
@@ -285,16 +285,16 @@
 
       var iosLeaveAnimation = function iosLeaveAnimation(baseEl, presentingEl) {
         var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 500;
-        var backdropAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])().addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 'var(--backdrop-opacity)', 0.0);
-        var wrapperAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])().addElement(baseEl.querySelectorAll('.modal-wrapper, .modal-shadow')).beforeStyles({
+        var backdropAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])().addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 'var(--backdrop-opacity)', 0.0);
+        var wrapperAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])().addElement(baseEl.querySelectorAll('.modal-wrapper, .modal-shadow')).beforeStyles({
           'opacity': 1
         }).fromTo('transform', 'translateY(0vh)', 'translateY(100vh)');
-        var baseAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])().addElement(baseEl).easing('cubic-bezier(0.32,0.72,0,1)').duration(duration).addAnimation(wrapperAnimation);
+        var baseAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])().addElement(baseEl).easing('cubic-bezier(0.32,0.72,0,1)').duration(duration).addAnimation(wrapperAnimation);
 
         if (presentingEl) {
           var isMobile = window.innerWidth < 768;
           var hasCardModal = presentingEl.tagName === 'ION-MODAL' && presentingEl.presentingElement !== undefined;
-          var presentingAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])().beforeClearStyles(['transform']).afterClearStyles(['transform']).onFinish(function (currentStep) {
+          var presentingAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])().beforeClearStyles(['transform']).afterClearStyles(['transform']).onFinish(function (currentStep) {
             // only reset background color if this is the last card-style modal
             if (currentStep !== 1) {
               return;
@@ -349,7 +349,7 @@
                 filter: 'contrast(1)',
                 transform: 'translateY(0) scale(1)'
               }]);
-              var shadowAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])().addElement(presentingEl.querySelector('.modal-shadow')).afterStyles({
+              var shadowAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])().addElement(presentingEl.querySelector('.modal-shadow')).afterStyles({
                 'transform': 'translateY(0) scale(1)'
               }).keyframes([{
                 offset: 0,
@@ -375,9 +375,9 @@
 
 
       var mdEnterAnimation = function mdEnterAnimation(baseEl) {
-        var baseAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-        var backdropAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-        var wrapperAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+        var baseAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+        var backdropAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+        var wrapperAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
         backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 0.01, 'var(--backdrop-opacity)').beforeStyles({
           'pointer-events': 'none'
         }).afterClearStyles(['pointer-events']);
@@ -398,9 +398,9 @@
 
 
       var mdLeaveAnimation = function mdLeaveAnimation(baseEl) {
-        var baseAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-        var backdropAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-        var wrapperAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+        var baseAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+        var backdropAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+        var wrapperAnimation = Object(_animation_239bd3e5_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
         var wrapperEl = baseEl.querySelector('.modal-wrapper');
         backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 'var(--backdrop-opacity)', 0.0);
         wrapperAnimation.addElement(wrapperEl).keyframes([{
@@ -459,7 +459,7 @@
           this.swipeToClose = false;
 
           this.onBackdropTap = function () {
-            _this.dismiss(undefined, _overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_9__["B"]);
+            _this.dismiss(undefined, _overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_9__["B"]);
           };
 
           this.onDismiss = function (ev) {
@@ -496,7 +496,7 @@
         }, {
           key: "connectedCallback",
           value: function connectedCallback() {
-            Object(_overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_9__["e"])(this.el);
+            Object(_overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_9__["e"])(this.el);
           }
           /**
            * Present the modal overlay after it has been created.
@@ -540,14 +540,14 @@
                     case 8:
                       this.usersElement = _context.sent;
                       _context.next = 11;
-                      return Object(_index_9b2fc761_js__WEBPACK_IMPORTED_MODULE_4__["e"])(this.usersElement);
+                      return Object(_index_96111fa9_js__WEBPACK_IMPORTED_MODULE_4__["e"])(this.usersElement);
 
                     case 11:
                       Object(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["c"])(function () {
                         return _this2.el.classList.add('show-modal');
                       });
                       _context.next = 14;
-                      return Object(_overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_9__["d"])(this, 'modalEnter', iosEnterAnimation, mdEnterAnimation, this.presentingElement);
+                      return Object(_overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_9__["d"])(this, 'modalEnter', iosEnterAnimation, mdEnterAnimation, this.presentingElement);
 
                     case 14:
                       if (this.swipeToClose) {
@@ -641,9 +641,9 @@
                       return _context3.abrupt("return", false);
 
                     case 2:
-                      enteringAnimation = _overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_9__["h"].get(this) || [];
+                      enteringAnimation = _overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_9__["h"].get(this) || [];
                       _context3.next = 5;
-                      return Object(_overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_9__["f"])(this, data, role, 'modalLeave', iosLeaveAnimation, mdLeaveAnimation, this.presentingElement);
+                      return Object(_overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_9__["f"])(this, data, role, 'modalLeave', iosLeaveAnimation, mdLeaveAnimation, this.presentingElement);
 
                     case 5:
                       dismissed = _context3.sent;
@@ -690,7 +690,7 @@
         }, {
           key: "onDidDismiss",
           value: function onDidDismiss() {
-            return Object(_overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_9__["g"])(this.el, 'ionModalDidDismiss');
+            return Object(_overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_9__["g"])(this.el, 'ionModalDidDismiss');
           }
           /**
            * Returns a promise that resolves when the modal will dismiss.
@@ -699,7 +699,7 @@
         }, {
           key: "onWillDismiss",
           value: function onWillDismiss() {
-            return Object(_overlays_2cc140a1_js__WEBPACK_IMPORTED_MODULE_9__["g"])(this.el, 'ionModalWillDismiss');
+            return Object(_overlays_d577c227_js__WEBPACK_IMPORTED_MODULE_9__["g"])(this.el, 'ionModalWillDismiss');
           }
         }, {
           key: "render",

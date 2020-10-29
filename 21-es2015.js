@@ -1,6 +1,6 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[21],{
 
-/***/ "./node_modules/@ionic/core/dist/esm/ion-nav_2.entry.js":
+/***/ "vnES":
 /*!**************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/ion-nav_2.entry.js ***!
   \**************************************************************/
@@ -11,12 +11,12 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_nav", function() { return Nav; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_nav_link", function() { return NavLink; });
-/* harmony import */ var _index_92848855_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-92848855.js */ "./node_modules/@ionic/core/dist/esm/index-92848855.js");
-/* harmony import */ var _ionic_global_23e7365a_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ionic-global-23e7365a.js */ "./node_modules/@ionic/core/dist/esm/ionic-global-23e7365a.js");
-/* harmony import */ var _helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-5c745fbd.js */ "./node_modules/@ionic/core/dist/esm/helpers-5c745fbd.js");
-/* harmony import */ var _index_9b2fc761_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./index-9b2fc761.js */ "./node_modules/@ionic/core/dist/esm/index-9b2fc761.js");
-/* harmony import */ var _cubic_bezier_685f606a_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./cubic-bezier-685f606a.js */ "./node_modules/@ionic/core/dist/esm/cubic-bezier-685f606a.js");
-/* harmony import */ var _framework_delegate_d1eb6504_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./framework-delegate-d1eb6504.js */ "./node_modules/@ionic/core/dist/esm/framework-delegate-d1eb6504.js");
+/* harmony import */ var _index_92848855_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-92848855.js */ "sxy2");
+/* harmony import */ var _ionic_global_23e7365a_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ionic-global-23e7365a.js */ "N4tN");
+/* harmony import */ var _helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-47d562d2.js */ "9t5z");
+/* harmony import */ var _index_96111fa9_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./index-96111fa9.js */ "gN1R");
+/* harmony import */ var _cubic_bezier_685f606a_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./cubic-bezier-685f606a.js */ "PLvT");
+/* harmony import */ var _framework_delegate_d1eb6504_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./framework-delegate-d1eb6504.js */ "NqGI");
 
 
 
@@ -44,7 +44,7 @@ class ViewController {
      * DOM WRITE
      */
     _destroy() {
-        Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["b"])(this.state !== VIEW_STATE_DESTROYED, 'view state must be ATTACHED');
+        Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["h"])(this.state !== VIEW_STATE_DESTROYED, 'view state must be ATTACHED');
         const element = this.element;
         if (element) {
             if (this.delegate) {
@@ -159,12 +159,12 @@ const Nav = class {
     }
     async componentDidLoad() {
         this.rootChanged();
-        this.gesture = (await __webpack_require__.e(/*! import() | swipe-back-0a6a44c8-js */ "swipe-back-0a6a44c8-js").then(__webpack_require__.bind(null, /*! ./swipe-back-0a6a44c8.js */ "./node_modules/@ionic/core/dist/esm/swipe-back-0a6a44c8.js"))).createSwipeBackGesture(this.el, this.canStart.bind(this), this.onStart.bind(this), this.onMove.bind(this), this.onEnd.bind(this));
+        this.gesture = (await __webpack_require__.e(/*! import() | swipe-back-2c765762-js */ "swipe-back-2c765762-js").then(__webpack_require__.bind(null, /*! ./swipe-back-2c765762.js */ "3wQK"))).createSwipeBackGesture(this.el, this.canStart.bind(this), this.onStart.bind(this), this.onMove.bind(this), this.onEnd.bind(this));
         this.swipeGestureChanged();
     }
     disconnectedCallback() {
         for (const view of this.views) {
-            Object(_index_9b2fc761_js__WEBPACK_IMPORTED_MODULE_3__["l"])(view.element, _index_9b2fc761_js__WEBPACK_IMPORTED_MODULE_3__["d"]);
+            Object(_index_96111fa9_js__WEBPACK_IMPORTED_MODULE_3__["l"])(view.element, _index_96111fa9_js__WEBPACK_IMPORTED_MODULE_3__["d"]);
             view._destroy();
         }
         if (this.gesture) {
@@ -585,8 +585,8 @@ const Nav = class {
             ti.opts.delegate = this.delegate;
         }
         if (ti.removeView !== undefined) {
-            Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["b"])(ti.removeStart !== undefined, 'removeView needs removeStart');
-            Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["b"])(ti.removeCount !== undefined, 'removeView needs removeCount');
+            Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["h"])(ti.removeStart !== undefined, 'removeView needs removeStart');
+            Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["h"])(ti.removeCount !== undefined, 'removeView needs removeCount');
             const index = this.views.indexOf(ti.removeView);
             if (index < 0) {
                 throw new Error('removeView was not found');
@@ -615,7 +615,7 @@ const Nav = class {
         if (!insertViews) {
             return;
         }
-        Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["b"])(insertViews.length > 0, 'length can not be zero');
+        Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["h"])(insertViews.length > 0, 'length can not be zero');
         const viewControllers = convertToViews(insertViews);
         if (viewControllers.length === 0) {
             throw new Error('invalid views to insert');
@@ -654,9 +654,9 @@ const Nav = class {
         return undefined;
     }
     postViewInit(enteringView, leavingView, ti) {
-        Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["b"])(leavingView || enteringView, 'Both leavingView and enteringView are null');
-        Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["b"])(ti.resolve, 'resolve must be valid');
-        Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["b"])(ti.reject, 'reject must be valid');
+        Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["h"])(leavingView || enteringView, 'Both leavingView and enteringView are null');
+        Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["h"])(ti.resolve, 'resolve must be valid');
+        Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["h"])(ti.reject, 'reject must be valid');
         const opts = ti.opts;
         const insertViews = ti.insertViews;
         const removeStart = ti.removeStart;
@@ -664,8 +664,8 @@ const Nav = class {
         let destroyQueue;
         // there are views to remove
         if (removeStart !== undefined && removeCount !== undefined) {
-            Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["b"])(removeStart >= 0, 'removeStart can not be negative');
-            Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["b"])(removeCount >= 0, 'removeCount can not be negative');
+            Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["h"])(removeStart >= 0, 'removeStart can not be negative');
+            Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["h"])(removeCount >= 0, 'removeCount can not be negative');
             destroyQueue = [];
             for (let i = 0; i < removeCount; i++) {
                 const view = this.views[i + removeStart];
@@ -679,7 +679,7 @@ const Nav = class {
         const finalBalance = this.views.length +
             (insertViews !== undefined ? insertViews.length : 0) -
             (removeCount !== undefined ? removeCount : 0);
-        Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["b"])(finalBalance >= 0, 'final balance can not be negative');
+        Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["h"])(finalBalance >= 0, 'final balance can not be negative');
         if (finalBalance === 0) {
             console.warn(`You can't remove all the pages in the navigation stack. nav.pop() is probably called too many times.`, this, this.el);
             throw new Error('navigation stack needs at least one root page');
@@ -705,9 +705,9 @@ const Nav = class {
         // let's make sure, callbacks are zoned
         if (destroyQueue && destroyQueue.length > 0) {
             for (const view of destroyQueue) {
-                Object(_index_9b2fc761_js__WEBPACK_IMPORTED_MODULE_3__["l"])(view.element, _index_9b2fc761_js__WEBPACK_IMPORTED_MODULE_3__["b"]);
-                Object(_index_9b2fc761_js__WEBPACK_IMPORTED_MODULE_3__["l"])(view.element, _index_9b2fc761_js__WEBPACK_IMPORTED_MODULE_3__["c"]);
-                Object(_index_9b2fc761_js__WEBPACK_IMPORTED_MODULE_3__["l"])(view.element, _index_9b2fc761_js__WEBPACK_IMPORTED_MODULE_3__["d"]);
+                Object(_index_96111fa9_js__WEBPACK_IMPORTED_MODULE_3__["l"])(view.element, _index_96111fa9_js__WEBPACK_IMPORTED_MODULE_3__["b"]);
+                Object(_index_96111fa9_js__WEBPACK_IMPORTED_MODULE_3__["l"])(view.element, _index_96111fa9_js__WEBPACK_IMPORTED_MODULE_3__["c"]);
+                Object(_index_96111fa9_js__WEBPACK_IMPORTED_MODULE_3__["l"])(view.element, _index_96111fa9_js__WEBPACK_IMPORTED_MODULE_3__["d"]);
             }
             // once all lifecycle events has been delivered, we can safely detroy the views
             for (const view of destroyQueue) {
@@ -727,7 +727,7 @@ const Nav = class {
         const leavingEl = leavingView && leavingView.element;
         const animationOpts = Object.assign({ mode, showGoBack: this.canGoBackSync(enteringView), baseEl: this.el, animationBuilder: this.animation || opts.animationBuilder || _ionic_global_23e7365a_js__WEBPACK_IMPORTED_MODULE_1__["c"].get('navAnimation'), progressCallback, animated: this.animated && _ionic_global_23e7365a_js__WEBPACK_IMPORTED_MODULE_1__["c"].getBoolean('animated', true), enteringEl,
             leavingEl }, opts);
-        const { hasCompleted } = await Object(_index_9b2fc761_js__WEBPACK_IMPORTED_MODULE_3__["t"])(animationOpts);
+        const { hasCompleted } = await Object(_index_96111fa9_js__WEBPACK_IMPORTED_MODULE_3__["t"])(animationOpts);
         return this.transitionFinish(hasCompleted, enteringView, leavingView, opts);
     }
     transitionFinish(hasCompleted, enteringView, leavingView, opts) {
@@ -749,11 +749,11 @@ const Nav = class {
         if (existingIndex > -1) {
             // this view is already in the stack!!
             // move it to its new location
-            Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["b"])(view.nav === this, 'view is not part of the nav');
+            Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["h"])(view.nav === this, 'view is not part of the nav');
             views.splice(index, 0, views.splice(existingIndex, 1)[0]);
         }
         else {
-            Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["b"])(!view.nav, 'nav is used');
+            Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["h"])(!view.nav, 'nav is used');
             // this is a new view to add to the stack
             // create the new entering view
             view.nav = this;
@@ -762,10 +762,10 @@ const Nav = class {
         }
     }
     removeView(view) {
-        Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["b"])(view.state === VIEW_STATE_ATTACHED || view.state === VIEW_STATE_DESTROYED, 'view state should be loaded or destroyed');
+        Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["h"])(view.state === VIEW_STATE_ATTACHED || view.state === VIEW_STATE_DESTROYED, 'view state should be loaded or destroyed');
         const views = this.views;
         const index = views.indexOf(view);
-        Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["b"])(index > -1, 'view must be part of the stack');
+        Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["h"])(index > -1, 'view must be part of the stack');
         if (index >= 0) {
             views.splice(index, 1);
         }
@@ -801,13 +801,13 @@ const Nav = class {
                 if (i > activeViewIndex) {
                     // this view comes after the active view
                     // let's unload it
-                    Object(_index_9b2fc761_js__WEBPACK_IMPORTED_MODULE_3__["l"])(element, _index_9b2fc761_js__WEBPACK_IMPORTED_MODULE_3__["d"]);
+                    Object(_index_96111fa9_js__WEBPACK_IMPORTED_MODULE_3__["l"])(element, _index_96111fa9_js__WEBPACK_IMPORTED_MODULE_3__["d"]);
                     this.destroyView(view);
                 }
                 else if (i < activeViewIndex) {
                     // this view comes before the active view
                     // and it is not a portal then ensure it is hidden
-                    Object(_index_9b2fc761_js__WEBPACK_IMPORTED_MODULE_3__["s"])(element, true);
+                    Object(_index_96111fa9_js__WEBPACK_IMPORTED_MODULE_3__["s"])(element, true);
                 }
             }
         }

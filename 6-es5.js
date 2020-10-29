@@ -9,7 +9,7 @@
 
   (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[6], {
     /***/
-    "./node_modules/@ionic/core/dist/esm/ion-button_2.entry.js":
+    "0Pbj":
     /*!*****************************************************************!*\
       !*** ./node_modules/@ionic/core/dist/esm/ion-button_2.entry.js ***!
       \*****************************************************************/
@@ -17,7 +17,7 @@
     /*! exports provided: ion_button, ion_icon */
 
     /***/
-    function node_modulesIonicCoreDistEsmIonButton_2EntryJs(module, __webpack_exports__, __webpack_require__) {
+    function Pbj(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
@@ -38,25 +38,25 @@
 
       var _index_92848855_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
       /*! ./index-92848855.js */
-      "./node_modules/@ionic/core/dist/esm/index-92848855.js");
+      "sxy2");
       /* harmony import */
 
 
       var _ionic_global_23e7365a_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
       /*! ./ionic-global-23e7365a.js */
-      "./node_modules/@ionic/core/dist/esm/ionic-global-23e7365a.js");
+      "N4tN");
       /* harmony import */
 
 
-      var _helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! ./helpers-5c745fbd.js */
-      "./node_modules/@ionic/core/dist/esm/helpers-5c745fbd.js");
+      var _helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ./helpers-47d562d2.js */
+      "9t5z");
       /* harmony import */
 
 
       var _theme_5641d27f_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! ./theme-5641d27f.js */
-      "./node_modules/@ionic/core/dist/esm/theme-5641d27f.js");
+      "sPtc");
 
       var CACHED_MAP;
 
@@ -216,7 +216,7 @@
           this.handleClick = function (ev) {
             if (_this.type === 'button') {
               Object(_theme_5641d27f_js__WEBPACK_IMPORTED_MODULE_3__["o"])(_this.href, ev, _this.routerDirection, _this.routerAnimation);
-            } else if (Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["h"])(_this.el)) {
+            } else if (Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["i"])(_this.el)) {
               // this button wants to specifically submit a form
               // climb up the dom to see if we're in a <form>
               // and if so, then use JS to submit it
@@ -309,7 +309,7 @@
         }, {
           key: "hasIconOnly",
           get: function get() {
-            return !!this.el.querySelector('ion-icon[slot="icon-only"]');
+            return !!this.el.querySelector('[slot="icon-only"]');
           }
         }, {
           key: "rippleType",

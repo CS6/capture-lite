@@ -1,6 +1,6 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[16],{
 
-/***/ "./node_modules/@ionic/core/dist/esm/ion-item-option_3.entry.js":
+/***/ "MGMP":
 /*!**********************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/ion-item-option_3.entry.js ***!
   \**********************************************************************/
@@ -12,10 +12,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_item_option", function() { return ItemOption; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_item_options", function() { return ItemOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_item_sliding", function() { return ItemSliding; });
-/* harmony import */ var _index_92848855_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-92848855.js */ "./node_modules/@ionic/core/dist/esm/index-92848855.js");
-/* harmony import */ var _ionic_global_23e7365a_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ionic-global-23e7365a.js */ "./node_modules/@ionic/core/dist/esm/ionic-global-23e7365a.js");
-/* harmony import */ var _helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-5c745fbd.js */ "./node_modules/@ionic/core/dist/esm/helpers-5c745fbd.js");
-/* harmony import */ var _theme_5641d27f_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./theme-5641d27f.js */ "./node_modules/@ionic/core/dist/esm/theme-5641d27f.js");
+/* harmony import */ var _index_92848855_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-92848855.js */ "sxy2");
+/* harmony import */ var _ionic_global_23e7365a_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ionic-global-23e7365a.js */ "N4tN");
+/* harmony import */ var _helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-47d562d2.js */ "9t5z");
+/* harmony import */ var _theme_5641d27f_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./theme-5641d27f.js */ "sPtc");
 
 
 
@@ -94,7 +94,7 @@ const ItemOptions = class {
     }
     render() {
         const mode = Object(_ionic_global_23e7365a_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
-        const isEnd = Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["i"])(this.side);
+        const isEnd = Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["j"])(this.side);
         return (Object(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_92848855_js__WEBPACK_IMPORTED_MODULE_0__["H"], { class: {
                 [mode]: true,
                 // Used internally for styling
@@ -140,7 +140,7 @@ const ItemSliding = class {
     async connectedCallback() {
         this.item = this.el.querySelector('ion-item');
         await this.updateOptions();
-        this.gesture = (await Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./index-eea61379.js */ "./node_modules/@ionic/core/dist/esm/index-eea61379.js"))).createGesture({
+        this.gesture = (await Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./index-eea61379.js */ "ItpF"))).createGesture({
             el: this.el,
             gestureName: 'item-swipe',
             gesturePriority: 100,
@@ -200,7 +200,7 @@ const ItemSliding = class {
             side = (optionsToOpen === this.leftOptions) ? 'start' : 'end';
         }
         // In RTL we want to switch the sides
-        side = Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["i"])(side) ? 'end' : 'start';
+        side = Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["j"])(side) ? 'end' : 'start';
         const isStartOpen = this.openAmount < 0;
         const isEndOpen = this.openAmount > 0;
         /**
@@ -264,7 +264,7 @@ const ItemSliding = class {
         this.leftOptions = this.rightOptions = undefined;
         for (let i = 0; i < options.length; i++) {
             const option = await options.item(i).componentOnReady();
-            const side = Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["i"])(option.side) ? 'end' : 'start';
+            const side = Object(_helpers_47d562d2_js__WEBPACK_IMPORTED_MODULE_2__["j"])(option.side) ? 'end' : 'start';
             if (side === 'start') {
                 this.leftOptions = option;
                 sides |= 1 /* Start */;
