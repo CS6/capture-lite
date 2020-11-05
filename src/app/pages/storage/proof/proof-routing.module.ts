@@ -10,6 +10,9 @@ const routes: Routes = [{
   path: 'information',
   loadChildren: () => import('./information/information.module').then(m => m.InformationPageModule),
   canActivate: [AuthGuardService],
+}, {
+  path: 'sending-post-capture',
+  loadChildren: () => import('./sending-post-capture/sending-post-capture.module').then(m => m.SendingPostCapturePageModule)
 }];
 
 @NgModule({
