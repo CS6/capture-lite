@@ -1,0 +1,72 @@
+<mat-toolbar *transloco="let t">
+  <button routerLink=".." routerDirection="back" mat-icon-button>
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span>{{ t('contact') }}</span>
+</mat-toolbar>
+<mat-list>
+  <div mat-subheader>Contact</div>
+  <mat-card *ngFor="let Contact of Contact">
+    <mat-list-item>
+      <a mat-list-item>
+        <mat-icon class="example-header-image" mat-list-icon> <img
+            src="https://angular.io/assets/images/logos/angular/shield-large.svg" alt="...">
+        </mat-icon>
+        <div class="contact_line" mat-line>{{Contact.name}}
+        </div>
+        <button mat-icon-button (click)="click()">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </a>
+    </mat-list-item>
+  </mat-card>
+
+  <mat-divider></mat-divider>
+  <div mat-subheader>Helper</div>
+  <mat-card>
+    <mat-list-item>
+      <a mat-list-item>
+        <mat-icon mat-list-icon>group_add</mat-icon>
+        <div class="contact_line" mat-line>
+          Invite Contact
+        </div>
+      </a>
+    </mat-list-item>
+  </mat-card>
+  <mat-card>
+    <mat-list-item>
+      <a mat-list-item>
+        <div class="contact_line" mat-line>
+          <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <input type="email" placeholder="Ex. pat@example.com">
+              <mat-hint>Errors appear instantly!</mat-hint>
+              <!-- <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="emailFormControl.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error> -->
+            </mat-form-field>
+          </form>
+        </div>
+
+        <button mat-raised-button>Invite</button>
+      </a>
+    </mat-list-item>
+  </mat-card>
+  <mat-card>
+    <mat-list-item>
+      <a mat-list-item>
+        <mat-icon mat-list-icon>help_outline</mat-icon>
+        <div class="contact_line" mat-line>
+          Contact Helper
+        </div>
+        <button mat-icon-button (click)="click()">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </a>
+    </mat-list-item>
+  </mat-card>
+
+</mat-list>
