@@ -32,7 +32,6 @@ export class ProofPage {
     switchMap(hash => this.proofRepository.getByHash$(hash)),
     isNonNullable()
   );
-
   readonly base64Src$ = this.proof$.pipe(
     switchMap(proof => this.proofRepository.getRawFile$(proof)),
     map(rawBase64 => `data:image/png;base64,${rawBase64}`)

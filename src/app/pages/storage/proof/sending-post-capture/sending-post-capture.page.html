@@ -1,0 +1,38 @@
+<mat-toolbar *transloco="let t">
+  <button [routerLink]="isPreview ? null : '../../../'" [routerDirection]="isPreview ? null : 'back'"
+    (click)="isPreview ? isPreview = false : null" mat-icon-button>
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span>{{ t(isPreview ? 'previewPostCapture' : 'sendPostCapture') }}</span>
+</mat-toolbar>
+
+<div *transloco="let t" class="page-content">
+  <mat-card *ngIf="!isPreview" class="example-card">
+    <img mat-card-image [src]="base64Src$ | async">
+    <mat-card-content>
+      <form>
+        <mat-form-field appearance="outline">
+          <mat-label>{{ t('caption') }}</mat-label>
+          <textarea matInput cdkTextareaAutosize></textarea>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <button *ngIf="!isPreview" (click)="isPreview = true" class="send-button" mat-raised-button
+    color="primary">{{ t('preview') }}</button>
+
+  <!-- preview -->
+
+  <app-post-capture-card *ngIf="isPreview" [proof]="proof$ | async" [imageSrc]="base64Src$ | async">
+  </app-post-capture-card>
+
+  <button *ngIf="isPreview" class="send-button" mat-raised-button color="primary">
+    <div class="send-button-wrapper">
+      <div class="avatar"></div>
+      <span>someone</span>
+      <div class="spacer"></div>
+      <mat-icon>send</mat-icon>
+    </div>
+  </button>
+</div>
