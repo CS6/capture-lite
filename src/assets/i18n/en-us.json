@@ -77,6 +77,9 @@
   "address": "Address",
   "mediaId": "Media ID",
   "media": "Media",
+  "selectContact": "Select Contact",
+  "inviteFriend": "Invite Friend",
+  "invitationEmail": "Invitation Email",
   "message": {
     "areYouSure": "This action cannot be undone.",
     "verificationEmailSent": "A verification email has been sent to your email address.",

@@ -1,13 +1,20 @@
+mat-toolbar {
+  background: white;
+}
+
 .example-header-image {
   background-color: black;
 }
+
 .mat-card {
   margin: 0;
   padding: 0;
 }
-.contact_line{
-justify-content: space-between;
+
+.contact_line {
+  justify-content: space-between;
 }
+
 .example-form {
   min-width: 150px;
   max-width: 500px;

@@ -34,8 +34,8 @@ const routes: Routes = [{
   loadChildren: () => import('./pages/about/about.module').then(m => m.AboutPageModule),
   canActivate: [AuthGuardService],
 }, {
-  path: 'contact',
-  loadChildren: () => import('./pages/contact/contact.module').then(m => m.ContactPageModule)
+  path: 'contact-selection',
+  loadChildren: () => import('./pages/contact-selection/contact-selection.module').then(m => m.ContactSelectionPageModule)
 }];
 
 @NgModule({

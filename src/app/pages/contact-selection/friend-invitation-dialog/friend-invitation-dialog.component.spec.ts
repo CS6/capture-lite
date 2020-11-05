@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ContactPage } from './contact.page';
+import { FriendInvitationDialogComponent } from './friend-invitation-dialog.component';
 
-describe('ContactPage', () => {
-  let component: ContactPage;
-  let fixture: ComponentFixture<ContactPage>;
+describe('FriendInvitationDialogComponent', () => {
+  let component: FriendInvitationDialogComponent;
+  let fixture: ComponentFixture<FriendInvitationDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContactPage ],
+      declarations: [ FriendInvitationDialogComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ContactPage);
+    fixture = TestBed.createComponent(FriendInvitationDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
