@@ -1,0 +1,30 @@
+name: Check   Apple Code-signing Certificates and Keys & download-provisioning-profiles 
+
+# on: [push, pull_request]
+on:
+  push:
+    branches: [  feature-ios  ]
+#    tags:
+#      - 'Store*'
+  pull_request:
+    branches: [  feature-ios  ]
+
+jobs:
+  Check:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2   
+    - name: Run a signing Certificate p12 script
+      uses: apple-actions/import-codesign-certs@v1
+      with: 
+        p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
+        p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
+    - uses: Apple-Actions/download-provisioning-profiles@v1
+      with:
+        bundle-id: com.shotouch.awish.ios
+        issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+        api-key-id: ${{ secrets.APPSTORE_KEY_ID }}
+        api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
+
+#    - name: 'Another example step'
+#      run: echo ${{ steps.provisioning.outputs.profiles }}
